@@ -1,0 +1,2 @@
+class AppPublic extends Public {
+}

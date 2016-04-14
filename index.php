@@ -1,4 +1,4 @@
 <?php
-  echo "cc";
+  echo "clkjc";
   die;
 ?>
