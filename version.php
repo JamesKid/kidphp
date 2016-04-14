@@ -9,6 +9,7 @@ function getVersion() {
 		'HISTORY'=>array(
 			'2016.4.14 15:00'=>'add program by vimkid',
 			'2016.4.14 15:07'=>'add route by vimkid',
+			'2016.4.14 18:19'=>'add config by vimkid',
 		)
 	);
 	return $version;
