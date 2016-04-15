@@ -28,9 +28,15 @@ class Route {
 			$uri = explode('/', $url);  
 			# 如果function为空 则默认访问index  
 			if (count($uri) == 2)  {  
-				$controlFuction['api'] = $api;  
-				$controlFuction['class'] = $uri[0];  
-				$controlFuction['function'] = 'index';  
+				if ($uri[0]!=$api)  {  
+					$controlFuction['api'] = $api;  
+					$controlFuction['class'] = $uri[0];  
+					$controlFuction['function'] = 'index';  
+				}else{
+					$controlFuction['api'] = 'show';  
+					$controlFuction['class'] = $uri[0];  
+					$controlFuction['function'] = 'index';  
+				}
 			} else if (count($uri) == 1)  {  
 				$controlFuction['api'] = $api;  
 				$controlFuction['class'] = 'index';  
