@@ -2,14 +2,9 @@
 header("Content-Type: text/html; charset=utf-8");
 include ('system/plugin/parsedown/Parsedown.php');
 $textContent = '
-README
-===========================
+##README
 ###　　Author:Jelly
 ### E-mail:879231132@qq.com
-
-===========================
-
-
 
 ##目录
 * [横线](#line)
@@ -41,8 +36,6 @@ README
 ***
 ---
 ___
-
-
 
 #一级标题
 ##二级标题

@@ -1,6 +1,8 @@
 /* css from http://jbt.github.io/markdown-editor */
 body {
     margin: 0;
+	background-color:#001000;
+	color:#00cf00;  /* add by jameskid 2016.4.18 */
 }
 .CodeMirror pre {
     line-height: 16px;
@@ -134,23 +136,29 @@ body {
     padding-left: 10px;
 }
 a {
-    color: #0645ad;
-    text-decoration: none;
+	text-decoration:none;
+    color: #cccc99;  /* fix by jameskid 2016.4.18 */
 }
 a:visited {
-    color: #0b0080;
+    color: #aa7;
+	text-decoration:none;
 }
 a:hover {
-    color: #06e;
+    color: #ee9; /* fix by jameskid 2016.4.18 */
+	text-decoration:none;
+    font-weight: bold;
 }
 a:active {
-    color: #faa700;
+    color: #dd9; /* fix by jameskid 2016.4.18 */
+	text-decoration:none;
 }
 a:focus {
     outline: thin dotted;
+	text-decoration:none;
 }
 a:hover, a:active {
     outline: 0 none;
+	text-decoration:none;
 }
 p {
     margin: 1em 0;
@@ -162,6 +170,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #111;
     font-weight: normal;
     line-height: 1em;
+	color:#00ef00; /* add by jameskid 2016.4.18 */
 }
 h4, h5, h6 {
     font-weight: bold;
@@ -170,7 +179,7 @@ h1 {
     font-size: 2.5em;
 }
 h2 {
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #005f00;
     font-size: 2em;
     padding-bottom: 5px;
 }
@@ -187,17 +196,21 @@ h6 {
     font-size: 0.9em;
 }
 blockquote {
-    border-left: 0.5em solid #eee;
-    color: #666666;
+    border-left: 0.5em solid #007f00;
+	background-color:#000;
+    color: #ccc;
     margin: 0;
-    padding-left: 3em;
+    padding-left: 1.2em;  /* fix by jameskid */
+}
+blockquote p{
+	margin-right:1.2em; /* add by jameskid */
 }
 hr {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    border-color: #aaa -moz-use-text-color #eee;
+    border-color: #004f00 -moz-use-text-color #004f00;
     border-image: none;
     border-style: solid none;
     border-width: 1px 0;
@@ -208,11 +221,12 @@ hr {
 }
 pre, code {
     background-color: #f8f8f8;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 3px;
-    color: #000;
+    color: #eee;
     font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
     font-size: 0.94em;
+	background-color:#444; /* add by jameskid */
 }
 pre {
     padding: 5px;
@@ -256,6 +270,9 @@ img {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+	margin-bottom:10px;
+	background-color:#333;
+	color:#ddd;
 }
 td, th {
     border: 1px solid #bbb;
@@ -263,5 +280,5 @@ td, th {
     vertical-align: top;
 }
 tr:nth-child(2n) td, tr:nth-child(2n) th {
-    background: #eee none repeat scroll 0 0;
+    background: #555 none repeat scroll 0 0;
 }
