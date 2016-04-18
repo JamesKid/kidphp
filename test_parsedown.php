@@ -1,22 +1,17 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-include_once('system/plugin/PHPMarkdown/MarkdownGithub.inc.php');
-
-use \Michelf\MarkdownGithub;
-$myTextFrame = '
+include ('system/plugin/parsedown/Parsedown.php');
+$textContent = '
 README
 ===========================
-该文件用来测试和展示书写README的各种markdown语法。GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为`GitHub Flavored Markdown`。简称`GFM`，GFM在GitHub上有广泛应用，除了README文件外，issues和wiki均支持markdown语法。
-
-****
-###　　　　　　　　　　　　Author:Jelly
-###　　　　　　　　　 E-mail:879231132@qq.com
+###　　Author:Jelly
+### E-mail:879231132@qq.com
 
 ===========================
 
 
 
-##<a name="index"/>目录
+##目录
 * [横线](#line)
 * [标题](#title)
 * [文本](#text)
@@ -42,7 +37,6 @@ README
 * [表格](#table) 
 * [表情](#emoji)
 
-<a name="line"/>
 ##***、---、___显示虚横线
 ***
 ---
@@ -50,7 +44,6 @@ ___
 
 
 
-<a name="title"/>
 #一级标题
 ##二级标题
 ###三级标题
@@ -59,7 +52,7 @@ ___
 ######六级标题
 
 
-##<a name="text"/>显示文本
+##显示文本
 ###普通文本
 这是一段普通的文本
 ####关于换行
@@ -103,7 +96,7 @@ ___斜粗体2___
 
 ~~***斜粗体删除线2***~~
 
-##<a name="link"/>链接
+##链接
 ###链接外部URL
 [我的博客](http://blog.csdn.net/guodongxiaren "悬停显示")   语法如下：
 ```
@@ -132,14 +125,14 @@ ___斜粗体2___
 但其实呢，每一个标题都是一个锚点，不需要用标签来指定，比如我们 [回到顶部](#TEST)
 不过不幸的是，由于对中文支持的不好，所以中文标题貌似是不能视作标签的。
 
-##<a name="pic"/>显示图片
+##显示图片
 ###来源于网络的图片
 ![baidu](http://www.baidu.com/img/bdlogo.gif "百度logo")
 ![](https://assets-cdn.github.com/images/modules/contact/goldstar.gif)
 
 ###GitHub仓库中的图片
 ![](https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif)
-###<a name="piclink">给图片加上超链接
+###给图片加上超链接
 ####第一种
 
 [![head]](http://blog.csdn.net/guodongxiaren/article/details/23690801)
@@ -151,7 +144,7 @@ ___斜粗体2___
 
 
 
-##<a name="dot"/>列表
+##列表
 ###圆点列表
 * 昵称：果冻虾仁
 * 别名：隔壁老王
@@ -201,7 +194,7 @@ ___斜粗体2___
 - [ ] .NET
 
 您可以使用这个功能来标注某个项目各项任务的完成情况。
-##<a name="blockquotes"/>块引用
+##块引用
 
 ###常用于引用文本
 ####文本摘自《深入理解计算机系统》P27
@@ -217,7 +210,7 @@ ___斜粗体2___
 >>>>平衡二叉树
 >>>>>满二叉树
 
-##<a name="code"/>代码高亮
+##代码高亮
 ```Java
 public static void main(String[]args){} //Java
 ```
@@ -233,16 +226,20 @@ document.getElementById("myH1").innerHTML="Welcome to my Homepage"; //javascipt
 ```cpp
 string &operator+(const string& A,const string& B) //cpp
 ```
-##<a name="table"/>显示表格
+##显示表格
+
 表头1  | 表头2
 ------------- | -------------
 Content Cell  | Content Cell
 Content Cell  | Content Cell
 
+
+
 | 表头1  | 表头2|
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
+
 
 | 名字 | 描述          |
 | ------------- | ----------- |
@@ -270,7 +267,7 @@ Content Cell  | Content Cell
 | ---- | ---- |
 ![baidu](http://www.baidu.com/img/bdlogo.gif "百度logo") | baidu
 
-##<a name="emoji"/>添加表情
+##添加表情
 Github的Markdown语法支持添加emoji表情，输入不同的符号码（两个冒号包围的字符）可以显示出不同的表情。
 
 比如`:blush:`，可以显示:blush:。
@@ -279,70 +276,22 @@ Github的Markdown语法支持添加emoji表情，输入不同的符号码（两�
 
 但是这个网页每次都打开**奇慢**。。所以我整理到了本repo中，大家可以直接在此查看[emoji](./emoji.md)。
 ';
-$my_text = "
-##自我介绍 
 
-----
-
-我是南昌大学的一名学生，网络工程专业，一直热爱编程，也热爱开源，热爱Linux，喜欢git。  
-平时常在[CSDN][csdn]上写博客，目前是`CSDN博客专家`。大学期间不玩游戏、不把妹子，把时间都用作了编程上。
-
-**技能**
-
-- 熟练掌握 C, C++, Java 语言
-- 会使用Bash脚本语言
-- 喜欢Linux系统，熟练使用Ubuntu，CentOS系统
-- 了解TCP/IP，HTTP/HTTPS协议
-- 对网络安全略有兴趣
-
-**个人荣誉**
-
-- 通过英语四级
-- 2013年计算机二级C语言优秀证书（95分）
-- 2014年南昌大学数学建模竞赛三等奖
-- 2013年通过中级软考，获得软件设计师证书
-- 获得一等奖学金一次，二等奖学金一次
-
-**实习经历**  
-
-2015年7月10日开始在腾讯公司CDG事业群在线支部实习。
-
-**小玩意**
-
-- 利用Qt开发跨平台计算器，开放源码:
-- [CSDN](qcounter)
-- [GitHub](QCounter)
-- android小游戏“[妈妈再打我一次](mama)上线百度手机助手。并且在GitHub上开放[源码](dishu)
-
-**兴趣爱好**
-
-除了代码和计算机以外，我还有其他的爱好：
-
-- 历史
-- 诗词
-- 动漫
-
-**兴趣爱好**
-
-
->This is a text block that hello hello hello
-
-";
-
-$html = MarkdownGithub::defaultTransform($myTextFrame);
-//echo $html;
+$Parsedown = new Parsedown();
+echo  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!</p>
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub:Help" />
     <title> GitHub Help </title>
-	<link rel="stylesheet" href="system/asset/css/git_markdown.css">
+	<link rel="stylesheet" href="system/asset/css/my_fix/git_markdown_parsedown.css">
+	<link rel="stylesheet" href="system/asset/css/base16_light.css">
+	<link rel="stylesheet" href="system/asset/css/git_default.css">
 </head>
 	<body>
 		<article itemprop="text" class="markdown-body entry-content">
 			<?php echo $html;?>
 		</article>
 	</body>
-</html>
 </html>
