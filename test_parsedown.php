@@ -204,6 +204,11 @@ ___斜粗体2___
 >>>>>满二叉树
 
 ##代码高亮
+```javascript
+$(function(){
+	  $("div").html("I am a div.");
+});
+```
 ```Java
 public static void main(String[]args){} //Java
 ```
