@@ -7,7 +7,9 @@
 *				  it under the terms of the GNU General Public License 
 *				  as published by the Free Software Foundation.
 *				  
-* @change		: 2016.4.14 13:52  add program
+* @change		: 2016.04.14 13:52  add program
+*				: 2016.04.19 16:52  add plugin 'CodeMirror' 'parsedown' 'PHPMarkdown'
+*				: 2016.04.20 16:52  add kidphp plugin 'kidphp_check'
 *  ===========================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
