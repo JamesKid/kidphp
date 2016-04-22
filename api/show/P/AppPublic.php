@@ -1,2 +1,4 @@
-class AppPublic extends Public {
+<?php
+class AppPublic extends PublicCore {
 }
+?>

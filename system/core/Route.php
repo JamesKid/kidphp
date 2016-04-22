@@ -1,6 +1,8 @@
 <?php
 //class Route extends PublicCore{
 class Route {
+	/** 初始化路由
+	 */
 	public function initRoute(){
 		//获得请求地址
 		$root = $_SERVER['SCRIPT_NAME'];  
@@ -14,7 +16,7 @@ class Route {
 	}
 
 	/**
-	 * 截取controler 和function
+	 * 截取api  controler 和function
 	 *
 	 **/
 	public function getControllerFunction($url,$api){
@@ -26,7 +28,6 @@ class Route {
 			$controlFuction['function'] = 'index';  
 		}else {  
 			$uri = explode('/', $url);  
-			// 如果function为空 则默认访问index  
 			if (count($uri) == 2)  {  
 				$controlFuction['api'] = 'show';  
 				$controlFuction['class'] = ucfirst($uri[0]);  

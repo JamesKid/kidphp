@@ -1,6 +1,6 @@
 <html>  
 	<head>  
-	    <title><?php echo $params['title'] ?></title>  
+	    <title>aa<?php echo $params['title'] ?></title>  
 	</head>  
 	<body>  
 	<h1><?php  echo $params['content'] ?></h1>  
