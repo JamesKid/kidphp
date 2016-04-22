@@ -20,31 +20,24 @@ class Route {
 	public function getControllerFunction($url,$api){
 		$controlFuction = array();
 		if(empty($url)){  
-			# 默认控制器和默认方法  
+			// 默认控制器和默认方法  
 			$controlFuction['api'] = $api;  
-			$controlFuction['class'] = 'index';  
+			$controlFuction['class'] = 'Index';  
 			$controlFuction['function'] = 'index';  
 		}else {  
 			$uri = explode('/', $url);  
-			# 如果function为空 则默认访问index  
+			// 如果function为空 则默认访问index  
 			if (count($uri) == 2)  {  
-				if ($uri[0]!=$api)  {  
-					$controlFuction['api'] = $api;  
-					$controlFuction['class'] = $uri[0];  
-					$controlFuction['function'] = 'index';  
-				}else{
-					$controlFuction['api'] = 'show';  
-					$controlFuction['class'] = $uri[0];  
-					$controlFuction['function'] = 'index';  
-				}
+				$controlFuction['api'] = 'show';  
+				$controlFuction['class'] = ucfirst($uri[0]);  
+				$controlFuction['function'] = $uri[1];  
 			} else if (count($uri) == 1)  {  
 				$controlFuction['api'] = $api;  
-				$controlFuction['class'] = 'index';  
+				$controlFuction['class'] = ucfirst($uri[0]);  
 				$controlFuction['function'] = 'index';  
-			}  
-			else {  
+			} else {  
 				$controlFuction['api'] = $uri[0];  
-				$controlFuction['class'] = $uri[1];  
+				$controlFuction['class'] = ucfirst($uri[1]);  
 				$controlFuction['function'] = $uri[2];  
 			}  
 		}  
