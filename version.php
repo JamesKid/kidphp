@@ -7,9 +7,11 @@ function getVersion() {
 		'UPDATETIME'=>'2016.4.14',
 		'CONTRIBUTER'=>'vimkid',
 		'HISTORY'=>array(
-			'2016.4.14 15:00'=>'add program by vimkid',
-			'2016.4.14 15:07'=>'add route by vimkid',
+			'2016.4.14 19:00'=>'add program by vimkid',
+			'2016.4.14 19:07'=>'add route by vimkid',
 			'2016.4.14 18:19'=>'add config by vimkid',
+			'2016.4.14 18:19'=>'add config by vimkid',
+			'2016.4.19 19:19'=>'add Views ',
 		)
 	);
 	return $version;
