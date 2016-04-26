@@ -1,13 +1,10 @@
 <?php
-//require (dirname(__file__) . '/ver.php'); //载入附加信息
-//require (dirname(__file__) . '/data.php'); //载入附加信息
-
 class Config {
 	//站点信息在语言类
 
 	//默认api
-	public $config = array();
-	public function getConfig(){
+	public static $config = array();
+	public static function getConfig(){
 		$config['DEFAULT_API']='show'; //默认api
 		$config['APPPATH']=trim(__DIR__,'/');   
 		//全局开关

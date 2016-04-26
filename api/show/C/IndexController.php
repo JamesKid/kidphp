@@ -2,7 +2,7 @@
 //class Index extends AppPublic{
 class IndexController {
 	public function index(){
-		echo "cc";die;
+		echo "index";
 	}
 	public function indexts(){
 		$test = 1;
@@ -15,9 +15,16 @@ class IndexController {
 		);
 		$this->render('index',$params);
 	}
-	public function firstFunction($number=null,$test=null){
-		$result = $number*$test;
-		return $result;
+	public function firstFunction(){
+		$test = 1;
+		$params['title'] = 'functiontitle';
+		$params['content'] = 'functioncontent';
+		$params['arr'] = array(
+			'0'=>'helloalkjklj',
+			'1'=>'helloblkkj',
+			'2'=>'helloclkj;kj',
+		);
+		$this->render('indext',$params);
 	}
 	public function edit(){
 		$test = 1;
