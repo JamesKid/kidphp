@@ -3,9 +3,9 @@
 * ================================JamesKid==========================================
 * @author		: VimKid  
 * @title        : kidphp framework
-* @description  : This program is free, you can redistribute it and  modify 
-*				  it under the terms of the GNU General Public License 
-*				  as published by the Free Software Foundation.
+* @description  : This is a web frame edit by vimkid ,this program is free, and totaliy
+*				  support php7! and you can redistribute it and  modify it under the 
+*				  terms of the original BSD license.
 *				  
 * @change		: 2016.04.14 13:52  add program
 *				: 2016.04.19 16:52  add plugin 'CodeMirror' 'parsedown' 'PHPMarkdown'
