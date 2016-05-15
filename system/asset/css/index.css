@@ -1,0 +1,312 @@
+/* 常规布局 */
+	body { 
+		background-color:#000000; 
+		margin:0;padding:0; 
+		background-image:-webkit-linear-gradient(-330deg, #000000, #001a00);
+		background-image:linear-gradient(-330deg,#000000,#001a00);
+	} /* 去掉body 的默认白边 */
+	p {
+		text-indent:2em;/*段落开头缩进两字符*/
+		line-height:20px;
+	}
+	.noindent {
+		text-indent:0em;
+	}
+	/* 去除a样式 */
+	a {
+		text-decoration:none;
+		color:#cccc99;
+	}
+	a:hover {
+		background-color:#000;
+	}
+	a:active {
+		border:none;
+	}
+		/*  头部样式 */
+		.top {
+			padding-top:20px;
+			padding-bottom:30px;
+			background: linear-gradient(<angle>, red, white);
+
+		}
+		.topStyle {
+			box-shadow:0px 0px 10px #0f0;
+			border-radius:100px;
+		}
+		.tips {
+			color:#cccc99;
+			text-align:center;
+			font-size:0.8em;
+			font-style:italic;
+		}
+		#head {}
+		pre { 
+			letter-spacing: 0px; 
+			font-family: Courier New, Courier, monospace;
+			color: #00ff00; 
+			background-color: transparent; 
+			font-size: 9px; 
+			line-height: 6px;
+			text-align:center;
+			//box-shadow:0px 0px 10px #0f0;
+			//border-radius:100px;
+		}
+		/* 栏目样式 */
+		.color1 {
+			color:#002f00;
+			padding-left:0px;
+			padding-right:0px;
+		}
+		.color2 {
+			color:#003f00;
+			padding-left:0px;
+			padding-right:0px;
+		}
+		.color3 {
+			color:#005f00;
+			padding-left:0px;
+			padding-right:0px;
+		}
+		.color4 {
+			color:#007f00;
+			padding-left:0px;
+			padding-right:0px;
+		}
+
+		.more {
+			color:#cccc99;
+			float:right;
+			font-size:0.9em;
+			padding-left:6px;
+			padding-bottom:2px;
+			padding-top:2px;
+		}
+		/* 列表样式 */
+		.listContent li{
+			clear: both;
+			color: transparent;
+			border-bottom:1px dashed #555511;
+			padding:10px;
+		}
+		ul {
+			padding-left:0px;
+			margin-top:2px;
+			margin-bottom:2px;
+		}
+
+		.design-name {
+			background: #000600 none repeat scroll 0 0;
+			font-style: italic;
+			padding-right: 0.25em;
+			color:#cccc99;
+			text-decoration:none;
+			font-size:0.9em;
+		}
+		/*
+		.design-name::after {
+			color: #004f00;
+			content: "...........................................................................................................................................................................";
+			float: left;
+			white-space: nowrap;
+			width: 0;
+		}
+		*/
+		.designer-name {
+			background: #000600 none repeat scroll 0 0;
+			float: right;
+			font-family: "refrigerator-deluxe",sans-serif;
+			font-size: 0.8em;
+			padding-left: 0.25em;
+			//text-transform: uppercase;
+			color:#cccc99;
+			text-decoration:none;
+			margin-top:3px;
+		}
+
+		/* 语言样式 */
+		/* 标签样式 */
+		.tag1 {
+			float:left;
+			background-color:#001f00;
+			color:#cccc99;
+			margin-right:10px;
+			margin-bottom:10px;
+			padding:8px;
+			border-radius:3px;
+		}
+		.tag2 {
+			float:left;
+			background-color:#002f00;
+			color:#cccc99;
+			margin-right:10px;
+			margin-bottom:10px;
+			padding:8px;
+			border-radius:3px;
+		}
+		.tag3 {
+			float:left;
+			background-color:#003f00;
+			color:#cccc99;
+			margin-right:10px;
+			margin-bottom:10px;
+			padding:8px;
+			border-radius:3px;
+		}
+		.tag4 {
+			float:left;
+			background-color:#003f00;
+			color:#cccc99;
+			margin-right:10px;
+			margin-bottom:10px;
+			padding:8px;
+			border-radius:3px;
+		}
+
+		/*  内容样式  */
+		.listContent {
+			padding-top:8px;
+			padding-bottom:8px;
+		}
+		#content {
+			float:left; 
+			clear:both; 
+			color:#bfbfbf;
+			border:1px solid #002f00;
+			margin-top:15px;
+			margin-bottom:15px;
+			padding-top:10px;
+			padding-bottom:10px;
+			border-radius:15px;
+			margin-left:10px;
+			margin-right:10px;
+			width:96%;
+			background-color:#000600;
+			box-shadow:-3px 3px 18px #002f00;  
+		}  
+		.on {
+			background-color:#000600;
+		}
+		/* 大内容样式 */
+		#contentLeft {width:30%; background-color:#000600;float:left;padding:auto;}
+			/* 左边li的样式 */
+			#leftin li {
+				//list-style-type:square;
+				list-style-type:none;
+				color:#cccc99;
+				background-color:#002f00;
+				margin-top:3%;
+				padding:3%;
+				padding-left:8%;
+				border-radius:6px;
+			}  
+			#leftin { 
+				padding-left:10px; 
+				padding-right:10px; 
+				padding-bottom:10px; 
+				background-color:#000600;
+			}
+		#contentRight {width:70%; background-color:#000000;float:left;padding:auto;}
+			#rightin {
+				padding:10px;
+				//border-left:1px solid #007f00;
+				background-color:#000600;
+			}
+			#indexTitle { 
+				color:#007f00; 
+				text-align:center; 
+				border-bottom:1px solid #004f00; 
+			}
+
+		/* 脚部样式 */
+		.foot {
+			float:left;
+			width:100%;
+		}	
+
+		/* 公共类样式　*/
+		.language {
+			color:#bfbfbf;
+			float:left;
+			width:97%;
+			padding-top:20px;
+			padding-left:10px;
+			padding-bottom:10px;
+		}
+		.languageType {
+			float:left;
+			padding-right:3%;
+		}
+
+		hr   {color:#007f00; float:left; width:100%;}
+		fontTitle {color:#cccc99;font-size:18px;}   /* 右边自定义标题头样式 */
+		categoryTitle {color:#bfbfbf;font-size:18px;}   /* 右边自定义标题头样式 */
+		.languageColor {
+			color:#007f00;
+			float:left;
+			width:100%;
+
+		}
+		.greenToDark {
+		  background-image:-webkit-linear-gradient(-360deg, #000000, #007f00);
+		  background-image:linear-gradient(-360deg,#000000,#007f00);
+		  width: 100%;
+		  height: 25px;
+		  line-height: 150px;
+		  font-weight: 900;
+		  font-size: 18px;
+		  color: #fff;
+		  margin: -36px auto;
+		  z-index:1;   /* 将其放于最底层 */
+		  opacity:0.25;
+		  position:absolute;
+		}
+		.copyRight {
+			padding:4%;
+			color:#bfbfbf;
+			font-size:0.8em;
+			text-align:center;
+			margin-top:30px;
+			padding-top:10px;
+		}
+
+/*分辨大于宽900px 时的布局*/
+	@media (min-width: 900px) {
+		#contentLeft {width:20%; float:left;margin:auto;}
+		#contentRight {width:80%; background-color:#000000;float:left;margin:auto;}
+		#leftin li {
+			margin-top:4%;
+		}
+
+	}
+	@media (min-width: 1150px) {
+		body {
+			margin-left:15%;
+			margin-right:15%;
+		}
+		#leftin li {
+			margin-top:4%;
+		}
+	}
+/*分辨小于宽550px 时的布局*/
+	@media (max-width: 550px) {
+		#contentLeft {width:100%; float:left;margin:auto;} /* 菜单宽度100%布局 */
+		#contentRight {width:100%; background-color:#000000;float:left;margin:auto;} 
+		/* 去掉左边的线,要去掉border-left */
+		#rightin {
+			padding:10px;
+			//border-top:1px solid #007f00;
+			border-left:none;
+		} 
+		/* 把头头改小,并左对齐 */
+		pre { letter-spacing: 0px; font-family: Courier New, Courier, monospace;
+				color: #00ff00; font-size: 5px; 
+				line-height: 3px;text-align:center
+		} 
+		#content {
+			margin-left:2%;
+			margin-right:2%;
+			width:94%;
+		}
+	}
+

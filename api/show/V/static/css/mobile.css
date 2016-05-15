@@ -1,0 +1,17 @@
+/* 手机布局 */
+	body {background-color:#000000;width:500px;} /* 固定宽度 */
+	hr   {color:#cccc99; float:left; width:500px;}
+	.language {color:#bfbfbf;float:left;width:500px;}
+	.languageColor {color:#cccc99}
+	#leftin {padding:10px;}
+	#content {float:left;width:500px;clear:both;color:#bfbfbf}
+	#copyright { color:#cccc99}
+
+	#contentLeft {width:500px; background-color:#000000;float:left;margin:auto;} /* 菜单宽度100%布局 */
+	#contentRight {width:500px; background-color:#000000;float:left;margin:auto;} 
+	#rightin {padding:10px;border-top:1px solid #cccc99;border-left:none;}  /* 去掉左边的线,要去掉border-left */
+	pre { letter-spacing: 0px; font-family: Courier New, Courier, monospace;
+			color: #007f00; background-color: #000000; font-size: 5px; 
+			line-height: 3px;text-align:left
+	} /* 把头头改小,并左对齐 */
+

@@ -32,6 +32,7 @@ class Kidphp{
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
 		$this->callFunction($classRoute,$uri);
+		$this->__autoload();
 	}
 
 	/* 配置错误信息 */
@@ -52,10 +53,16 @@ class Kidphp{
 		}
 		//检查是否有function,get_class_methods方法需要require class进来才有效
 		$functionList = get_class_methods($uri['class'].'Controller');
-		if(!in_array($uri['function'],$functionList)){
-			include("404.html");//跳转到404页面
-			exit();
-		}
+
+		foreach ($functionList as $value) {
+			if (strtolower($value) == strtolower($uri['function'])) {
+				return true;
+				break;
+			}else{
+				include("404.html");//跳转到404页面
+				exit();
+			}
+		} 
 	}
 
 	/* 回调函数方法 */
@@ -65,6 +72,28 @@ class Kidphp{
 			array()
 		);
 	}
+
+	/* 引入命名空间 */
+	public function __autoload($classname){
+		$classpath="./".$classname.'.php';
+		if(file_exists($classpath)){
+			require_once($classpath);
+		}
+		else{
+			echo 'class file'.$classpath.'not found!';
+		}
+	}
+	/*
+	spl_autoload_register(function ($class) {
+		if ($class) {
+			$file = str_replace('\\', '/', $class);
+			$file .= '.php';
+			if (file_exists($file)) {
+				include $file;
+			}
+		}
+	});
+	 */
 }
 $init = new Kidphp();
 
