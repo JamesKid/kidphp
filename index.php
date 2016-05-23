@@ -32,7 +32,8 @@ class Kidphp{
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
 		$this->callFunction($classRoute,$uri);
-		$this->__autoload();
+		//注册自动加载
+		spl_autoload_register(array($this,'__autoload'));
 	}
 
 	/* 配置错误信息 */
@@ -53,7 +54,6 @@ class Kidphp{
 		}
 		//检查是否有function,get_class_methods方法需要require class进来才有效
 		$functionList = get_class_methods($uri['class'].'Controller');
-
 		foreach ($functionList as $value) {
 			if (strtolower($value) == strtolower($uri['function'])) {
 				return true;
@@ -73,8 +73,8 @@ class Kidphp{
 		);
 	}
 
-	/* 引入命名空间 */
-	function __autoload($class){
+	/* 自动加载方法 */
+	public function __autoload($class){
 		/* 类目录路径 */
 		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
 		$file = __DIR__.'/'.$space.'.php';
@@ -82,8 +82,6 @@ class Kidphp{
 			return require_once($file);
 		}
 	}
-	/* 注册引入 */
-	spl_autoload_register('__autoload');
 }
 $init = new Kidphp();
 
