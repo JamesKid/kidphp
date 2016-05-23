@@ -74,26 +74,16 @@ class Kidphp{
 	}
 
 	/* 引入命名空间 */
-	public function __autoload($classname){
-		$classpath="./".$classname.'.php';
-		if(file_exists($classpath)){
-			require_once($classpath);
-		}
-		else{
-			echo 'class file'.$classpath.'not found!';
+	function __autoload($class){
+		/* 类目录路径 */
+		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
+		$file = __DIR__.'/'.$space.'.php';
+		if(file_exists($file)){
+			return require_once($file);
 		}
 	}
-	/*
-	spl_autoload_register(function ($class) {
-		if ($class) {
-			$file = str_replace('\\', '/', $class);
-			$file .= '.php';
-			if (file_exists($file)) {
-				include $file;
-			}
-		}
-	});
-	 */
+	/* 注册引入 */
+	spl_autoload_register('__autoload');
 }
 $init = new Kidphp();
 
