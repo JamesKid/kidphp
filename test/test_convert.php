@@ -1,5 +1,5 @@
 <?php
-require('system/plugin/kidphp/kidphp_convert/Convert.php');
+require('../system/plugin/kidphp/kidphp_convert/Convert.php');
 $test = array(
 	'1'=>'ab',
 	'2'=>'cb',

@@ -1,27 +1,7 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-include ('system/plugin/parsedown/Parsedown.php');
+include ('../system/plugin/parsedown/Parsedown.php');
 $textContent = '
-```javascript
-$(function(){
-	  $("div").html("I am a div.");
-});
-```
-```java
-public static void main(String[]args){} //Java
-```
-```c
-int main(int argc, char *argv[]) //C
-```
-```bash
-echo "hello GitHub"#Bash
-```
-```javascript
-document.getElementById("myH1").innerHTML="Welcome to my Homepage"; //javascipt
-```
-```cpp
-string &operator+(const string& A,const string& B) //cpp
-```
 ##README
 ###　　Author:Jelly
 ### E-mail:879231132@qq.com
@@ -296,7 +276,7 @@ Github的Markdown语法支持添加emoji表情，输入不同的符号码（两�
 ';
 
 $Parsedown = new Parsedown();
-$html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!</p>
+echo  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!</p>
 ?>
 <!DOCTYPE html>
 <html>
@@ -306,50 +286,10 @@ $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!<
 	<link rel="stylesheet" href="system/asset/css/my_fix/git_markdown_parsedown.css">
 	<link rel="stylesheet" href="system/asset/css/base16_light.css">
 	<link rel="stylesheet" href="system/asset/css/git_default.css">
-	<link rel="stylesheet" href="system/asset/css/git_default.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/lib/codemirror.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/addon/dialog/dialog.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/theme/midnight.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/theme/solarized.css">
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="system/plugin/CodeMirror/lib/codemirror.js"></script>
-	<script src="system/plugin/CodeMirror/addon/dialog/dialog.js"></script>
-	<script src="system/plugin/CodeMirror/addon/search/searchcursor.js"></script>
-	<script src="system/plugin/CodeMirror/mode/clike/clike.js"></script>
-	<script src="system/plugin/CodeMirror/addon/edit/matchbrackets.js"></script>
-	<script src="system/plugin/CodeMirror/keymap/vim.js"></script>
 </head>
 	<body>
 		<article itemprop="text" class="markdown-body entry-content">
 			<?php echo $html;?>
-			<div style="font-size: 13px; width: 300px; height: 30px;">Key buffer: <span id="command-display"></span></div>
-			<script>
-				CodeMirror.commands.save = function(){ alert("Saving"); };
-				var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
-					lineNumbers: true,
-					mode: "text/x-csrc",
-					keyMap: "vim",
-					matchBrackets: true,
-					showCursorWhenSelecting: true
-				});
-				var editor = CodeMirror.fromTextArea(document.getElementById("code_java"), {
-					lineNumbers: true,
-					mode: "text/x-csrc",
-					keyMap: "vim",
-					matchBrackets: true,
-					showCursorWhenSelecting: true
-				});
-				var commandDisplay = document.getElementById('command-display');
-				var keys = '';
-				CodeMirror.on(editor, 'vim-keypress', function(key) {
-					keys = keys + key;
-					commandDisplay.innerHTML = keys;
-				});
-				CodeMirror.on(editor, 'vim-command-done', function(e) {
-					keys = '';
-					commandDisplay.innerHTML = keys;
-				});
-			</script>
 		</article>
 	</body>
 </html>

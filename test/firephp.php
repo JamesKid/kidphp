@@ -1,5 +1,5 @@
 <?php
-require('system/plugin/outer/firephp/firephp-core/lib/FirePHPCore/fb.php');
+require('../system/plugin/outer/firephp/firephp-core/lib/FirePHPCore/fb.php');
 FB::log('Hello World !');
 FB::group('Test Group A'); // 记录分组
 // 以下为按照不同类别或者类型进行信息记录
