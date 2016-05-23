@@ -12,16 +12,6 @@
 *				: 2016.04.20 16:52  add kidphp plugin 'kidphp_check'
 *  ==================================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-class Kidphp{
-	public function __construct(){
-		header("content-type:text/html; charset=utf-8");
-		@date_default_timezone_set('PRC');
-
-		$this->configError();
-
-		require_once('system/core/Route.php'); //引用路由 
-		require_once('conf/Config.php'); //引用配置文件
-		$config = Config::getConfig();  //获取配置
 $result = getVersion();
 print_r($result);
 function getVersion() {
