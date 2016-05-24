@@ -8,7 +8,7 @@ class AjaxController {
 	 * 
 	 */
 	public function getRandList(){
-		$mysql = new Mysql();
+		$mysql = new system\core\db\Mysql();
 		print_r($mysql);die;
 		echo "cc";die;
 	}

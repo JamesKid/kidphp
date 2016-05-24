@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="../lib/codemirror.css">
 <link rel="stylesheet" href="../addon/lint/lint.css">
-<link rel="stylesheet" href="../theme/seti.css">
+<link rel="stylesheet" href="../theme/blackboard.css">
 <script src="../lib/codemirror.js"></script>
 <script src="../mode/javascript/javascript.js"></script>
 <script src="../mode/css/css.js"></script>
@@ -151,21 +151,24 @@ li.last {
     lineNumbers: true,
     mode: "javascript",
     gutters: ["CodeMirror-lint-markers"],
-    lint: true
+    lint: true,
+    theme: "blackboard"
   });
 
   var editor_json = CodeMirror.fromTextArea(document.getElementById("code-json"), {
     lineNumbers: true,
     mode: "application/json",
     gutters: ["CodeMirror-lint-markers"],
-    lint: true
+    lint: true,
+    theme: "blackboard"
   });
   
   var editor_css = CodeMirror.fromTextArea(document.getElementById("code-css"), {
     lineNumbers: true,
     mode: "css",
     gutters: ["CodeMirror-lint-markers"],
-    lint: true
+    lint: true,
+    theme: "blackboard"
   });
 </script>
 
