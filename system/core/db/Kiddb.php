@@ -11,7 +11,6 @@ class Mysql {
 	public $sql = "";
 	
 	public function __construct( $dbConfig = array() ){
-		echo "cc";die;
 		$this->dbConfig = $dbConfig;
 		//判断是否支持主从				
 		$this->_replication = isset( $this->dbConfig['DB_SLAVE']) && !empty($this->dbConfig['DB_SLAVE'] );

@@ -3,14 +3,18 @@
 class Route {
 	/** 初始化路由
 	 */
+	public $config = array();
+	public function __construct(){
+		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
+		$this->config = $config;
+	}
 	public function initRoute(){
 		//获得请求地址
 		$root = $_SERVER['SCRIPT_NAME'];  
 		$request = $_SERVER['REQUEST_URI'];   
 		// 过滤地址,过滤第一个斜杠  
-		$config = Config::getConfig();  //获取配置
 		$url = trim(str_replace($root,'', $request),'/');   
-		$api = $config['DEFAULT_API'];  //引用配置的默认api
+		$api = $this->config['ROUTE']['DEFAULT_API'];  //引用配置的默认api
 		$uri = $this->getControllerFunction($url,$api);
 		return $uri;
 	}

@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /tests/
+Disallow: /system/
+Disallow: /api/
+Disallow: /conf/
+
+Sitemap: http://www.vimkid.com/sitemap.xml
+Sitemap: http://www.vimkid.com/baidu_sitemap.xml

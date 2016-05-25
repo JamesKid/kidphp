@@ -12,16 +12,17 @@
 *				: 2016.04.20 16:52  add kidphp plugin 'kidphp_check'
 *  ==================================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+require('/var/firephp-core/lib/FirePHPCore/fb.php');
 class Kidphp{
 	public function __construct(){
 		header("content-type:text/html; charset=utf-8");
+		spl_autoload_register(array($this,'__autoload'));
 		@date_default_timezone_set('PRC');
 
 		$this->configError();
 
 		require_once('system/core/Route.php'); //引用路由 
-		require_once('conf/Config.php'); //引用配置文件
-		$config = Config::getConfig();  //获取配置
+		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 
 		$route = new Route;
 		$uri = $route->initRoute();  //初始化路由
@@ -33,7 +34,6 @@ class Kidphp{
 		$classRoute = new $classRoute;
 		$this->callFunction($classRoute,$uri);
 		//注册自动加载
-		spl_autoload_register(array($this,'__autoload'));
 	}
 
 	/* 配置错误信息 */
@@ -76,6 +76,7 @@ class Kidphp{
 	/* 自动加载方法 */
 	public function __autoload($class){
 		/* 类目录路径 */
+		FB::log($class);
 		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
 		$file = __DIR__.'/'.$space.'.php';
 		if(file_exists($file)){
@@ -84,7 +85,6 @@ class Kidphp{
 	}
 }
 $init = new Kidphp();
-
 
 
 

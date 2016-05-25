@@ -9,8 +9,10 @@ class AjaxController {
 	 */
 	public function getRandList(){
 		$mysql = new system\core\db\Mysql();
-		print_r($mysql);die;
-		echo "cc";die;
+		$sql = "select * from vimkid_article limit 10";
+		$result = $mysql->execute($sql);
+		$result = json_encode($result);
+		return $result;
 	}
 	/* 获取推荐内容 */
 	public function getRecommendList(){

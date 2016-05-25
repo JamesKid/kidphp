@@ -4,21 +4,22 @@
  *
  */
 namespace system\core\db;
+use PDO; //声明引用PDO
 class Mysql {
 	private $_writeLink = NULL; //主
 	private $_readLink = NULL; //从
 	private $_replication = false; //标志是否支持主从
-	private $dbConfig = array();
+	private $config = array();
 	public $sql = "";
 	
-	public function __construct( $dbConfig = array() ){
-		$this->dbConfig = $dbConfig;
+	public function __construct( $config = array() ){
+		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
+		$this->config = $config;
 		//判断是否支持主从				
-		$this->_replication = isset( $this->dbConfig['DB_SLAVE']) && !empty($this->dbConfig['DB_SLAVE'] );
 		/* 配置pdo */
-		$dbName = $this->dbConfig['DB_NAME'];
-		$dbUser = $this->dbConfig['DB_USER'];
-		$dbPwd = $this->dbConfig['DB_PWD'];
+		$dbName = $this->config['DB']['DB_NAME'];
+		$dbUser = $this->config['DB']['DB_USER'];
+		$dbPwd = $this->config['DB']['DB_PASSWORD'];
 		$this->dbh = new PDO('mysql:host=localhost;dbname='.$dbName, $dbUser,$dbPwd);
 		$this->dbh->query('set names utf8;'); /* 设置编码 */
 		$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -35,13 +36,24 @@ class Mysql {
 			$this->error('MySQL Query Error',$e);
 		}
 	}
+
+	//获取表行数
+	public function getTableRows($sql, $params = array()) {
+		$sql="
+		use information_schema;
+		select table_name,table_rows from tables 
+			where TABLE_SCHEMA = 'vimkid' and table_name='vimkid_ariticle' order by table_rows desc;";//获取表行数
+	}
+
 	
 	//执行sql命令 fix by jameskid
 	public function execute($sql, $params = array()) {
 		try {
 			$this->sql = $sql;
 			$query = $this->dbh->prepare($sql);
-			return $query;
+			$query->execute();
+			$result = $query->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
 		} catch (PDOException $e){
 			$this->error('MySQL Query Error',$e);
 		}
