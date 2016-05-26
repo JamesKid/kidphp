@@ -6,10 +6,11 @@ static $config=array(
 		'DB_PASSWORD'=>'123456',
 		'DB_PORT'=>'3306',
 		'DB_SLAVE'=>false,  // 是否支持主从
-		'DB_SLAVE_ip'=>array(
+		'DB_SLAVE_IP'=>array(
 			'server1'=>'192.168.1.32',
 			'server2'=>'192.168.1.33',
 		),  // 主从ip
+		'DB_TABLE_HEAD'=>'vimkid', //数据库表前缀
 	),
 	'ROUTE'=>array(
 		'DEFAULT_API'=>'show',

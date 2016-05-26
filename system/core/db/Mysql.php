@@ -15,6 +15,7 @@ class Mysql {
 	public function __construct( $config = array() ){
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 		$this->config = $config;
+		$this->dbTableHead = $this->config['DB']['DB_TABLE_HEAD'];
 		//判断是否支持主从				
 		/* 配置pdo */
 		$dbName = $this->config['DB']['DB_NAME'];
@@ -38,11 +39,43 @@ class Mysql {
 	}
 
 	//获取表行数
-	public function getTableRows($sql, $params = array()) {
-		$sql="
-		use information_schema;
-		select table_name,table_rows from tables 
-			where TABLE_SCHEMA = 'vimkid' and table_name='vimkid_ariticle' order by table_rows desc;";//获取表行数
+	public function getTableRows($tableName) {
+		/** 有三种方法，而且性能根据情况各不相同 
+		 * 方法一--- count		 :select count(*) from table  400万数据时0.5秒  速度一般
+		 */
+		 /*
+		 * 方法二--- order by id ：select id from table order by id desc limit 1  速度最快，但需要id严格按0开始递增，不能删除或有疏漏
+		 *
+		 */
+		try {
+			$idField = $tableName.'_id';
+			$table = $this->dbTableHead.'_'.$tableName;
+			$sql = 'select '.$idField.' from '.$table.' order by '.$idField.' desc limit 1';
+			$query = $this->dbh->prepare($sql);
+			$query->execute();
+			$result = $query->fetchAll(PDO::FETCH_ASSOC);
+			return $result[0][$idField];
+		} catch (PDOException $e){
+			$this->error('MySQL Query Error',$e);
+		}
+
+		 /**
+		 * 方法三--- information_schema:
+	     *			use information_schema;
+	     *			select TABLE_ROWS from tables where TABLE_NAME ='tablename'  
+	     *			由于表information_schema没有索引，如果数据库的表少，则快，如果数据库表多很，则会很慢
+		 *
+
+		$dbUser = $this->config['DB']['DB_USER'];
+		$dbPwd = $this->config['DB']['DB_PASSWORD'];
+		$this->dbhInfo = new PDO('mysql:host=localhost;dbname='.'information_schema', $dbUser,$dbPwd);
+		$this->dbhInfo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql="select TABLE_ROWS from tables where TABLE_NAME = '".$tableName."'";
+		$query = $this->dbhInfo->prepare($sql);
+		$query->execute();
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $result[0]['TABLE_ROWS'];
+		 */
 	}
 
 	
