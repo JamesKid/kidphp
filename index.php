@@ -28,6 +28,8 @@ class Kidphp{
 		$uri = $route->initRoute();  //初始化路由
 		 //引入Controller文件
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
+		print_r($_SERVER);
+		print_r($uri);die;
 		$this->checkRoute($classPath,$uri);
 
 		$classRoute = $uri['class'].'Controller';

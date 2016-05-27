@@ -12,6 +12,9 @@ class Route {
 		//获得请求地址
 		$root = $_SERVER['SCRIPT_NAME'];  
 		$request = $_SERVER['REQUEST_URI'];   
+		$position = strpos($request,'?');//获取问号位置
+		if($position)
+			$request = substr($request,0,$position); //删除问号后内容
 		// 过滤地址,过滤第一个斜杠  
 		$url = trim(str_replace($root,'', $request),'/');   
 		$api = $this->config['ROUTE']['DEFAULT_API'];  //引用配置的默认api

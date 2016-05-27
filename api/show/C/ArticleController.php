@@ -1,14 +1,18 @@
 <?php
-//class Index extends AppPublic{
 use system\core\db;
-class AjaxController {
+class ArticleController {
 
 	/** 获取随机内容 
 	 * @params categoryid
 	 * @params
 	 * 
 	 */
-	public function getRandList(){
+	public function test(){
+		echo "cc";die;
+	}
+	public function detail(){
+		$article_id=$_GET['article_id'];
+		print_r($article_id);die;
 		$mysql = new system\core\db\Mysql();
 		$count = $mysql->getTableRows('article'); //获取表记录数量
 		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
@@ -23,9 +27,6 @@ class AjaxController {
 		}else{
 			print_r($params['errorInfo']);
 		}
-	}
-	/* 获取推荐内容 */
-	public function getRecommendList(){
 	}
 }
 ?>
