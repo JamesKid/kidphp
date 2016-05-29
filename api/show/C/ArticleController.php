@@ -7,12 +7,11 @@ class ArticleController {
 	 * @params
 	 * 
 	 */
-	public function test(){
-		echo "cc";die;
-	}
 	public function detail(){
 		$article_id=$_GET['article_id'];
-		print_r($article_id);die;
+		$params='';
+		Render::renderTpl('static/index.html',$params);
+		die;
 		$mysql = new system\core\db\Mysql();
 		$count = $mysql->getTableRows('article'); //获取表记录数量
 		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
@@ -25,7 +24,7 @@ class ArticleController {
 			$result = json_encode($result);
 			print_r($result);
 		}else{
-			print_r($params['errorInfo']);
+
 		}
 	}
 }

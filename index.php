@@ -12,7 +12,6 @@
 *				: 2016.04.20 16:52  add kidphp plugin 'kidphp_check'
 *  ==================================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-require('/var/firephp-core/lib/FirePHPCore/fb.php');
 class Kidphp{
 	public function __construct(){
 		header("content-type:text/html; charset=utf-8");
@@ -28,8 +27,6 @@ class Kidphp{
 		$uri = $route->initRoute();  //初始化路由
 		 //引入Controller文件
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
-		print_r($_SERVER);
-		print_r($uri);die;
 		$this->checkRoute($classPath,$uri);
 
 		$classRoute = $uri['class'].'Controller';
@@ -77,12 +74,16 @@ class Kidphp{
 
 	/* 自动加载方法 */
 	public function __autoload($class){
-		/* 类目录路径 */
-		FB::log($class);
+		/* 自动加载命名空间路径 */
 		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
 		$file = __DIR__.'/'.$space.'.php';
 		if(file_exists($file)){
 			return require_once($file);
+		}
+		/* 自动加载system/core 核心 */
+		$coreFile = __DIR__.'/system/core/'.$class.'.php';
+		if(file_exists($coreFile)){
+			return require_once($coreFile);
 		}
 	}
 }
