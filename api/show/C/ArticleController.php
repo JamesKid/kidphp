@@ -10,7 +10,7 @@ class ArticleController {
 	public function detail(){
 		$article_id=$_GET['article_id'];
 		$params='';
-		Render::renderTpl('static/index.html',$params);
+		Render::renderTpl('static/detail.html',$params);
 		die;
 		$mysql = new system\core\db\Mysql();
 		$count = $mysql->getTableRows('article'); //获取表记录数量
