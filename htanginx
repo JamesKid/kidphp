@@ -1,13 +1,13 @@
 #
-rewrite ^/article/([0-9]+)/$ /article/detail?article_id=$1  permanent;
-rewrite ^/article/([0-9]+)$  /article/detail?article_id=$1 last;
-#rewrite ^/article/detail?article_id=([0-9]+)$ /article/detail?article_id=$1 last;
+rewrite ^/article/([0-9]+)/$ /article/$1  permanent;
+rewrite ^/article/([0-9]+)$  /index.php/article/detail?article_id=$1 last;
+#rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
 
 #
 rewrite ^/test/$ /test permanent;
-rewrite ^/test$  /article/test last;
+rewrite ^/test$  /index.php/article/test last;
 
-#if (!-e $request_filename){
-	#rewrite ^/(.*)$ /index.php/controller/$1 last;
-#	break;
-#}
+if (!-e $request_filename){
+	rewrite ^/(.*)$ /$1 last;
+	break;
+}

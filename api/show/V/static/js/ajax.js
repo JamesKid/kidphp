@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$.getJSON("ajax/getrandlist",function(result){
 			var html='';
 			$.each(result, function(i, item){
-				html+='<a href="article/detail?article_id='+item.article_id+'">'+
+				html+='<a href="article/'+item.article_id+'">'+
 							'<li>'+
 								'<span class="design-name">'+item.article_title+'</span>'+
 								'<span class="designer-name">'+
