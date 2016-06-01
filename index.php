@@ -17,18 +17,14 @@ class Kidphp{
 		header("content-type:text/html; charset=utf-8");
 		spl_autoload_register(array($this,'__autoload'));
 		@date_default_timezone_set('PRC');
-
 		$this->configError();
-
 		require_once('system/core/Route.php'); //引用路由 
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
-
 		$route = new Route;
 		$uri = $route->initRoute();  //初始化路由
 		 //引入Controller文件
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
 		$this->checkRoute($classPath,$uri);
-
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
 		$this->callFunction($classRoute,$uri);
@@ -73,7 +69,7 @@ class Kidphp{
 	}
 
 	/* 自动加载方法 */
-	public function __autoload($class){
+	private function __autoload($class){
 		/* 自动加载命名空间路径 */
 		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
 		$file = __DIR__.'/'.$space.'.php';
@@ -97,7 +93,3 @@ class Kidphp{
 	}
 }
 $init = new Kidphp();
-
-
-
-
