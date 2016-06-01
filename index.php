@@ -85,6 +85,15 @@ class Kidphp{
 		if(file_exists($coreFile)){
 			return require_once($coreFile);
 		}
+		/* 自动加载service */
+			/* debug_backtrace()  用这个php自带函数获取api*/
+		if(substr($space,-7)=='Service'){  //截取最后7个字符判断是否Service
+			$trace = debug_backtrace();
+			$serviceFile = __DIR__.'/api/'.$trace[3]['args'][1]['api'].'/S/'.$class.'.php';
+			if(file_exists($serviceFile)){
+				return require_once($serviceFile);
+			}
+		}
 	}
 }
 $init = new Kidphp();

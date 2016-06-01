@@ -20,11 +20,15 @@ function getVersion() {
 		'UPDATETIME'=>'2016.4.14',
 		'CONTRIBUTER'=>'vimkid',
 		'HISTORY'=>array(
-			'2016.4.14 19:00'=>'add program by vimkid',
-			'2016.4.14 19:07'=>'add route by vimkid',
-			'2016.4.14 18:19'=>'add config by vimkid',
-			'2016.4.14 18:19'=>'add config by vimkid',
-			'2016.4.19 19:19'=>'add Views ',
+			'2016.04.14 19:00'=>'add program by vimkid',
+			'2016.04.14 19:07'=>'add route by vimkid',
+			'2016.04.14 18:19'=>'add config by vimkid',
+			'2016.04.14 18:19'=>'add config by vimkid',
+			'2016.04.19 19:19'=>'add Views ',
+			'2016.05.27 19:19'=>'add autoload',
+			'2016.05.28 19:19'=>'add sitemap',
+			'2016.05.29 19:19'=>'add nginx rewrite and nginx config',
+			'2016.06.01 19:19'=>'add debug_backtrace()函数回溯取到api,然后自动加载Service!',
 		)
 	);
 	return $version;

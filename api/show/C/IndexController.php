@@ -2,7 +2,9 @@
 //class Index extends AppPublic{
 class IndexController {
 	public function index(){
-		$params='';
+		$ajaxService = new AjaxService();
+		$params['randList']=$ajaxService->getRandList();
+		print_r($params);die;
 		$this->render('static/index.html',$params);
 	}
 	public function indexts(){
