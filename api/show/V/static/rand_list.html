@@ -1,13 +1,13 @@
-<div id="indexTitle">
-	<span class="color1">></span>
-	<span class="color2">></span>
-	<span class="color3">></span>
-	<span class="color4">></span>
-	<span id="listTitle">随机内容</span>  
-	<span class="color4"><</span>
-	<span class="color3"><</span>
-	<span class="color2"><</span>
-	<span class="color1"><</span>
+<div class="indexTitle">
+	<span class="color1">&gt;</span>
+	<span class="color2">&gt;</span>
+	<span class="color3">&gt;</span>
+	<span class="color4">&gt;</span>
+	<span class="listTitle">随机内容</span>  
+	<span class="color4">&lt;</span>
+	<span class="color3">&lt;</span>
+	<span class="color2">&lt;</span>
+	<span class="color1">&lt;</span>
 	<div class="more">
 		more
 	</div>
@@ -15,15 +15,17 @@
 <div class="listContent" id="randList">
 	<ul>
 		<?php foreach ($params['randList'] as $v):?>
-		<a href="<?php echo 'article/'.$v['article_id'];?>">
 			<li>
-				<span class="design-name" ><?php echo $v['article_title'];?></span>
-				<span class="designer-name">
-					<?php echo $v['article_username'];?>
-					<?php echo $v['article_createtimeymd'];?>
-				</span>
+				<a href="<?php echo 'article/'.$v['article_id'];?>">
+					<span>
+						<span class="design-name" ><?php echo $v['article_title'];?></span>
+						<span class="designer-name">
+							<?php echo $v['article_username'];?>
+							<?php echo $v['article_createtimeymd'];?>
+						</span>
+					</span>
+				</a>
 			</li>
-		</a>
 		<?php endforeach;?>
 	</ul>
 </div>
