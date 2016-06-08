@@ -3,7 +3,6 @@ class PageController {
 	public function index(){
 		$total=90;
 		$pagesize=3;
-		//$page = new Page($total,$pagesize);
 		$params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
 		Render::renderTpl('static/page.html',$params);
 	}
@@ -18,11 +17,5 @@ class PageController {
 		);
 		$this->render('indext',$params);
 	}
-	public function render($tpl,$params){
-		$viewDirectory=__DIR__;
-		$viewDirectory = substr($viewDirectory,0,strlen($viewDirectory)-1); // 获取你级目录
-		require_once($viewDirectory.'V/'.ucfirst($tpl).'View.php');
-	}
-
 }
 ?>
