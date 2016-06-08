@@ -26,7 +26,7 @@ class Page {
 	}  
 
 	//获取当前页码  
-	private function setPage() {  
+	public function setPage() {  
 		if (!empty($_GET['page'])) {  
 			if ($_GET['page'] > 0) {  
 				if ($_GET['page'] > $this->pagenum) {  
@@ -43,7 +43,7 @@ class Page {
 	}   
 
 	//获取地址  
-	private function setUrl() {  
+	public function setUrl() {  
 		$_url = $_SERVER["REQUEST_URI"];  
 		$_par = parse_url($_url);  
 		if (isset($_par['query'])) {  
@@ -52,8 +52,10 @@ class Page {
 			$_url = $_par['path'].'?'.http_build_query($_query);  
 		}  
 		return $_url;  
-	}     //数字目录  
-	private function pageList() {  
+	}     
+	//数字目录  
+	public function pageList() {  
+		$_pagelist='';
 		for ($i=$this->bothnum;$i>=1;$i--) {  
 			$_page = $this->page-$i;  
 			if ($_page < 1) continue;  
@@ -69,14 +71,14 @@ class Page {
 	}  
 
 	//首页  
-	private function first() {  
+	public function first() {  
 		if ($this->page > $this->bothnum+1) {  
 			return ' <a href="'.$this->url.'">1</a> ...';  
 		}  
 	}  
 
 	//上一页  
-	private function prev() {  
+	public function prev() {  
 		if ($this->page == 1) {  
 			return '<span class="disabled">上一页</span>';  
 		}  
@@ -84,7 +86,7 @@ class Page {
 	}  
 
 	//下一页  
-	private function next() {  
+	public function next() {  
 		if ($this->page == $this->pagenum) {  
 			return '<span class="disabled">下一页</span>';  
 		}  
@@ -92,7 +94,7 @@ class Page {
 	}  
 
 	//尾页  
-	private function last() {  
+	public function last() {  
 		if ($this->pagenum - $this->page > $this->bothnum) {  
 			return ' ...<a href="'.$this->url.'&page='.$this->pagenum.'">'.$this->pagenum.'</a> ';  
 		}  
@@ -100,10 +102,11 @@ class Page {
 
 	//分页信息  
 	public function showpage() {  
+		$_page = '';
+		$_page .= $this->prev();  
 		$_page .= $this->first();  
 		$_page .= $this->pageList();  
 		$_page .= $this->last();  
-		$_page .= $this->prev();  
 		$_page .= $this->next();  
 		return $_page;  
 	}  

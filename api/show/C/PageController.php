@@ -1,12 +1,12 @@
 <?php
 class PageController {
 	public function index(){
-		$total=10;
+		$total=90;
 		$pagesize=3;
 		//$page = new Page($total,$pagesize);
 		$page = new system\plugin\outer\Page\Page($total,$pagesize);
+		print_r($page->showpage());die;
 		Render::renderTpl('static/page.html',$page);
-		print_r($page);die;
 	}
 	public function edit(){
 		$test = 1;
