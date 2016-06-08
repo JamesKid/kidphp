@@ -4,9 +4,8 @@ class PageController {
 		$total=90;
 		$pagesize=3;
 		//$page = new Page($total,$pagesize);
-		$page = new system\plugin\outer\Page\Page($total,$pagesize);
-		print_r($page->showpage());die;
-		Render::renderTpl('static/page.html',$page);
+		$params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
+		Render::renderTpl('static/page.html',$params);
 	}
 	public function edit(){
 		$test = 1;

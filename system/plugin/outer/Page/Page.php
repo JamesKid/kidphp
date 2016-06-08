@@ -61,7 +61,7 @@ class Page {
 			if ($_page < 1) continue;  
 			$_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';  
 		}  
-		$_pagelist .= ' <span class="me">'.$this->page.'</span> ';  
+		$_pagelist .= ' <span class="current">'.$this->page.'</span> ';  
 		for ($i=1;$i<=$this->bothnum;$i++) {  
 			$_page = $this->page+$i;  
 			if ($_page > $this->pagenum) break;  
