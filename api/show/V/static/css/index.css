@@ -23,7 +23,22 @@
 	a:active {
 		border:none;
 	}
+	#qTip {
+		BORDER: #abab98 1px solid;
+		DISPLAY: none;
+		FONT-SIZE: 12px;
+		Z-INDEX: 1000;
+		BACKGROUND: #fefeda;
+		COLOR: #5f5f52;
+		LINE-HEIGHT: 16px;
+		FONT-FAMILY: "Tahoma";
+		POSITION: absolute;
+		TEXT-ALIGN: left;
+		padding:4px;
+		margin-top:-4px;
+	}
 		/*  头部样式 */
+
 		.top {
 			padding-top:20px;
 			padding-bottom:30px;
@@ -87,7 +102,6 @@
 			clear: both;
 			color: transparent;
 			border-bottom:1px dashed #555511;
-			padding:10px;
 		}
 		ul {
 			padding-left:0px;
@@ -103,15 +117,12 @@
 			text-decoration:none;
 			font-size:0.9em;
 		}
-		/*
-		.design-name::after {
-			color: #004f00;
-			content: "...........................................................................................................................................................................";
-			float: left;
-			white-space: nowrap;
-			width: 0;
+		.listSpan {
+			width:100%;
+			float:left;
+			padding-top:10px;
+			padding-bottom:10px;
 		}
-		*/
 		.designer-name {
 			background: #000600 none repeat scroll 0 0;
 			float: right;
@@ -213,7 +224,7 @@
 				background-color:#000600;
 			}
 			.indexTitle { 
-				color:#00df00; 
+				color:#00cf00; 
 				text-align:center; 
 				border-bottom:1px solid #004f00; 
 			}
