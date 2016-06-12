@@ -1,0 +1,25 @@
+{
+	"authors": [
+		{
+			"name": "kid",
+			"email": "3403682791@qq.com",
+			"homepage": "http://www.vimkid.com",
+			"role": "Main Developer"
+		},
+		{
+			"name": "vimkid",
+			"email": "234234@qq.com",
+			"role": "Developer"
+		}
+	],
+	"name": "kidphp/kidphp",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/kidphp/kidphp_rand"
+		}
+	],
+	"require": {
+		"kidphp/kidphp_rand": "master"
+	}
+}
