@@ -20,10 +20,8 @@ class Check {
 	function checkIp($ip){
 		$preg=preg_match("/^d+.d+.d+.d+$/",trim($ip));
 		if($preg){
-			echo "cc";die;
 			return true;
 		} else {
-			echo "ab";die;
 			return false;
 		}
 	}
