@@ -2,8 +2,8 @@
 static $config=array(
 	'DB'=>array(
 		'DB_NAME'=>'vimkid',
-		'DB_USER'=>'root',
-		'DB_PASSWORD'=>'123456',
+		'DB_USER'=>'vimkid',
+		'DB_PASSWORD'=>'vimkidmysql23',
 		'DB_PORT'=>'3306',
 		'DB_SLAVE'=>false,  // 是否支持主从
 		'DB_SLAVE_IP'=>array(
