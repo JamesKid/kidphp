@@ -138,12 +138,18 @@ class GetIpInfo {
 			$ip = $this->Getip();    
 		}
 		$ipadd = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?ip=".$ip);//根据新浪api接口获取
-		//$ipadd = file_get_contents("http://api.db-ip.com/addrinfo?api_key=bc2ab711d740d7cfa6fcb0ca8822cb327e38844f&addr=".$ip);
+		$ipaddEnglish = file_get_contents("http://api.db-ip.com/addrinfo?api_key=bc2ab711d740d7cfa6fcb0ca8822cb327e38844f&addr=".$ip);
+		$ipaddEnglish = json_decode($ipaddEnglish);
 		if($ipadd){
 			$charset = iconv("gbk","utf-8",$ipadd);   
 			preg_match_all("/[\x{4e00}-\x{9fa5}]+/u",$charset,$ipadds);
+			$ipadds[1]['country']=$ipaddEnglish->country;
+			$ipadds[1]['stateprov']=$ipaddEnglish->stateprov;
+			$ipadds[1]['city']=$ipaddEnglish->city;
 			return $ipadds;   //返回一个二维数组
-		}else{return "addree is none";}  
+		}else{
+			return "addree is none";
+		}  
 	} 
 
 	/* 判断是否在mobile端 */
@@ -170,7 +176,7 @@ class GetIpInfo {
 	}
 }
 /* 调用
-$gifo = new get_gust_info();
+$gifo = new GetIpInfo();
 echo "你的ip:".$gifo->Getip();
 if($gifo->isMobile()) {
 	$mobile='是';

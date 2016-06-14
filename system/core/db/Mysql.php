@@ -80,13 +80,25 @@ class Mysql {
 
 	
 	//执行sql命令 fix by jameskid
-	public function execute($sql, $params = array()) {
+	public function select($sql, $params = array()) {
 		try {
 			$this->sql = $sql;
 			$query = $this->dbh->prepare($sql);
 			$query->execute();
 			$result = $query->fetchAll(PDO::FETCH_ASSOC);
 			return $result;
+		} catch (PDOException $e){
+			$this->error('MySQL Query Error',$e);
+		}
+	}
+
+	//执行sql命令 fix by jameskid
+	public function execute($sql, $params = array()) {
+		try {
+			$this->sql = $sql;
+			$query = $this->dbh->prepare($sql);
+			$query->execute();
+			return $query;
 		} catch (PDOException $e){
 			$this->error('MySQL Query Error',$e);
 		}

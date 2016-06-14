@@ -1,6 +1,8 @@
 <?php
+//namespace system\plugin\outer\GetIpInfo;
 // 作用取得客户端的ip、地理信息、浏览器、本地真实IP
 // create to time:2011-12-16 
+// fix by jameskid at time:2016-06-13
 // name:wendi
 // qq:512244752
 //此文档编码类型:utf-8
@@ -13,8 +15,9 @@
 // $gifo->Getip();   //获得访客真实ip
 // $gifo->get_onlineip();   //获得本地真实IP
 // $gifo->Getaddress($ip); //参数 $ip 是可选的，默认返回一个二维数组包含当前访客所在地的相关信息
+// $gifo->isMobile(); //判断是否是在手机端  add by jameskid
 // 
-class get_gust_info { 
+class GetIpInfo { 
 	////获得访客浏览器类型
 	function GetBrowser(){
 		if(!empty($_SERVER['HTTP_USER_AGENT'])){
@@ -102,18 +105,18 @@ class get_gust_info {
 	}
 	////获得本地真实IP
 	function get_onlineip() {
+		//return '23.252.110.206';
 		//$site="http://www.ip138.com/ip2city.asp";
 		$site = "https://www.l2.io/ip";
 		$mip = file_get_contents($site);
 		//$mip = '';
 		if($this->checkIpv($mip)){
-			/*preg_match("/\[.*\]/",$mip,$sip);
-			$p = array("/\[/","/\]/");
-			return preg_replace($p,"",$sip[0]);
-			 */
+			//preg_match("/\[.*\]/",$mip,$sip);
+			//$p = array("/\[/","/\]/");
+			//return preg_replace($p,"",$sip[0]);
 			return $mip;
 		}else{
-			/* 写入日志到log *** */
+			// 写入日志到log 
 			file_put_contents('/var/log/php',"\n".date('Y-m-d H:i:s')." get IP api site ".$site." have problem",FILE_APPEND);
 			return "获取本地IP失败！";
 		}
@@ -135,12 +138,21 @@ class get_gust_info {
 			$ip = $this->Getip();    
 		}
 		$ipadd = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?ip=".$ip);//根据新浪api接口获取
+		$ipaddEnglish = file_get_contents("http://api.db-ip.com/addrinfo?api_key=bc2ab711d740d7cfa6fcb0ca8822cb327e38844f&addr=".$ip);
+		$ipaddEnglish = json_decode($ipaddEnglish);
 		if($ipadd){
 			$charset = iconv("gbk","utf-8",$ipadd);   
 			preg_match_all("/[\x{4e00}-\x{9fa5}]+/u",$charset,$ipadds);
+			$ipadds[1]['country']=$ipaddEnglish->country;
+			$ipadds[1]['stateprov']=$ipaddEnglish->stateprov;
+			$ipadds[1]['city']=$ipaddEnglish->city;
 			return $ipadds;   //返回一个二维数组
-		}else{return "addree is none";}  
+		}else{
+			return "addree is none";
+		}  
 	} 
+
+	/* 判断是否在mobile端 */
 	function isMobile(){ 
 		$useragent=isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : ''; 
 		$useragent_commentsblock=preg_match('|\(.*?\)|',$useragent,$matches)>0?$matches[0]:'';    
@@ -149,9 +161,9 @@ class get_gust_info {
 		$found_mobile=$this->CheckSubstrs($mobile_os_list,$useragent_commentsblock) || 
 		$this->CheckSubstrs($mobile_token_list,$useragent); 
 		if ($found_mobile){ 
-			return true; 
+			return 1; 
 		}else{ 
-			return false; 
+			return 0; 
 		} 
 	}
 	function CheckSubstrs($substrs,$text){ 
@@ -163,8 +175,8 @@ class get_gust_info {
 		return false; 
 	}
 }
-
-$gifo = new get_gust_info();
+/* 调用 */
+$gifo = new GetIpInfo();
 echo "你的ip:".$gifo->Getip();
 if($gifo->isMobile()) {
 	$mobile='是';

@@ -1,7 +1,5 @@
 $(document).ready(function(){
 	getRandList();
-
-
 	/* 获取随机内容 */
 	/*
 	function getRandList(){
@@ -24,8 +22,8 @@ $(document).ready(function(){
 	}
 	*/
 	function getRandList(){
-		$.getJSON("ajax/savevisit",function(result){
-			alert(result);
+		$.getJSON("/ajax/vimkid",function(result){
+			//alert(result);
 	    });
 	}
 

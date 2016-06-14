@@ -8,10 +8,15 @@ class Route {
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 		$this->config = $config;
 	}
-	public function initRoute(){
+	public function initRoute($request = ''){
 		//获得请求地址
 		$root = $_SERVER['SCRIPT_NAME'];  
-		$request = $_SERVER['PHP_SELF'];   
+		if($request ==''){
+			$request = $_SERVER['PHP_SELF'];   
+		}else {
+			$request = str_replace('http://','',$request);
+			$request = str_replace($_SERVER['HTTP_HOST'],'',$request);
+		}
 		//$position = strpos($request,'?');//获取问号位置
 		//if($position)
 		//	$request = substr($request,0,$position); //删除问号后内容

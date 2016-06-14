@@ -226,16 +226,14 @@ CREATE TABLE `vimkid_visit` (
   `visit_id` int(11) NOT NULL AUTO_INCREMENT,
   `visit_ip` varchar(15) DEFAULT NULL,
   `visit_ipv6` varchar(30) DEFAULT NULL,
-  `visit_source` int(1) DEFAULT NULL,
-  `visit_device` int(1) DEFAULT NULL,
-  `visit_explorer` varchar(30) DEFAULT NULL,
+  `visit_source` int(1) DEFAULT '0',
+  `visit_device` int(1) DEFAULT '0',
+  `visit_browser` varchar(30) DEFAULT NULL,
   `visit_country` varchar(60) DEFAULT NULL,
   `visit_countryid` int(5) DEFAULT NULL COMMENT '国家id',
   `visit_createtime` int(11) DEFAULT NULL,
   `visit_createtimeymd` date DEFAULT NULL,
-  `visit_type` int(2) DEFAULT NULL,
-  `visit_categoryid` int(4) DEFAULT NULL,
-  `visit_node` varchar(90) DEFAULT NULL,
+  `visit_type` int(1) DEFAULT '1' COMMENT '0: 非法访问 1:正常访问',
   `visit_username` varchar(90) DEFAULT NULL,
   `visit_userid` int(11) DEFAULT NULL,
   `visit_bvarchar` varchar(30) DEFAULT NULL,
@@ -243,23 +241,30 @@ CREATE TABLE `vimkid_visit` (
   `visit_province` varchar(90) DEFAULT NULL,
   `visit_city` varchar(90) DEFAULT NULL COMMENT '所在城市',
   `visit_system` varchar(30) DEFAULT NULL COMMENT '访问者操作系统',
-  `visit_explorerlang` varchar(30) DEFAULT NULL,
+  `visit_browserlang` varchar(30) DEFAULT NULL,
   `visit_url` varchar(300) DEFAULT NULL,
   `visit_api` varchar(30) DEFAULT NULL COMMENT '项目api',
   `visit_class` varchar(30) DEFAULT NULL COMMENT '项目类名',
   `visit_function` varchar(30) DEFAULT NULL,
+  `visit_ismobile` int(1) NOT NULL DEFAULT '0' COMMENT '0: pc   1: 手机',
+  `visit_status` int(3) DEFAULT NULL COMMENT '访问状态 404,403 ,5xx等',
+  `visit_country_english` varchar(90) DEFAULT NULL,
+  `visit_province_english` varchar(90) DEFAULT NULL,
+  `visit_city_english` varchar(90) DEFAULT NULL,
   PRIMARY KEY (`visit_id`),
-  KEY `visit_node` (`visit_node`),
   KEY `visit_createtime` (`visit_createtime`),
   KEY `visit_createtimeymd` (`visit_createtimeymd`),
-  KEY `visit_explorer` (`visit_explorer`),
   KEY `visit_system` (`visit_system`),
   KEY `visit_province` (`visit_province`),
   KEY `visit_city` (`visit_city`),
   KEY `visit_country` (`visit_country`),
   KEY `visit_class` (`visit_class`),
-  KEY `visit_function` (`visit_function`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  KEY `visit_function` (`visit_function`),
+  KEY `visit_ismobile` (`visit_ismobile`),
+  KEY `visit_browser` (`visit_browser`),
+  KEY `visit_type` (`visit_type`),
+  KEY `visit_status` (`visit_status`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 #
 # Dumping data for table vimkid_visit
@@ -267,60 +272,9 @@ CREATE TABLE `vimkid_visit` (
 
 LOCK TABLES `vimkid_visit` WRITE;
 /*!40000 ALTER TABLE `vimkid_visit` DISABLE KEYS */;
+INSERT INTO `vimkid_visit` VALUES (1,'192.168.61.186','',0,0,'Firefox','',0,1465894430,'2016-06-14',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/hello/kljgg/;lkj;lkj;lkjp9uypk;lkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj;alsdkfja;sdlkfja;sdlfkjsdfadfsfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddqwerqwwerrqwerqwerqwerqwerqwerqwerqwerqewtwqtzcxvsdfasdfasdf','hello','Kljgg',';lkj;lkj;lkjp9uypk;lkjjjjjjjjj',0,404,'US','California','Los Angeles (Westchester)');
+INSERT INTO `vimkid_visit` VALUES (2,'222.180.195.194','',0,0,'Firefox','中国',0,1465894445,'2016-06-14',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District');
 /*!40000 ALTER TABLE `vimkid_visit` ENABLE KEYS */;
-UNLOCK TABLES;
-
-#
-# Source for table vimkid_visit_english
-#
-
-DROP TABLE IF EXISTS `vimkid_visit_english`;
-CREATE TABLE `vimkid_visit_english` (
-  `visit_id` int(11) NOT NULL AUTO_INCREMENT,
-  `visit_ip` varchar(15) DEFAULT NULL,
-  `visit_ipv6` varchar(30) DEFAULT NULL,
-  `visit_source` int(1) DEFAULT NULL,
-  `visit_device` int(1) DEFAULT NULL,
-  `visit_explorer` varchar(30) DEFAULT NULL,
-  `visit_country` varchar(60) DEFAULT NULL,
-  `visit_countryid` int(5) DEFAULT NULL COMMENT '国家id',
-  `visit_createtime` int(11) DEFAULT NULL,
-  `visit_createtimeymd` date DEFAULT NULL,
-  `visit_type` int(2) DEFAULT NULL,
-  `visit_categoryid` int(4) DEFAULT NULL,
-  `visit_node` varchar(90) DEFAULT NULL,
-  `visit_username` varchar(90) DEFAULT NULL,
-  `visit_userid` int(11) DEFAULT NULL,
-  `visit_bvarchar` varchar(30) DEFAULT NULL,
-  `visit_bint` int(11) DEFAULT NULL,
-  `visit_province` varchar(90) DEFAULT NULL,
-  `visit_city` varchar(90) DEFAULT NULL COMMENT '所在城市',
-  `visit_system` varchar(30) DEFAULT NULL COMMENT '访问者操作系统',
-  `visit_explorerlang` varchar(30) DEFAULT NULL,
-  `visit_url` varchar(300) DEFAULT NULL,
-  `visit_api` varchar(30) DEFAULT NULL COMMENT '项目api',
-  `visit_class` varchar(30) DEFAULT NULL COMMENT '项目类名',
-  `visit_function` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`visit_id`),
-  KEY `visit_node` (`visit_node`),
-  KEY `visit_createtime` (`visit_createtime`),
-  KEY `visit_createtimeymd` (`visit_createtimeymd`),
-  KEY `visit_explorer` (`visit_explorer`),
-  KEY `visit_system` (`visit_system`),
-  KEY `visit_province` (`visit_province`),
-  KEY `visit_city` (`visit_city`),
-  KEY `visit_country` (`visit_country`),
-  KEY `visit_class` (`visit_class`),
-  KEY `visit_function` (`visit_function`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
-#
-# Dumping data for table vimkid_visit_english
-#
-
-LOCK TABLES `vimkid_visit_english` WRITE;
-/*!40000 ALTER TABLE `vimkid_visit_english` DISABLE KEYS */;
-/*!40000 ALTER TABLE `vimkid_visit_english` ENABLE KEYS */;
 UNLOCK TABLES;
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

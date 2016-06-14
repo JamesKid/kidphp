@@ -24,12 +24,12 @@ class Kidphp{
 		$uri = $route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
-		/* 访客 */
-		//$visit = new Visit;
-		//$visit->save($uri);
-
-		/* 检查路由 */
-		$this->checkRoute($classPath,$uri);
+		/* 检查路由,不存在返回404 */
+		$check = new Check;
+		$result = $check->checkRoute($classPath,$uri);
+		if($result ==false){
+			include('404.html');
+		}
 		/* 引用路由 */
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
@@ -43,7 +43,7 @@ class Kidphp{
 		error_reporting(E_ALL);  // 错误报告级别
 	}
 
-	/* 检查路由是否有效,无效返回404页面 */
+	/* 检查路由是否有效,无效返回404页面 
 	private function checkRoute($classPath,$uri){
 		$sign = 0;
 		//检查是否有controller (class)
@@ -67,6 +67,7 @@ class Kidphp{
 			exit();
 		}
 	}
+	 */
 
 	/* 回调函数方法 */
 	private function callFunction($classRoute,$uri){

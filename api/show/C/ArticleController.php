@@ -20,7 +20,7 @@ class ArticleController {
 			$randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
 			$randIn = $randInObject->arrayToFormatString($params['data'],',');
 			$sql = "select article_id,article_title,article_createtime from vimkid_article where article_id IN (".$randIn.")";
-			$result = $mysql->execute($sql);
+			$result = $mysql->select($sql);
 			$result = json_encode($result);
 			print_r($result);
 		}else{

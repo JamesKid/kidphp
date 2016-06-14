@@ -17,7 +17,7 @@ class AjaxController {
 			$randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
 			$randIn = $randInObject->arrayToFormatString($params['data'],',');
 			$sql = "select article_username,article_id,article_title,article_createtimeymd from vimkid_article where article_id IN (".$randIn.")";
-			$result = $mysql->execute($sql);
+			$result = $mysql->select($sql);
 			$result = json_encode($result);
 			print_r($result);
 		}else{
@@ -30,22 +30,117 @@ class AjaxController {
 	}
 
 	/* 保存访客 */
-	public function saveVisit(){
-		echo "cc";die;
-		/*
-		$mysql = new system\core\db\Mysql();
+	public function vimkid(){
+		/* 控制不能直接访问ajax接口 */
+		$classPath='';
+		$status=200;
+		$api='';
+		$class='';
+		$function='';
+		$url='';
+		if(isset($_SERVER['HTTP_REFERER'])){
+			/*  正常访问 */
+			$route = new Route;
+			$uri = $route->initRoute($_SERVER['HTTP_REFERER']);  //获取uri
+			$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
+			$check = new Check;
+			$statusSign = $check->checkRoute($classPath,$uri);
+			$api = $uri['api'];
+			$class = $uri['class'];
+			$function = $uri['function'];
+			$url = $_SERVER['HTTP_REFERER'];
+			if($statusSign==false){
+				$status=404;
+			}else {
+				$status=200;
+			}
+			$type=1; //0正常访问，１非法访问
+
+		}else {
+			/*  记录非法访问 */
+			echo "I want you ~~~~ ,baby!";
+			$type=0;
+		}
+
+		$mysql = new system\core\db\Mysql('WRITE');
 		$ipInfo = new system\plugin\outer\GetIpInfo\GetIpInfo();
-		$browser = $ipInfo->GetBrowser();
 		$address = $ipInfo->Getaddress();
+
 		$ip = $ipInfo->Getip();
-		$country = $address[0][0];
-		$province = $address[0][1];
-		$city = $address[0][2];
-		//print_r($ip);die;
-		$sql = 'select * from vimkid_article limit1 ' ;
+		$ipv6='';
+		$source='';
+		$device='';
+		$countryid='';
+		$browser = $ipInfo->GetBrowser();
+		$country = isset($address[0][0]) ? $address[0][0]: '';
+		$province = isset($address[0][1]) ? $address[0][1]: '';
+		$city = isset($address[0][2]) ? $address[0][2]: '';
+		$countryEnglish = $address[1]['country'];
+		$provinceEnglish = $address[1]['stateprov'];
+		$cityEnglish = $address[1]['city'];
+		$createtime = time();
+		$createtimeymd = date('Y-m-d');
+		$username='';
+		$userid='';
+		$system = $ipInfo->GetOs();
+		$browserlang = $ipInfo->GetLang();
+		$ismobile = $ipInfo->isMobile();
+
+		$sql = "insert into vimkid_visit ( 
+			visit_ip,
+			visit_ipv6,
+			visit_source,
+			visit_device,
+			visit_browser,
+			visit_country,
+			visit_countryid,
+			visit_createtime,
+			visit_createtimeymd,
+			visit_type,
+			visit_username,
+			visit_userid,
+			visit_province,
+			visit_city,
+			visit_system,
+			visit_browserlang,
+			visit_url,
+			visit_api,
+			visit_class,
+			visit_function,
+			visit_ismobile,
+			visit_status,
+			visit_country_english,
+			visit_province_english,
+			visit_city_english
+		) values (
+			'$ip',
+			'$ipv6',
+			'$source',
+			'$device',
+			'$browser',
+			'$country',
+			'$countryid',
+			'$createtime',
+			'$createtimeymd',
+			'$type',
+			'$username',
+			'$userid',
+			'$province',
+			'$city',
+			'$system',
+			'$browserlang',
+			'$url',
+			'$api',
+			'$class',
+			'$function',
+			'$ismobile',
+			'$status',
+			'$countryEnglish',
+			'$provinceEnglish',
+			'$cityEnglish'
+		)
+		";
 		$result = $mysql->execute($sql);
-		//print_r($result);die;
-		 */
 	}
 }
 ?>
