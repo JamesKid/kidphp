@@ -1,6 +1,8 @@
 <?php
+namespace system\plugin\outer\GetIpInfo;
 // 作用取得客户端的ip、地理信息、浏览器、本地真实IP
 // create to time:2011-12-16 
+// fix by jameskid at time:2016-06-13
 // name:wendi
 // qq:512244752
 //此文档编码类型:utf-8
@@ -13,8 +15,9 @@
 // $gifo->Getip();   //获得访客真实ip
 // $gifo->get_onlineip();   //获得本地真实IP
 // $gifo->Getaddress($ip); //参数 $ip 是可选的，默认返回一个二维数组包含当前访客所在地的相关信息
+// $gifo->isMobile(); //判断是否是在手机端  add by jameskid
 // 
-class get_gust_info { 
+class GetIpInfo { 
 	////获得访客浏览器类型
 	function GetBrowser(){
 		if(!empty($_SERVER['HTTP_USER_AGENT'])){
@@ -102,18 +105,18 @@ class get_gust_info {
 	}
 	////获得本地真实IP
 	function get_onlineip() {
+		//return '23.252.110.206';
 		//$site="http://www.ip138.com/ip2city.asp";
 		$site = "https://www.l2.io/ip";
 		$mip = file_get_contents($site);
 		//$mip = '';
 		if($this->checkIpv($mip)){
-			/*preg_match("/\[.*\]/",$mip,$sip);
-			$p = array("/\[/","/\]/");
-			return preg_replace($p,"",$sip[0]);
-			 */
+			//preg_match("/\[.*\]/",$mip,$sip);
+			//$p = array("/\[/","/\]/");
+			//return preg_replace($p,"",$sip[0]);
 			return $mip;
 		}else{
-			/* 写入日志到log *** */
+			// 写入日志到log 
 			file_put_contents('/var/log/php',"\n".date('Y-m-d H:i:s')." get IP api site ".$site." have problem",FILE_APPEND);
 			return "获取本地IP失败！";
 		}
@@ -135,18 +138,50 @@ class get_gust_info {
 			$ip = $this->Getip();    
 		}
 		$ipadd = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?ip=".$ip);//根据新浪api接口获取
+		//$ipadd = file_get_contents("http://api.db-ip.com/addrinfo?api_key=bc2ab711d740d7cfa6fcb0ca8822cb327e38844f&addr=".$ip);
 		if($ipadd){
 			$charset = iconv("gbk","utf-8",$ipadd);   
 			preg_match_all("/[\x{4e00}-\x{9fa5}]+/u",$charset,$ipadds);
 			return $ipadds;   //返回一个二维数组
 		}else{return "addree is none";}  
 	} 
+
+	/* 判断是否在mobile端 */
+	function isMobile(){ 
+		$useragent=isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : ''; 
+		$useragent_commentsblock=preg_match('|\(.*?\)|',$useragent,$matches)>0?$matches[0]:'';    
+		$mobile_os_list=array('Google Wireless Transcoder','Windows CE','WindowsCE','Symbian','Android','armv6l','armv5','Mobile','CentOS','mowser','AvantGo','Opera Mobi','J2ME/MIDP','Smartphone','Go.Web','Palm','iPAQ');
+		$mobile_token_list=array('Profile/MIDP','Configuration/CLDC-','160×160','176×220','240×240','240×320','320×240','UP.Browser','UP.Link','SymbianOS','PalmOS','PocketPC','SonyEricsson','Nokia','BlackBerry','Vodafone','BenQ','Novarra-Vision','Iris','NetFront','HTC_','Xda_','SAMSUNG-SGH','Wapa(','DoCoMo','iPhone','iPod'); 
+		$found_mobile=$this->CheckSubstrs($mobile_os_list,$useragent_commentsblock) || 
+		$this->CheckSubstrs($mobile_token_list,$useragent); 
+		if ($found_mobile){ 
+			return 1; 
+		}else{ 
+			return 0; 
+		} 
+	}
+	function CheckSubstrs($substrs,$text){ 
+		foreach($substrs as $substr) {
+			if(false!==strpos($text,$substr)){ 
+					return true; 
+			} 
+		}
+		return false; 
+	}
 }
+/* 调用
 $gifo = new get_gust_info();
 echo "你的ip:".$gifo->Getip();
+if($gifo->isMobile()) {
+	$mobile='是';
+}else{
+	$mobile='否';
+}
+echo "是否手机:".$mobile;
 echo "<br/>所在地：";
 print_r($gifo->Getaddress());
 echo "<br/>浏览器类型：".$gifo->GetBrowser();
 echo "<br/>浏览器语言：".$gifo->GetLang();
 echo "<br/>操作系统：".$gifo->GetOs();
+ */
 ?>

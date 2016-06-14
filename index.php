@@ -18,17 +18,22 @@ class Kidphp{
 		spl_autoload_register(array($this,'__autoload'));
 		@date_default_timezone_set('PRC');
 		$this->configError();
-		require_once('system/core/Route.php'); //引用路由 
+		//require_once('system/core/Route.php'); //引用路由 
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 		$route = new Route;
 		$uri = $route->initRoute();  //初始化路由
-		 //引入Controller文件
+		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
+		/* 访客 */
+		//$visit = new Visit;
+		//$visit->save($uri);
+
+		/* 检查路由 */
 		$this->checkRoute($classPath,$uri);
+		/* 引用路由 */
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
 		$this->callFunction($classRoute,$uri);
-		//注册自动加载
 	}
 
 	/* 配置错误信息 */
@@ -40,9 +45,10 @@ class Kidphp{
 
 	/* 检查路由是否有效,无效返回404页面 */
 	private function checkRoute($classPath,$uri){
+		$sign = 0;
 		//检查是否有controller (class)
 		if (file_exists($classPath)) {
-			require($classPath);
+			require_once($classPath);
 		} else {
 			include("404.html");//跳转到404页面
 			exit();
@@ -51,13 +57,15 @@ class Kidphp{
 		$functionList = get_class_methods($uri['class'].'Controller');
 		foreach ($functionList as $value) {
 			if (strtolower($value) == strtolower($uri['function'])) {
-				return true;
-				break;
-			}else{
-				include("404.html");//跳转到404页面
-				exit();
+				$sign = 1;
 			}
 		} 
+		if($sign){
+			return true;
+		} else{
+			include("404.html");//跳转到404页面
+			exit();
+		}
 	}
 
 	/* 回调函数方法 */

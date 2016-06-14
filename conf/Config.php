@@ -1,10 +1,18 @@
 <?php
 static $config=array(
 	'DB'=>array(
-		'DB_NAME'=>'vimkid',
-		'DB_USER'=>'vimkid',
-		'DB_PASSWORD'=>'vimkidmysql23',
-		'DB_PORT'=>'3306',
+		'READ'=>array(
+			'DB_NAME'=>'vimkid',
+			'DB_USER'=>'vimkid',
+			'DB_PASSWORD'=>'vimkidmysql123',
+			'DB_PORT'=>'3306'
+		),
+		'WRITE'=>array(
+			'DB_NAME'=>'vimkid',
+			'DB_USER'=>'root',
+			'DB_PASSWORD'=>'123456',
+			'DB_PORT'=>'3306'
+		),
 		'DB_SLAVE'=>false,  // 是否支持主从
 		'DB_SLAVE_IP'=>array(
 			'server1'=>'192.168.1.32',

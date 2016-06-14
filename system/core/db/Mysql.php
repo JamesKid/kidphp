@@ -12,15 +12,15 @@ class Mysql {
 	private $config = array();
 	public $sql = "";
 	
-	public function __construct( $config = array() ){
+	public function __construct($readWrite = 'READ', $config = array() ){
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 		$this->config = $config;
 		$this->dbTableHead = $this->config['DB']['DB_TABLE_HEAD'];
 		//判断是否支持主从				
 		/* 配置pdo */
-		$dbName = $this->config['DB']['DB_NAME'];
-		$dbUser = $this->config['DB']['DB_USER'];
-		$dbPwd = $this->config['DB']['DB_PASSWORD'];
+		$dbName = $this->config['DB'][$readWrite]['DB_NAME'];
+		$dbUser = $this->config['DB'][$readWrite]['DB_USER'];
+		$dbPwd = $this->config['DB'][$readWrite]['DB_PASSWORD'];
 		$this->dbh = new PDO('mysql:host=localhost;dbname='.$dbName, $dbUser,$dbPwd);
 		$this->dbh->query('set names utf8;'); /* 设置编码 */
 		$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

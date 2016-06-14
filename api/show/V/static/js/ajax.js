@@ -3,6 +3,7 @@ $(document).ready(function(){
 
 
 	/* 获取随机内容 */
+	/*
 	function getRandList(){
 		$.getJSON("ajax/getrandlist",function(result){
 			var html='';
@@ -20,6 +21,12 @@ $(document).ready(function(){
 			});
 			$("#randList ul").append(html);
 	   });
+	}
+	*/
+	function getRandList(){
+		$.getJSON("ajax/savevisit",function(result){
+			alert(result);
+	    });
 	}
 
 });

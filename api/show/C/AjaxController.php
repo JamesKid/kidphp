@@ -26,6 +26,26 @@ class AjaxController {
 	}
 	/* 获取推荐内容 */
 	public function getRecommendList(){
+		echo "cc";die;
+	}
+
+	/* 保存访客 */
+	public function saveVisit(){
+		echo "cc";die;
+		/*
+		$mysql = new system\core\db\Mysql();
+		$ipInfo = new system\plugin\outer\GetIpInfo\GetIpInfo();
+		$browser = $ipInfo->GetBrowser();
+		$address = $ipInfo->Getaddress();
+		$ip = $ipInfo->Getip();
+		$country = $address[0][0];
+		$province = $address[0][1];
+		$city = $address[0][2];
+		//print_r($ip);die;
+		$sql = 'select * from vimkid_article limit1 ' ;
+		$result = $mysql->execute($sql);
+		//print_r($result);die;
+		 */
 	}
 }
 ?>
