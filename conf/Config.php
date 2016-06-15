@@ -3,8 +3,8 @@ static $config=array(
 	'DB'=>array(
 		'READ'=>array(
 			'DB_NAME'=>'vimkid',
-			'DB_USER'=>'vimkid',
-			'DB_PASSWORD'=>'vimkidmysql123',
+			'DB_USER'=>'root',
+			'DB_PASSWORD'=>'123456',
 			'DB_PORT'=>'3306'
 		),
 		'WRITE'=>array(
