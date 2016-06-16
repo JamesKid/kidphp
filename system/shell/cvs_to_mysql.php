@@ -7,6 +7,13 @@
 *      * @return array
 *       * */
 
+/*  ip 查询语句 (inet_aton函数)
+ *
+ * use ip;
+ * select * from `1` where inet_aton(ip_begin) < inet_aton('1.1.4.3') and inet_aton(ip_end)> inet_aton('1.1.4.3')
+ *
+ */
+
 
 function csv_get_lines($csvfile, $lines, $offset = 0) {
 	$dbh = new PDO('mysql:host=localhost;dbname=ip', 'root', '123456');
@@ -57,6 +64,6 @@ function csv_get_lines($csvfile, $lines, $offset = 0) {
 	return $data;
 }
 //$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 100, 8150900);
-$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 10000,0);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 1000000,0);
 //print_r($data);
 ?>
