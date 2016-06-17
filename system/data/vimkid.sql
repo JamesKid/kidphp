@@ -251,6 +251,7 @@ CREATE TABLE `vimkid_visit` (
   `visit_country_english` varchar(90) DEFAULT NULL,
   `visit_province_english` varchar(90) DEFAULT NULL,
   `visit_city_english` varchar(90) DEFAULT NULL,
+  `visit_agent` varchar(90) DEFAULT NULL,
   PRIMARY KEY (`visit_id`),
   KEY `visit_createtime` (`visit_createtime`),
   KEY `visit_createtimeymd` (`visit_createtimeymd`),
@@ -263,8 +264,9 @@ CREATE TABLE `vimkid_visit` (
   KEY `visit_ismobile` (`visit_ismobile`),
   KEY `visit_browser` (`visit_browser`),
   KEY `visit_type` (`visit_type`),
-  KEY `visit_status` (`visit_status`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  KEY `visit_status` (`visit_status`),
+  KEY `visit_ip` (`visit_ip`)
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 #
 # Dumping data for table vimkid_visit
@@ -272,9 +274,134 @@ CREATE TABLE `vimkid_visit` (
 
 LOCK TABLES `vimkid_visit` WRITE;
 /*!40000 ALTER TABLE `vimkid_visit` DISABLE KEYS */;
-INSERT INTO `vimkid_visit` VALUES (1,'192.168.61.186','',0,0,'Firefox','',0,1465894430,'2016-06-14',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/hello/kljgg/;lkj;lkj;lkjp9uypk;lkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj;alsdkfja;sdlkfja;sdlfkjsdfadfsfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddqwerqwwerrqwerqwerqwerqwerqwerqwerqwerqewtwqtzcxvsdfasdfasdf','hello','Kljgg',';lkj;lkj;lkjp9uypk;lkjjjjjjjjj',0,404,'US','California','Los Angeles (Westchester)');
-INSERT INTO `vimkid_visit` VALUES (2,'222.180.195.194','',0,0,'Firefox','中国',0,1465894445,'2016-06-14',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District');
+INSERT INTO `vimkid_visit` VALUES (1,'192.168.61.186','',0,0,'Firefox','',0,1465894430,'2016-06-14',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/hello/kljgg/;lkj;lkj;lkjp9uypk;lkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj;alsdkfja;sdlkfja;sdlfkjsdfadfsfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddqwerqwwerrqwerqwerqwerqwerqwerqwerqwerqewtwqtzcxvsdfasdfasdf','hello','Kljgg',';lkj;lkj;lkjp9uypk;lkjjjjjjjjj',0,404,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (2,'222.180.195.194','',0,0,'Firefox','中国',0,1465894445,'2016-06-14',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (15,'222.180.195.194','',0,0,'Firefox','中国',0,1465894777,'2016-06-14',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (16,'222.180.195.194','',0,0,'Firefox','中国',0,1465894828,'2016-06-14',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (17,'222.180.195.194','',0,0,'Firefox','中国',0,1465952396,'2016-06-15',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (18,'222.180.195.194','',0,0,'Firefox','中国',0,1465953837,'2016-06-15',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (19,'222.180.195.194','',0,0,'Firefox','中国',0,1465953853,'2016-06-15',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (20,'获取本地IP失败！','',0,0,'Firefox','',0,1466041113,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (21,'192.168.61.186','',0,0,'Firefox','',0,1466041387,'2016-06-16',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (22,'192.168.61.186','',0,0,'Firefox','',0,1466041503,'2016-06-16',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (23,'获取本地IP失败！','',0,0,'Firefox','',0,1466042244,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (24,'获取本地IP失败！','',0,0,'Firefox','',0,1466042286,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (25,'获取本地IP失败！','',0,0,'Firefox','',0,1466042314,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (26,'获取本地IP失败！','',0,0,'Firefox','',0,1466042330,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (27,'获取本地IP失败！','',0,0,'Firefox','',0,1466042392,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (28,'获取本地IP失败！','',0,0,'Firefox','',0,1466042480,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (29,'获取本地IP失败！','',0,0,'Firefox','',0,1466042544,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'','','',NULL);
+INSERT INTO `vimkid_visit` VALUES (30,'222.180.195.194','',0,0,'Firefox','中国',0,1466043156,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (31,'222.180.195.194','',0,0,'Firefox','中国',0,1466043172,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (32,'222.180.195.194','',0,0,'Firefox','中国',0,1466043357,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (33,'222.180.195.194','',0,0,'Firefox','中国',0,1466043431,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (34,'222.180.195.194','',0,0,'Firefox','中国',0,1466043433,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (35,'222.180.195.194','',0,0,'Firefox','中国',0,1466043476,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (36,'222.180.195.194','',0,0,'Firefox','a',0,1466043493,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'d','d','d',NULL);
+INSERT INTO `vimkid_visit` VALUES (37,'222.180.195.194','',0,0,'Firefox','中国',0,1466043503,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (38,'222.180.195.194','',0,0,'Firefox','中国',0,1466043745,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (39,'192.168.61.186','',0,0,'Chrome','',0,1466043897,'2016-06-16',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (40,'222.180.195.194','',0,0,'Firefox','中国',0,1466043947,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (41,'222.180.195.194','',0,0,'Firefox','中国',0,1466043956,'2016-06-16',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (42,'192.168.180.61','',0,0,'Chrome','',0,1466055551,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',1,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (43,'192.168.180.61','',0,0,'Chrome','',0,1466055567,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',1,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (44,'192.168.180.61','',0,0,'Chrome','',0,1466055609,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',1,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (45,'192.168.61.186','',0,0,'Chrome','',0,1466055937,'2016-06-16',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (46,'192.168.180.61','',0,0,'Chrome','',0,1466056034,'2016-06-16',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',1,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (47,'192.168.61.186','',0,0,'Firefox','',0,1466056954,'2016-06-16',1,'',0,NULL,NULL,'','','Windows','简体中文','http://www.vimkid.com/hello/kljgg/;lkj;lkj;lkjp9uypk;lkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj;alsdkfja;sdlkfja;sdlfkjsdfadfsfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddqwerqwwerrqwerqwerqwerqwerqwerqwerqwerqewtwqtzcxvsdfasdfasdf','hello','Kljgg',';lkj;lkj;lkjp9uypk;lkjjjjjjjjj',0,404,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (48,'192.168.180.61','',0,0,'Safari','',0,1466137779,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','http://www.vimkid.com/','show','Index','index',1,200,'US','California','Los Angeles (Westchester)',NULL);
+INSERT INTO `vimkid_visit` VALUES (49,'222.180.195.194','',0,0,'Firefox','中国',0,1466142182,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (50,'222.180.195.194','',0,0,'Firefox','中国',0,1466146824,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District',NULL);
+INSERT INTO `vimkid_visit` VALUES (51,'222.180.195.194','',0,0,'Firefox','中国',0,1466149968,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (52,'222.180.195.194','',0,0,'Firefox','中国',0,1466149971,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (53,'222.180.195.194','',0,0,'Firefox','',0,1466150522,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (54,'222.180.195.194','',0,0,'Firefox','',0,1466150525,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (55,'222.180.195.194','',0,0,'Firefox','中国',0,1466150531,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (56,'127.0.0.1','',0,0,'Firefox','',0,1466151559,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (57,'127.0.0.1','',0,0,'Firefox','',0,1466151561,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (58,'222.180.195.194','',0,0,'Firefox','中国',0,1466151587,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (59,'127.0.0.1','',0,0,'Firefox','',0,1466151787,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (60,'127.0.0.1','',0,0,'Firefox','',0,1466151789,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (61,'222.180.195.194','',0,0,'Firefox','中国',0,1466151793,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (62,'127.0.0.1','',0,0,'Firefox','',0,1466151951,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (63,'222.180.195.194','',0,0,'Firefox','中国',0,1466152580,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (64,'222.180.195.194','',0,0,'Firefox','中国',0,1466152657,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (65,'222.180.195.194','',0,0,'Firefox','中国',0,1466153030,'2016-06-17',0,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','','','','',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (66,'222.180.195.194','',0,0,'Firefox','中国',0,1466153366,'2016-06-17',1,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','http://www.vimkid.com/','show','Index','index',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visit` VALUES (67,'222.180.195.194','',0,0,'Firefox','中国',0,1466153760,'2016-06-17',0,'',0,NULL,NULL,'重庆','重庆','Linux','简体中文','','','','',0,200,'CN','Chongqing','Yuzhong District','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
 /*!40000 ALTER TABLE `vimkid_visit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+#
+# Source for table vimkid_visitin
+#
+
+DROP TABLE IF EXISTS `vimkid_visitin`;
+CREATE TABLE `vimkid_visitin` (
+  `visit_id` int(11) NOT NULL AUTO_INCREMENT,
+  `visit_ip` varchar(15) DEFAULT NULL,
+  `visit_ipv6` varchar(30) DEFAULT NULL,
+  `visit_source` int(1) DEFAULT '0',
+  `visit_device` int(1) DEFAULT '0',
+  `visit_browser` varchar(30) DEFAULT NULL,
+  `visit_country` varchar(60) DEFAULT NULL,
+  `visit_countryid` int(5) DEFAULT NULL COMMENT '国家id',
+  `visit_createtime` int(11) DEFAULT NULL,
+  `visit_createtimeymd` date DEFAULT NULL,
+  `visit_type` int(1) DEFAULT '1' COMMENT '0: 非法访问 1:正常访问',
+  `visit_username` varchar(90) DEFAULT NULL,
+  `visit_userid` int(11) DEFAULT NULL,
+  `visit_bvarchar` varchar(30) DEFAULT NULL,
+  `visit_bint` int(11) DEFAULT NULL,
+  `visit_province` varchar(90) DEFAULT NULL,
+  `visit_city` varchar(90) DEFAULT NULL COMMENT '所在城市',
+  `visit_system` varchar(30) DEFAULT NULL COMMENT '访问者操作系统',
+  `visit_browserlang` varchar(30) DEFAULT NULL,
+  `visit_url` varchar(300) DEFAULT NULL,
+  `visit_api` varchar(30) DEFAULT NULL COMMENT '项目api',
+  `visit_class` varchar(30) DEFAULT NULL COMMENT '项目类名',
+  `visit_function` varchar(30) DEFAULT NULL,
+  `visit_ismobile` int(1) NOT NULL DEFAULT '0' COMMENT '0: pc   1: 手机',
+  `visit_status` int(3) DEFAULT NULL COMMENT '访问状态 404,403 ,5xx等',
+  `visit_country_english` varchar(90) DEFAULT NULL,
+  `visit_province_english` varchar(90) DEFAULT NULL,
+  `visit_city_english` varchar(90) DEFAULT NULL,
+  `visit_agent` varchar(90) DEFAULT NULL,
+  PRIMARY KEY (`visit_id`),
+  KEY `visit_createtime` (`visit_createtime`),
+  KEY `visit_createtimeymd` (`visit_createtimeymd`),
+  KEY `visit_system` (`visit_system`),
+  KEY `visit_province` (`visit_province`),
+  KEY `visit_city` (`visit_city`),
+  KEY `visit_country` (`visit_country`),
+  KEY `visit_class` (`visit_class`),
+  KEY `visit_function` (`visit_function`),
+  KEY `visit_ismobile` (`visit_ismobile`),
+  KEY `visit_browser` (`visit_browser`),
+  KEY `visit_type` (`visit_type`),
+  KEY `visit_status` (`visit_status`),
+  KEY `visit_ip` (`visit_ip`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+#
+# Dumping data for table vimkid_visitin
+#
+
+LOCK TABLES `vimkid_visitin` WRITE;
+/*!40000 ALTER TABLE `vimkid_visitin` DISABLE KEYS */;
+INSERT INTO `vimkid_visitin` VALUES (1,'127.0.0.1','',0,0,'Firefox','',0,1466152572,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (2,'127.0.0.1','',0,0,'Firefox','',0,1466152572,'2016-06-17',1,'',0,NULL,NULL,'','','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (3,'127.0.0.1','',0,0,'Firefox','US',0,1466152648,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (4,'127.0.0.1','',0,0,'Firefox','US',0,1466152648,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (5,'127.0.0.1','',0,0,'w3m/0.5.2','US',0,1466152750,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Other','English','/index.php','show','Index','index',0,200,'','','','w3m/0.5.2');
+INSERT INTO `vimkid_visitin` VALUES (6,'127.0.0.1','',0,0,'Firefox','US',0,1466153018,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (7,'127.0.0.1','',0,0,'Firefox','US',0,1466153354,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (8,'127.0.0.1','',0,0,'Firefox','US',0,1466153354,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (9,'127.0.0.1','',0,0,'Firefox','US',0,1466153689,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php/test/hello','show','Test','hello',0,404,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (10,'127.0.0.1','',0,0,'Firefox','US',0,1466153700,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php/test/hello','show','Test','hello',0,404,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (11,'127.0.0.1','',0,0,'Firefox','US',0,1466153715,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php','show','Index','index',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+INSERT INTO `vimkid_visitin` VALUES (12,'127.0.0.1','',0,0,'Firefox','US',0,1466153745,'2016-06-17',1,'',0,NULL,NULL,'California','Los Angeles','Linux','简体中文','/index.php/ajax/vimkid','show','Ajax','vimkid',0,200,'','','','Mozilla/5.0 (X11; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0 FirePHP/0.7.4');
+/*!40000 ALTER TABLE `vimkid_visitin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
