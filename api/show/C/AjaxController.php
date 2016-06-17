@@ -79,12 +79,13 @@ class AjaxController {
 		$provinceEnglish = $address[1]['stateprov'];
 		$cityEnglish = $address[1]['city'];
 		$createtime = time();
-		$createtimeymd = date('Y-m-d');
+		$createtimeymd = date('Y-m-d H:i:s');
 		$username='';
 		$userid='';
 		$system = $ipInfo->GetOs();
 		$browserlang = $ipInfo->GetLang();
 		$ismobile = $ipInfo->isMobile();
+		$agent = $_SERVER['HTTP_USER_AGENT'];
 
 		$sql = "insert into vimkid_visit ( 
 			visit_ip,
@@ -111,7 +112,8 @@ class AjaxController {
 			visit_status,
 			visit_country_english,
 			visit_province_english,
-			visit_city_english
+			visit_city_english,
+			visit_agent
 		) values (
 			'$ip',
 			'$ipv6',
@@ -137,7 +139,8 @@ class AjaxController {
 			'$status',
 			'$countryEnglish',
 			'$provinceEnglish',
-			'$cityEnglish'
+			'$cityEnglish',
+			'$agent'
 		)
 		";
 		$result = $mysql->execute($sql);

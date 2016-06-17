@@ -24,6 +24,8 @@ class Kidphp{
 		$uri = $route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
+		/* 记录访客内部记录 */
+		$check = new Visit($uri);
 		/* 检查路由,不存在返回404 */
 		$check = new Check;
 		$result = $check->checkRoute($classPath,$uri);

@@ -13,6 +13,12 @@ static $config=array(
 			'DB_PASSWORD'=>'123456',
 			'DB_PORT'=>'3306'
 		),
+		'IP'=>array(
+			'DB_NAME'=>'ip',
+			'DB_USER'=>'root',
+			'DB_PASSWORD'=>'123456',
+			'DB_PORT'=>'3306'
+		),
 		'DB_SLAVE'=>false,  // 是否支持主从
 		'DB_SLAVE_IP'=>array(
 			'server1'=>'192.168.1.32',

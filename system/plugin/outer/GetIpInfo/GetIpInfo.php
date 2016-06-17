@@ -33,7 +33,7 @@ class GetIpInfo {
 			}elseif (preg_match('/Opera/i',$br)) {
 				$br = 'Opera';
 			}else {
-				$br = 'Other';
+				$br = $_SERVER['HTTP_USER_AGENT'];
 			}
 			return $br;
 		}else{return "获取浏览器信息失败！";} 
@@ -102,6 +102,32 @@ class GetIpInfo {
 		}else{
 			return $tip; 
 		}
+	}
+	////获得访客真实内部获取
+	function GetIpIn(){
+		$ip='';
+		$ips='';
+		$count='';
+		if(!empty($_SERVER["HTTP_CLIENT_IP"])){   
+			$ip = $_SERVER["HTTP_CLIENT_IP"];
+		}
+		if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){ //获取代理ip
+			$ips = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		}
+		if($ip){
+			$ips = array_unshift($ips,$ip); 
+		}
+		if($ips){
+			$count = count($ips);
+			for($i=0;$i<$count;$i++){   
+				if(!preg_match("/^(10|172\.16|192\.168)\./i",$ips[$i])){//排除局域网ip
+					$ip = $ips[$i];
+					break;    
+				}  
+			}  
+		}  
+		$tip = $ip ? $ip : $_SERVER['REMOTE_ADDR']; 
+		return $tip; 
 	}
 	////获得本地真实IP
 	function get_onlineip() {
