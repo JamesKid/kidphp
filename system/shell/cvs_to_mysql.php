@@ -56,14 +56,29 @@ function csv_get_lines($csvfile, $lines, $offset = 0) {
 			'$list4'
 		)
 		";
-		//print_r($sql);die;
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();
 	}
 	fclose($fp);
 	return $data;
 }
-//$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 100, 8150900);
-$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 1000000,0);
-//print_r($data);
+// php.ini memory_limit=256M
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,0); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,1000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,1500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,2000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,2500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,3000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,3500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,4000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,4500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,5000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,5500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,6000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,6500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,7000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,7500000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,8000000); unset($data);
+$data = csv_get_lines('/root/zsj/soft/data/dbip-city-2016-06.csv', 500000,8500000); unset($data);
 ?>
