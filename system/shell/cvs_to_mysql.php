@@ -42,22 +42,24 @@ function csv_get_lines($csvfile, $lines, $offset = 0) {
 		$list3 = $data[$j-1][3];
 		$list4 = $data[$j-1][4];
 
-		$sql = "insert into `".$table."` ( 
-			ip_begin,
-			ip_end,
-			ip_country,
-			ip_province,
-			ip_city
-		) values (
-			'$list0',
-			'$list1',
-			'$list2',
-			'$list3',
-			'$list4'
-		)
-		";
-		$stmt = $dbh->prepare($sql);
-		$stmt->execute();
+		if($table!=''){
+			$sql = "insert ignore into `".$table."` ( 
+				ip_begin,
+				ip_end,
+				ip_country,
+				ip_province,
+				ip_city
+			) values (
+				'$list0',
+				'$list1',
+				'$list2',
+				'$list3',
+				'$list4'
+			)
+			";
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+		}
 	}
 	fclose($fp);
 	return $data;
