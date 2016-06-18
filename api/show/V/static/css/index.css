@@ -57,6 +57,7 @@
 		}
 		#head {}
 		pre { 
+			-webkit-text-size-adjust: none;  
 			letter-spacing: 0px; 
 			font-family: Courier New, Courier, monospace;
 			color: #00ff00; 
@@ -299,6 +300,21 @@
 			margin-top:4%;
 		}
 	}
+
+/*分辨小于宽650px 时的布局*/
+	@media (max-width: 650px) {
+		/* 把头头改小,并左对齐 */
+		pre { 
+			font-size: 8px; 
+			line-height: 6px;text-align:center;
+			transform:scale(0.9); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+		} 
+		/*
+		.top {
+			padding-top:0px;
+		}
+		*/
+	}
 /*分辨小于宽550px 时的布局*/
 	@media (max-width: 550px) {
 		#contentLeft {width:100%; float:left;margin:auto;} /* 菜单宽度100%布局 */
@@ -310,14 +326,27 @@
 			border-left:none;
 		} 
 		/* 把头头改小,并左对齐 */
-		pre { letter-spacing: 0px; font-family: Courier New, Courier, monospace;
-				color: #00ff00; font-size: 5px; 
-				line-height: 3px;text-align:center
+		pre { 
+			letter-spacing: 0px; 
+			font-family: Courier New, Courier, monospace;
+			color: #00ff00; 
+			font-size: 5px; 
+			line-height: 3px;text-align:center;
+			transform:scale(0.8); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
 		} 
 		#content {
 			margin-left:2%;
 			margin-right:2%;
 			width:94%;
 		}
+	}
+/*分辨小于宽450px 时的布局*/
+	@media (max-width: 450px) {
+		/* 把头头改小,并左对齐 */
+		pre { 
+			font-size: 4px; 
+			line-height: 2.5px;text-align:center;
+			transform:scale(0.7); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+		} 
 	}
 
