@@ -1,9 +1,12 @@
 /* 常规布局 */
 	body { 
 		background-color:#000000; 
-		margin:0;padding:0; 
+		margin:0;
+		padding:0; 
 		background-image:-webkit-linear-gradient(-330deg, #000000, #001a00);
 		background-image:linear-gradient(-330deg,#000000,#001a00);
+		margin-left:15%;
+		margin-right:15%;
 	} /* 去掉body 的默认白边 */
 	p {
 		text-indent:2em;/*段落开头缩进两字符*/
@@ -55,8 +58,9 @@
 			font-size:0.8em;
 			font-style:italic;
 		}
-		#head {}
-		pre { 
+		#head {
+		}
+		#AsciiImage { 
 			-webkit-text-size-adjust: none;  
 			letter-spacing: 0px; 
 			font-family: Courier New, Courier, monospace;
@@ -65,8 +69,7 @@
 			font-size: 9px; 
 			line-height: 6px;
 			text-align:center;
-			//box-shadow:0px 0px 10px #0f0;
-			//border-radius:100px;
+			width:100%;
 		}
 		/* 栏目样式 */
 		.color1 {
@@ -103,11 +106,13 @@
 			clear: both;
 			color: transparent;
 			border-bottom:1px dashed #555511;
+			margin-left:0px;
 		}
 		ul {
 			padding-left:0px;
 			margin-top:2px;
 			margin-bottom:2px;
+			margin-left:0px;
 		}
 
 		.design-name {
@@ -130,7 +135,6 @@
 			font-family: "refrigerator-deluxe",sans-serif;
 			font-size: 0.8em;
 			padding-left: 0.25em;
-			//text-transform: uppercase;
 			color:#cccc99;
 			text-decoration:none;
 			margin-top:3px;
@@ -203,14 +207,15 @@
 		#contentLeft {width:30%; background-color:#000600;float:left;padding:auto;}
 			/* 左边li的样式 */
 			#leftin li {
-				//list-style-type:square;
+				/*list-style-type:square; */
 				list-style-type:none;
 				color:#cccc99;
 				background-color:#002f00;
-				margin-top:3%;
-				padding:3%;
-				padding-left:8%;
+				margin-top:10px;
+				/* padding:3%; */
+				/* padding-left:8%; */
 				border-radius:6px;
+				padding:7px;
 			}  
 			#leftin { 
 				padding-left:10px; 
@@ -221,7 +226,6 @@
 		#contentRight {width:70%; background-color:#000000;float:left;padding:auto;}
 			#rightin {
 				padding:10px;
-				//border-left:1px solid #007f00;
 				background-color:#000600;
 			}
 			.indexTitle { 
@@ -282,32 +286,33 @@
 			padding-top:10px;
 		}
 
-/*分辨大于宽900px 时的布局*/
-	@media (min-width: 900px) {
-		#contentLeft {width:20%; float:left;margin:auto;}
-		#contentRight {width:80%; background-color:#000000;float:left;margin:auto;}
-		#leftin li {
-			margin-top:4%;
-		}
-
-	}
-	@media (min-width: 1150px) {
+/*分辨小于宽1150px 时的布局*/
+	@media (max-width: 1150px) {
 		body {
-			margin-left:15%;
-			margin-right:15%;
+			margin-left:0px;
+			margin-right:0px;
 		}
-		#leftin li {
-			margin-top:4%;
+	}
+
+/*分辨小于宽900px 时的布局*/
+	@media (max-width: 900px) {
+		body {
+			margin-left:0px;
+			margin-right:0px;
 		}
 	}
 
 /*分辨小于宽650px 时的布局*/
+	@media (max-width: 750px) {
+		#contentLeft {width:100%; float:left;margin:auto;} /* 菜单宽度100%布局 */
+		#contentRight {width:100%; background-color:#000000;float:left;margin:auto;} 
+	}
+/*分辨小于宽650px 时的布局*/
 	@media (max-width: 650px) {
 		/* 把头头改小,并左对齐 */
-		pre { 
-			font-size: 8px; 
-			line-height: 6px;text-align:center;
+		#AsciiImage { 
 			transform:scale(0.9); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+			-webkit-transform:scale(0.5)
 		} 
 		/*
 		.top {
@@ -317,25 +322,22 @@
 	}
 /*分辨小于宽550px 时的布局*/
 	@media (max-width: 550px) {
-		#contentLeft {width:100%; float:left;margin:auto;} /* 菜单宽度100%布局 */
-		#contentRight {width:100%; background-color:#000000;float:left;margin:auto;} 
 		/* 去掉左边的线,要去掉border-left */
 		#rightin {
 			padding:10px;
-			//border-top:1px solid #007f00;
 			border-left:none;
 		} 
 		/* 把头头改小,并左对齐 */
-		pre { 
+		#AsciiImage { 
 			letter-spacing: 0px; 
 			font-family: Courier New, Courier, monospace;
 			color: #00ff00; 
-			font-size: 5px; 
-			line-height: 3px;text-align:center;
 			transform:scale(0.8); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+			-webkit-transform:scale(0.5);
+			-webkit-margin-left:-5%; 
 		} 
 		#content {
-			margin-left:2%;
+			/* margin-left:2%; */
 			margin-right:2%;
 			width:94%;
 		}
@@ -343,10 +345,26 @@
 /*分辨小于宽450px 时的布局*/
 	@media (max-width: 450px) {
 		/* 把头头改小,并左对齐 */
-		pre { 
-			font-size: 4px; 
-			line-height: 2.5px;text-align:center;
-			transform:scale(0.7); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+		#AsciiImage { 
+			transform:scale(0.6); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+			-webkit-transform:scale(0.4);
+			-webkit-margin-left:-40px; 
+		} 
+	}
+/*分辨小于宽350px 时的布局*/
+	@media (max-width: 400px) {
+		#AsciiImage { 
+			-webkit-margin-left:-15%;
+		}
+	}
+
+/*分辨小于宽350px 时的布局*/
+	@media (max-width: 350px) {
+		/* 把头头改小,并左对齐 */
+		#AsciiImage { 
+			transform:scale(0.5); /* 相当重要的一个属性 ,解决font-size在chrome 无效的问题 */
+			margin-left:-10%;
+			-webkit-transform:scale(0.4)
 		} 
 	}
 
