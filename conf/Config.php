@@ -29,6 +29,11 @@ static $config=array(
 	'ROUTE'=>array(
 		'DEFAULT_API'=>'show',
 	),
+	'IMAGESURL'=>array(
+		'SERVER1'=>'https://raw.githubusercontent.com/vimkidgit/article/master/images/',
+		'SERVER2'=>'http://www.vimkid.com/public/images/',
+		'SERVER2'=>'http://images.vimkid.com/images/',
+	),
 );
 /*
 $config['DEFAULT_API']='show'; //默认api
