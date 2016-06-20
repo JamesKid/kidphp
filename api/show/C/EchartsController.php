@@ -2,6 +2,7 @@
 /*  
  * des: 统计类(支持html5流式布局)
  * web: http://echarts.baidu.com 
+ *		http://www.hcharts.cn/demo/index.php   
  *
  */
 
