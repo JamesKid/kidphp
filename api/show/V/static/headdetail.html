@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="vimkid" content="vimkid" />
+		<link charset="utf-8" rel="stylesheet" type="text/css" href="<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/api/show/V/static/css/index.css';?>" />
+		<link rel="icon" href="http://www.vimkid.com/favicon.ico" type="image/x-icon" />
+		<meta name="GENERATOR" content="vim-6" />
+		<meta name="keywords" content="vimkid,vim,vim教程,vimscript,vim脚本,vim插件,vim技术" />
+		<meta name="description" content="分享一些vim使用技术,vim插件,vim脚本，及其他it技术如linux,python,go,shell,mysql等。" />
+		<link rel="stylesheet" href="system/asset/css/my_fix/git_markdown_parsedown.css">
+		<link rel="stylesheet" href="system/asset/css/base16_light.css">
+		<link rel="stylesheet" href="system/asset/css/git_default.css">
+		<link rel="stylesheet" href="system/asset/css/git_default.css">
+		<link rel="stylesheet" href="system/plugin/outer/CodeMirror/lib/codemirror.css">
+		<link rel="stylesheet" href="system/plugin/outer/CodeMirror/addon/dialog/dialog.css">
+		<link rel="stylesheet" href="system/plugin/outer/CodeMirror/theme/midnight.css">
+		<link rel="stylesheet" href="system/plugin/outer/CodeMirror/theme/solarized.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="system/plugin/outer/CodeMirror/lib/codemirror.js"></script>
+		<script src="system/plugin/outer/CodeMirror/addon/dialog/dialog.js"></script>
+		<script src="system/plugin/outer/CodeMirror/addon/search/searchcursor.js"></script>
+		<script src="system/plugin/outer/CodeMirror/mode/clike/clike.js"></script>
+		<script src="system/plugin/outer/CodeMirror/addon/edit/matchbrackets.js"></script>
+		<script src="system/plugin/outer/CodeMirror/keymap/vim.js"></script>
+		<title>VimKid, vim tea for you</title>
+		<!--
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		-->
+	</head>
+	<!-- Design by vimkid 2014_7_10 -->
+	<!-- Design2 by vimkid 2016_2_15 -->
+	<body>
+		<div id="head" class="top">
+			<pre id="AsciiImage">                                                                                    
+ ******   ****   ****                            *****   *****   ****         ****
+******** ****** *****                           ******* ******  *****       ******
+ ******   ****  ****                             *****   ****   ****         *****
+ *****   ***                                    *****  ***                  **** 
+ *****   **      **     **   ***   ***          ****  ***        **     ******** 
+ *****  ***   ****** ******************         ********      ******   ********* 
+  ****  **    *****  ******************         ********      ******  ***** **** 
+  ********     ****   ***** ***** *****         *********      ****   ****  **** 
+  *******      ****   ***** *****  ****         **********     ****  *****  **** 
+   ******      ****   ****  ***** ****         ***** *****     ****  ***** ***** 
+   *****      *****   ****  ****  ****         *****  *****    ****  ****  ***** 
+   *****      ******  ****  ****  *****        *****  *****   ****** *********** 
+   ****       ******  ****  ****  *****       *******  *****  ****** *********** 
+    ***       ****    ***   ***   ***         ******   *****   ***    ****  ***  
+			</pre>
+			<div class='tips'>
+				<a title="More use, more learn,more powerful" href="about">
+					More use, more learn,more powerful.
+				</a>
+			</div>
+			<div class="language">
+				<div class="languageType">中文</div>
+				<div class="languageType">English</div>
+			</div>
+			<div>
+				<div style="float:left" class="languageColor">
+					----| <a title="首页" href="#">首页</a > |--
+					--| <a title="其他" href="#">其他</a > |--
+					--| <a title="关于我们" href="#">关于我们</a > |--
+					--| <a title="下载" href="#">下载</a > |----
+				</div>
+			</div>
+		</div>
+			<script>
+				CodeMirror.commands.save = function(){ alert("Saving"); };
+				var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
+					lineNumbers: true,
+					mode: "text/x-csrc",
+					keyMap: "vim",
+					matchBrackets: true,
+					showCursorWhenSelecting: true
+				});
+				var editor = CodeMirror.fromTextArea(document.getElementById("code_java"), {
+					lineNumbers: true,
+					mode: "text/x-csrc",
+					keyMap: "vim",
+					matchBrackets: true,
+					showCursorWhenSelecting: true
+				});
+				var commandDisplay = document.getElementById('command-display');
+				var keys = '';
+				CodeMirror.on(editor, 'vim-keypress', function(key) {
+					keys = keys + key;
+					commandDisplay.innerHTML = keys;
+				});
+				CodeMirror.on(editor, 'vim-command-done', function(e) {
+					keys = '';
+					commandDisplay.innerHTML = keys;
+				});
+			</script>

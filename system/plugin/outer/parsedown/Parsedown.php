@@ -13,6 +13,7 @@
 #
 #
 
+namespace system\plugin\outer\parsedown;
 class Parsedown
 {
     # ~

@@ -1,7 +1,7 @@
 #
 rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
-rewrite ^/([0-9]+).html$  /index.php/article/detail?article_id=$1 last;
+rewrite ^/([0-9]+).html$  /index.php/article/detail?articleId=$1 last;
 #rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
 
 #

@@ -8,24 +8,14 @@ class ArticleController {
 	 * 
 	 */
 	public function detail(){
-		$article_id=$_GET['article_id'];
-		$params='';
-		Render::renderTpl('static/detail.html',$params);
-		die;
+		$articleId=$_GET['articleId'];
 		$mysql = new system\core\db\Mysql();
-		$count = $mysql->getTableRows('article'); //获取表记录数量
-		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
-		$params = $randObject->noRepeatRand(1,$count,4);
-		if(!$params['error']){
-			$randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
-			$randIn = $randInObject->arrayToFormatString($params['data'],',');
-			$sql = "select article_id,article_title,article_createtime from vimkid_article where article_id IN (".$randIn.")";
-			$result = $mysql->select($sql);
-			$result = json_encode($result);
-			print_r($result);
-		}else{
-
-		}
+		$sql = "select * from vimkid_article where article_id =".$articleId;
+		$result = $mysql->select($sql);
+		$params=$result[0];
+		$Parsedown = new system\plugin\outer\parsedown\Parsedown();
+		$params['html'] =  $Parsedown->text($params['article_content']); # prints: <p>Hello <em>Parsedown</em>!</p>
+		Render::renderTpl('static/detail.html',$params);
 	}
 }
 ?>

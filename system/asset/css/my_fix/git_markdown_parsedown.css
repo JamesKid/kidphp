@@ -194,7 +194,7 @@ hr {
 }
 pre, code {
     background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd; */
     border-radius: 3px;
     color: #eee;
     font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
@@ -202,9 +202,9 @@ pre, code {
 	background-color:#444; /* add by jameskid */
 }
 pre {
-    padding: 5px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    /* padding: 5px;*/
+    /*white-space: pre-wrap; */
+    /*word-wrap: break-word;*/
 }
 pre code {
     background: transparent none repeat scroll 0 0 !important;
