@@ -234,13 +234,13 @@ $(function(){
 	  $("div").html("I am a div.");
 });
 ```
-```Java
+```java
 public static void main(String[]args){} //Java
 ```
 ```c
 int main(int argc, char *argv[]) //C
 ```
-```Bash
+```bash
 echo "hello GitHub"#Bash
 ```
 ```javascript
@@ -327,9 +327,11 @@ $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!<
 	<script src="system/plugin/outer/CodeMirror/keymap/vim.js"></script>
 </head>
 	<body>
+<!--
 		<article itemprop="text" class="markdown-body entry-content">
-			<?php echo $html;?>
 			<div style="font-size: 13px; width: 300px; height: 30px;">Key buffer: <span id="command-display"></span></div>
+-->
+			<?php echo $html;?>
 			<script>
 				/* web http://jingyan.baidu.com/article/11c17a2c771a62f446e39d14.html */
 				/*  add by jameskid Good!!! 2016.6.24*/
@@ -382,6 +384,8 @@ $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!<
 					commandDisplay.innerHTML = keys;
 				});
 			</script>
+<!--
 		</article>
+-->
 	</body>
 </html>

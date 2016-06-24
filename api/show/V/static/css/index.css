@@ -60,7 +60,8 @@
 		}
 		#head {
 		}
-		#AsciiImage { 
+		/*#AsciiImage {  */
+		#head pre { 
 			-webkit-text-size-adjust: none;  
 			letter-spacing: 0px; 
 			font-family: Courier New, Courier, monospace;
