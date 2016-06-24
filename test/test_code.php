@@ -300,7 +300,8 @@ Github的Markdown语法支持添加emoji表情，输入不同的符号码（两�
 但是这个网页每次都打开**奇慢**。。所以我整理到了本repo中，大家可以直接在此查看[emoji](./emoji.md)。
 ';
 
-$Parsedown = new Parsedown();
+//$Parsedown = new Parsedown();
+$Parsedown = new system\plugin\outer\parsedown\Parsedown();
 $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!</p>
 ?>
 <!DOCTYPE html>
