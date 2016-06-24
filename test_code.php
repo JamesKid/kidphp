@@ -7,6 +7,11 @@ $(function(){
 	  $("div").html("I am a div.");
 });
 ```
+```javascript
+$(function(){
+	  $("div").html("I am a div2.");
+});
+```
 ```java
 public static void main(String[]args){} //Java
 ```
@@ -295,7 +300,8 @@ Github的Markdown语法支持添加emoji表情，输入不同的符号码（两�
 但是这个网页每次都打开**奇慢**。。所以我整理到了本repo中，大家可以直接在此查看[emoji](./emoji.md)。
 ';
 
-$Parsedown = new Parsedown();
+//$Parsedown = new Parsedown();
+$Parsedown = new system\plugin\outer\parsedown\Parsedown();
 $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!</p>
 ?>
 <!DOCTYPE html>
@@ -325,23 +331,46 @@ $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!<
 			<?php echo $html;?>
 			<div style="font-size: 13px; width: 300px; height: 30px;">Key buffer: <span id="command-display"></span></div>
 			<script>
+				/* web http://jingyan.baidu.com/article/11c17a2c771a62f446e39d14.html */
+				/*  add by jameskid Good!!! 2016.6.24*/
 				CodeMirror.commands.save = function(){ alert("Saving"); };
-				var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
-					lineNumbers: true,
-					mode: "text/x-csrc",
-					keyMap: "vim",
-					matchBrackets: true,
-					showCursorWhenSelecting: true,
-					theme:"blackboard",
-				});
-				var editor = CodeMirror.fromTextArea(document.getElementById("code_java"), {
-					lineNumbers: true,
-					mode: "text/x-csrc",
-					keyMap: "vim",
-					matchBrackets: true,
-					showCursorWhenSelecting: true,
-					theme:"blackboard",
-				});
+				function getByClass(sClass){
+					var aResult=[];
+					var aEle=document.getElementsByTagName('*');
+					for(var i=0;i<aEle.length;i++){
+						/*将每个className拆分*/
+						var arr=aEle[i].className.split(/\s+/);
+						for(var j=0;j<arr.length;j++){
+							/*判断拆分后的数组中有没有满足的class*/
+							if(arr[j]==sClass){
+								aResult.push(aEle[i]);
+							}
+						}
+					}
+					return aResult;
+				};
+
+
+				function runRender(type){
+					var aBox=getByClass("code_"+type);
+					for(var i=0;i<aBox.length;i++){
+						//alert(aBox[i].innerHTML);
+						//var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
+						var editor = CodeMirror.fromTextArea(aBox[i], {
+							lineNumbers: true,
+							mode: "text/x-csrc",
+							keyMap: "vim",
+							matchBrackets: true,
+							showCursorWhenSelecting: true,
+							theme:"blackboard",
+						});
+					}
+				};
+				runRender('javascript');
+				runRender('c');
+				runRender('java');
+				runRender('bash');
+
 				var commandDisplay = document.getElementById('command-display');
 				var keys = '';
 				CodeMirror.on(editor, 'vim-keypress', function(key) {

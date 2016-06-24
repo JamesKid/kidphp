@@ -1,10 +1,15 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-include ('../system/plugin/parsedown/Parsedown.php');
+include ('system/plugin/outer/parsedown/Parsedown.php');
 $textContent = '
 ```javascript
 $(function(){
 	  $("div").html("I am a div.");
+});
+```
+```javascript
+$(function(){
+	  $("div").html("I am a div2.");
 });
 ```
 ```java
@@ -307,38 +312,64 @@ $html =  $Parsedown->text($textContent); # prints: <p>Hello <em>Parsedown</em>!<
 	<link rel="stylesheet" href="system/asset/css/base16_light.css">
 	<link rel="stylesheet" href="system/asset/css/git_default.css">
 	<link rel="stylesheet" href="system/asset/css/git_default.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/lib/codemirror.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/addon/dialog/dialog.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/theme/midnight.css">
-	<link rel="stylesheet" href="system/plugin/CodeMirror/theme/solarized.css">
+	<link rel="stylesheet" href="system/plugin/outer/CodeMirror/theme/blackboard.css">
+	<link rel="stylesheet" href="system/plugin/outer/CodeMirror/lib/codemirror.css">
+	<link rel="stylesheet" href="system/plugin/outer/CodeMirror/addon/dialog/dialog.css">
+	<link rel="stylesheet" href="system/plugin/outer/CodeMirror/theme/midnight.css">
+	<link rel="stylesheet" href="system/plugin/outer/CodeMirror/theme/solarized.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="system/plugin/CodeMirror/lib/codemirror.js"></script>
-	<script src="system/plugin/CodeMirror/addon/dialog/dialog.js"></script>
-	<script src="system/plugin/CodeMirror/addon/search/searchcursor.js"></script>
-	<script src="system/plugin/CodeMirror/mode/clike/clike.js"></script>
-	<script src="system/plugin/CodeMirror/addon/edit/matchbrackets.js"></script>
-	<script src="system/plugin/CodeMirror/keymap/vim.js"></script>
+	<script src="system/plugin/outer/CodeMirror/lib/codemirror.js"></script>
+	<script src="system/plugin/outer/CodeMirror/addon/dialog/dialog.js"></script>
+	<script src="system/plugin/outer/CodeMirror/addon/search/searchcursor.js"></script>
+	<script src="system/plugin/outer/CodeMirror/mode/clike/clike.js"></script>
+	<script src="system/plugin/outer/CodeMirror/addon/edit/matchbrackets.js"></script>
+	<script src="system/plugin/outer/CodeMirror/keymap/vim.js"></script>
 </head>
 	<body>
 		<article itemprop="text" class="markdown-body entry-content">
 			<?php echo $html;?>
 			<div style="font-size: 13px; width: 300px; height: 30px;">Key buffer: <span id="command-display"></span></div>
 			<script>
+				/* web http://jingyan.baidu.com/article/11c17a2c771a62f446e39d14.html */
+				/*  add by jameskid Good!!! 2016.6.24*/
 				CodeMirror.commands.save = function(){ alert("Saving"); };
-				var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
-					lineNumbers: true,
-					mode: "text/x-csrc",
-					keyMap: "vim",
-					matchBrackets: true,
-					showCursorWhenSelecting: true
-				});
-				var editor = CodeMirror.fromTextArea(document.getElementById("code_java"), {
-					lineNumbers: true,
-					mode: "text/x-csrc",
-					keyMap: "vim",
-					matchBrackets: true,
-					showCursorWhenSelecting: true
-				});
+				function getByClass(sClass){
+					var aResult=[];
+					var aEle=document.getElementsByTagName('*');
+					for(var i=0;i<aEle.length;i++){
+						/*将每个className拆分*/
+						var arr=aEle[i].className.split(/\s+/);
+						for(var j=0;j<arr.length;j++){
+							/*判断拆分后的数组中有没有满足的class*/
+							if(arr[j]==sClass){
+								aResult.push(aEle[i]);
+							}
+						}
+					}
+					return aResult;
+				};
+
+
+				function runRender(type){
+					var aBox=getByClass("code_"+type);
+					for(var i=0;i<aBox.length;i++){
+						//alert(aBox[i].innerHTML);
+						//var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
+						var editor = CodeMirror.fromTextArea(aBox[i], {
+							lineNumbers: true,
+							mode: "text/x-csrc",
+							keyMap: "vim",
+							matchBrackets: true,
+							showCursorWhenSelecting: true,
+							theme:"blackboard",
+						});
+					}
+				};
+				runRender('javascript');
+				runRender('c');
+				runRender('java');
+				runRender('bash');
+
 				var commandDisplay = document.getElementById('command-display');
 				var keys = '';
 				CodeMirror.on(editor, 'vim-keypress', function(key) {

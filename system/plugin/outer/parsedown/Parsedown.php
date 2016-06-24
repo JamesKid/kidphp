@@ -413,7 +413,8 @@ class Parsedown
                 $Element['attributes'] = array(
                     'class' => $class,
                     'name' => 'code', // add by jameskid
-                    'id' => 'code_'.$languageType,  // add by jameskid
+                    //'id' => 'code_'.$languageType,  // add by jameskid 
+                    'class' => 'code_'.$languageType,  // add by jameskid fix id to class
                 );
             }
 
