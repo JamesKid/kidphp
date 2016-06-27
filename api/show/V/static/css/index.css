@@ -71,6 +71,8 @@
 			line-height: 6px;
 			text-align:center;
 			width:100%;
+			padding:none;
+			white-space:pre;
 		}
 		/* 栏目样式 */
 		.color1 {
