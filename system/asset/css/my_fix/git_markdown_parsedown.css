@@ -201,7 +201,7 @@ pre, code {
     font-size: 0.94em;
 	background-color:#444; /* add by jameskid */
 }
-pre {
+#contentRight pre {
 	 padding: 5px;
      white-space: pre-wrap;
      word-wrap: break-word;
