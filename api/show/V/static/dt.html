@@ -1,6 +1,5 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-//include ('system/plugin/outer/parsedown/Parsedown.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,6 +57,7 @@ header("Content-Type: text/html; charset=utf-8");
 						//var editor = CodeMirror.fromTextArea(document.getElementById("code_javascript"), {
 						var editor = CodeMirror.fromTextArea(aBox[i], {
 							lineNumbers: true,
+							lineWrapping: true,
 							mode: "text/x-csrc",
 							keyMap: "vim",
 							matchBrackets: true,
