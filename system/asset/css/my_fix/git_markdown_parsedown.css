@@ -1,6 +1,6 @@
 /* css from http://jbt.github.io/markdown-editor */
 body {
-    margin: 0;
+    /* margin: 0; fix by jameskid*/
 	background-color:#001000;
 	color:#00cf00;  /* add by jameskid 2016.4.18 */
 }
