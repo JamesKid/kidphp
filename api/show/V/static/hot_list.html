@@ -1,0 +1,35 @@
+<div class="indexTitle">
+	<div class="titleName">
+		<span class="color1">&gt;</span>
+		<span class="color2">&gt;</span>
+		<span class="color3">&gt;</span>
+		<span class="color4">&gt;</span>
+		<span class="listTitle">热门内容</span>  
+		<span class="color4">&lt;</span>
+		<span class="color3">&lt;</span>
+		<span class="color2">&lt;</span>
+		<span class="color1">&lt;</span>
+	</div>
+	<div class="more">
+		more
+	</div>
+</div> 
+<div class="listContent" id="hotList">
+	<ul>
+		<?php foreach ($params['hotList'] as $v):?>
+			<li>
+				<a title="<?php echo $v['article_seodescription'];?>" href="<?php echo '/'.$v['article_id'];?>">
+					<div class="listSpan">
+						<span class="design-name" ><?php echo $v['article_title'];?></span>
+						<span class="designer-name">
+							<?php echo $v['article_username'];?>
+							<?php echo $v['article_createtimeymd'];?>
+						</span>
+					</div>
+					<div class="tipsLine">
+					</div>
+				</a>
+			</li>
+		<?php endforeach;?>
+	</ul>
+</div>
