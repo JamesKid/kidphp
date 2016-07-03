@@ -104,6 +104,9 @@
 			margin-top:-20px;
 		}
 		/* 列表样式 */
+		.listContent ul{
+			padding-left:0px;
+		}
 		.listContent li{
 			clear: both;
 			color: transparent;
