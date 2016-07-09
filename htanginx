@@ -1,8 +1,13 @@
-#
+# 关于我们节点重写
+rewrite ^/about.html /about/index last;
+rewrite ^/index.html /index/index last;
+# 文章节点重写
 rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
 rewrite ^/([0-9]+).html$  /index.php/article/detail?articleId=$1 last;
+
 #rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
+
 
 #
 rewrite ^/test/$ /test permanent;

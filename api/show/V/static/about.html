@@ -1,121 +1,36 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="content-type" content="application/html+xml; charset=UTF-8" />
-		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-		<meta name="vimkid" content="vimkid" />
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
-		<meta name="GENERATOR" content="vim-6">
-		<meta name="keywords" content="vimkid,vim,vim教程">
-		<title>VimKid, vim tea for you</title>
-	</head>
-	<body>
-		<div id="head" class="top">
-			<pre id="AsciiImage">                                                                                    
-
- ******   ****   ****                            *****   *****   ****         ****
-******** ****** *****                           ******* ******  *****       ******
- ******   ****  ****                             *****   ****   ****         *****
-*****   ***                                    *****  ***                  **** 
-*****   **      **     **   ***   ***          ****  ***        **     ******** 
-*****  ***   ****** ******************         ********      ******   ********* 
- ****  **    *****  ******************         ********      ******  ***** **** 
- ********     ****   ***** ***** *****         *********      ****   ****  **** 
- *******      ****   ***** *****  ****         **********     ****  *****  **** 
-  ******      ****   ****  ***** ****         ***** *****     ****  ***** ***** 
-  *****      *****   ****  ****  ****         *****  *****    ****  ****  ***** 
-  *****      ******  ****  ****  *****        *****  *****   ****** *********** 
-  ****       ******  ****  ****  *****       *******  *****  ****** *********** 
-   ***       ****    ***   ***   ***         ******   *****   ***    ****  ***  
-			</pre>
-			<div class='tips'>
-				<a href="#">
-					More use, more learn,more powerful.
-				</a>
-			</div>
-			<div class="language">
-				<div class="languageType">中文</div>
-				<div class="languageType">English</div>
-			</div>
-			<div>
-				<div style="float:left" class="languageColor">
-					&nbsp ----| <fontTitle>首页</fontTitle> |----| <fontTitle>其他</fontTitle> |----| <fontTitle>关于我们</fontTitle> |----| <fontTitle>下载</fontTitle> |----
+<?php include('head.html')?>	
+<div id="content">
+	<?php include('left.html')?>	
+	<div id="contentRight">
+		<div id="rightin">
+			<div class="indexTitle">
+				<div class="titleName">
+					<span class="color1">&gt;</span>
+					<span class="color2">&gt;</span>
+					<span class="color3">&gt;</span>
+					<span class="color4">&gt;</span>
+					<span class="listTitle">最新</span>  
+					<span class="color4">&lt;</span>
+					<span class="color3">&lt;</span>
+					<span class="color2">&lt;</span>
+					<span class="color1">&lt;</span>
 				</div>
-			</div>
-		</div>
-		<div id="content">
-			<div id="contentLeft">
-				<div id="leftin">
-					<li> 第一个列表的容</li>
-					<li> 第一个列表的容</li>
-					<li> 第一个列表的容</li>
-					<li> 第一个列表的容</li>
+				<div class="more">
+					more
 				</div>
-			</div>
-			<div id="contentRight">
-				<div id="rightin">
-					<div id="indexTitle">
-						<span class="color1">></span>
-						<span class="color2">></span>
-						<span class="color3">></span>
-						<span class="color4">></span>
-						<categoryTitle>关于我们</categoryTitle>  
-						<span class="color4"><</span>
-						<span class="color3"><</span>
-						<span class="color2"><</span>
-						<span class="color1"><</span>
-					</div> 
-					<div class="listContent">
+			</div> 
+			<div class="listContent">
+				<div class="content">
 						<p>本站为vim技术分享网站 ，分享各种vim配置,vim脚本开发技术，和有趣强大的vim插件，当然除此之外还有其他诸如linux,shell,zsh,tmux,git,php,python,go语言等其他技术 ，但主要还是vim分享. 有问题或意见可以联系作者:  </p>
 						<p class='noindent'>qq:1779156598</p>
 						<p class='noindent'>email:1779156598@qq.com</p>
 						<p class='noindent'>新浪微博:vimkid</p>
 						<p class='noindent' style="text-align:right;color:#F00">----| vimkid |----</p>
-					</div>
-					<div id="indexTitle">
-						<span class="color1">></span>
-						<span class="color2">></span>
-						<span class="color3">></span>
-						<span class="color4">></span>
-						<categoryTitle>标签分类</categoryTitle>  
-						<span class="color4"><</span>
-						<span class="color3"><</span>
-						<span class="color2"><</span>
-						<span class="color1"><</span>
-						<div class="more">
-							more
-						</div>
-
-					</div> 
-					<div class="listContent">
-						<div class="tag1">
-							vim替换
-						</div>
-						<div class="tag2">
-							vim最强配置
-						</div>
-						<div class="tag3">
-							vim脚本
-						</div>
-						<div class="tag2">
-							vim替换
-						</div>
-						<div class="tag4">
-							vim电子书下载
-						</div>
-						<div class="tag1">
-							vim脚本
-						</div>
-					</div>
 				</div>
+
 			</div>
+			<?php include('tag.html')?>	
 		</div>
-		<div class="foot">
-			<div style="text-align:center" class="languageColor">
-			    ----| <fontTitle>首页</fontTitle> |----| <fontTitle>其他</fontTitle> |----| <fontTitle>关于我们</fontTitle> |----| <fontTitle>下载</fontTitle> |----
-			</div>
-			<div class="copyRight">
-				copyright 2016@ vimkid 版权所有 email:1779156598@qq.com  新浪微博: vimkid qq:1779156598
-			</div>
-		</div>
-	</body>
-</html>
+	</div>
+</div>
+<?php include('foot.html')?>	

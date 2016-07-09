@@ -1,15 +1,6 @@
-<?php //include('headdetail.html')?>	
+<?php include('headdetail.html')?>	
 <div id="content">
-	<div id="contentLeft">
-		<div id="leftin">
-			<ul>
-				<li> 第一个列表的容</li>
-				<li> 第一个列表的容</li>
-				<li> 第一个列表的容</li>
-				<li> 第一个列表的容</li>
-			</ul>
-		</div>
-	</div>
+	<?php include('left.html')?>	
 	<div id="contentRight">
 		<div id="rightin">
 			<div class="indexTitle">
@@ -25,10 +16,10 @@
 					<span class="color1">&lt;</span>
 				</div>
 			</div> 
-			<div>
+			<div class="detailContent">
 				<?php print_r($params['html']);?>
 			</div>
 		</div>
 	</div>
 </div>
-<?php //include('foot.html')?>	
+<?php include('foot.html')?>	

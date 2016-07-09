@@ -16,7 +16,7 @@ class ArticleController {
 			$params=$result[0];
 			$Parsedown = new system\plugin\outer\parsedown\Parsedown();
 			$params['html'] =  $Parsedown->text($params['article_content']); # prints: <p>Hello <em>Parsedown</em>!</p>
-			Render::renderTpl('static/dt.html',$params);
+			Render::renderTpl('static/detail.html',$params);
 		}else{
 			$params['errorInfo']='访问的文章不存在';
 			Render::renderTpl('static/info.html',$params);

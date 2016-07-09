@@ -10,7 +10,7 @@
 	} /* 去掉body 的默认白边 */
 	p {
 		text-indent:2em;/*段落开头缩进两字符*/
-		line-height:20px;
+		line-height:27px;
 	}
 	.noindent {
 		text-indent:0em;
@@ -25,6 +25,9 @@
 	}
 	a:active {
 		border:none;
+	}
+	.detailContent {
+		padding-top:20px;
 	}
 	#qTip {
 		BORDER: #abab98 1px solid;
@@ -208,7 +211,13 @@
 			width:100%;
 			padding-top:8px;
 			padding-bottom:8px;
+			line-height:28px;
+			//text-indent:30px;
 		}
+		.listContent .content{
+			text-indent:30px;
+		}
+
 		#content {
 			float:left; 
 			clear:both; 
@@ -260,6 +269,7 @@
 				color:#00cf00; 
 				text-align:center; 
 				border-bottom:1px solid #004f00; 
+				margin-top:10px;
 			}
 
 		/* 脚部样式 */

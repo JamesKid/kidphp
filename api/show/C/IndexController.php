@@ -4,8 +4,8 @@ class IndexController {
 	public function index(){
 		$ajaxService = new AjaxService();
 		$params['randList']=$ajaxService->getRandList();
-		$params['hotList']=$ajaxService->getHotList();
-		//$this->render('static/index.html',$params);
+		$params['newList']=$ajaxService->getNewList();
+		//print_r($params);die;
 		Render::renderTpl('static/index.html',$params);
 	}
 	/*
