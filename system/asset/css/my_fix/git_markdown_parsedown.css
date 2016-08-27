@@ -46,6 +46,7 @@ body {
     vertical-align: top;
     width: 100px;
 }
+
 #menu > div:hover {
     opacity: 1;
 }
@@ -193,15 +194,13 @@ hr {
     padding: 0;
 }
 pre, code {
-    /*background-color: #f8f8f8; */
-    /*border: 1px solid #ddd; */
     border-radius: 3px;
     /*color: #eee; */
-    color: #0f0;
+    color: #0d0;
     font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
     font-size: 0.94em;
 	/*background-color:#444;*/ /* add by jameskid */
-    background-color: #111;
+    background-color: #001100;
 
 }
 #rightin pre {
