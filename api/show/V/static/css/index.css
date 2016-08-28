@@ -9,7 +9,7 @@
 		margin-right:15%;
 	} /* 去掉body 的默认白边 */
 	p {
-		text-indent:2em;/*段落开头缩进两字符*/
+		/* text-indent:2em;段落开头缩进两字符*/
 		line-height:27px;
 	}
 	.noindent {

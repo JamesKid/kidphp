@@ -3,11 +3,11 @@ $dbh = new PDO('mysql:host=localhost;dbname=vimkid', 'root', '123456');
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->exec('set names utf8');
 /* 参数列表 */
-$type = 1;
+$type = 1;   # 类型
 $check = 1;
-$content = file_get_contents('/var/www/vimkid/README.md');
+$content = file_get_contents('/var/www/article/3_vim插件之MRU.md');
 $link = "content";
-$title = "title";
+$title = "vim插件之MRU.md";
 $createtime = time();
 $createtimeymd = date('Y-m-d',time());
 $updatetime = time();
@@ -15,15 +15,16 @@ $updatetimeymd = date('Y-m-d',time());
 $username = "vimkid";
 $userid = "1";
 $images = "";
-$seotitle ="seotitle";
-$seosubtitle = "seosubtitle";
-$seokeywords ="keywords";
-$seodescription = "description";
-$recommend = "";
+$seotitle ="vim插件之MRU";
+$seosubtitle = "vim插件之MRU";
+$seokeywords ="MRU,MRU插件,vim插件";
+$seodescription = "详细介绍vim MRU插件使用";
+$recommend = 5;
 $source = "vimkid website";
 $status = 1;
 $sort = "";
 $categoryid = 1;
+$start = 5;  # 推荐星级
 $sql = "insert into vimkid_article ( 
 	article_type, 
 	article_check,
@@ -45,7 +46,8 @@ $sql = "insert into vimkid_article (
 	article_source,
 	article_status,
 	article_sort,
-	article_categoryid
+	article_categoryid,
+	article_start
 ) values (
 	'$type',
 	'$check',
@@ -67,7 +69,8 @@ $sql = "insert into vimkid_article (
 	'$source',
 	'$status',
 	'$sort',
-	'$categoryid'
+	'$categoryid',
+	'$start'
 )
 ";
 $stmt = $dbh->prepare($sql);
