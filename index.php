@@ -18,8 +18,8 @@ class Kidphp{
 		spl_autoload_register(array($this,'__autoload'));
 		@date_default_timezone_set('PRC');
 		$this->configError();
-		//require_once('system/core/Route.php'); //引用路由 
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
+		$secure = new Secure;
 		$route = new Route;
 		$uri = $route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
