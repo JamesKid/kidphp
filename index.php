@@ -30,7 +30,7 @@ class Kidphp{
 		$check = new Check;
 		$result = $check->checkRoute($classPath,$uri);
 		if($result ==false){
-			include('404.html');exit;
+			include('404page.html');exit;
 		}
 		/* 引用路由 */
 		$classRoute = $uri['class'].'Controller';
