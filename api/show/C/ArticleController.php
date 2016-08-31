@@ -10,7 +10,7 @@ class ArticleController {
 	public function detail(){
 		$articleId=$_GET['articleId'];
 		$mysql = new system\core\db\Mysql();
-		$sql = "select * from vimkid_article where article_id =".$articleId;
+		$sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
 		$result = $mysql->select($sql);
 		if(isset($result[0])){
 			$params=$result[0];
