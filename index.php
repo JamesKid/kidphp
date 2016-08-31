@@ -30,7 +30,8 @@ class Kidphp{
 		$check = new Check;
 		$result = $check->checkRoute($classPath,$uri);
 		if($result ==false){
-			include('404page.html');exit;
+            header('Location: http://'.$_SERVER['HTTP_HOST'].'/404page.html');
+            exit;
 		}
 		/* 引用路由 */
 		$classRoute = $uri['class'].'Controller';

@@ -29,10 +29,10 @@ class Secure {
         $url = str_replace('&', '', $url);
         $url = str_replace('.', '', $url);
         $url = str_replace('=', '', $url);
-        // 如果除了/ ? & 还有其他特殊字符，则退出
+        // 如果除了/ ? & = . 还有其他特殊字符，则重新跳转
         if(!$this->onlyLettersOrDigits($url) && $url!=''){
-			include('tips.html');exit;
-            //exit;
+            header('Location: http://'.$_SERVER['HTTP_HOST'].'/tips.html');
+            exit;
         }
 
 	}
