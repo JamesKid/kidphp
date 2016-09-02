@@ -22,7 +22,7 @@ class Visit{
 		if(isset($_SERVER['HTTP_REFERER']) && $class=='Ajax'){
 			die;
 		}
-		$url = $_SERVER['PHP_SELF'];
+		$url = $_SERVER['REQUEST_URI'];
 		if($statusSign==false){
 			$status=404;
 		}else {
