@@ -30,7 +30,7 @@ class Visit{
 		}
 		$type=1; //0正常访问，１非法访问
 
-		$mysql = new system\core\db\Mysql('WRITE');
+		$mysql = new system\core\db\Mysql('IP');  // 访问IP节点下的权限
 		$ipInfo = new system\plugin\outer\GetIpInfo\GetIpInfo();
 		$ip = $ipInfo->GetIpIn();
 		$address = $this->getAddress($ip);
