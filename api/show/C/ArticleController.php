@@ -2,8 +2,8 @@
 use system\core\db;
 class ArticleController {
 
-	/** 获取随机内容 
-	 * @params categoryid
+	/** 获取文章详细内容 
+	 * @params articleId   文章id
 	 * @params
 	 * 
 	 */

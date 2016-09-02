@@ -3,8 +3,9 @@
 class IndexController {
 	public function index(){
 		$ajaxService = new AjaxService();
+		$categoryName = 'vim';
 		$params['randList']=$ajaxService->getRandList();
-		$params['newList']=$ajaxService->getNewList();
+		$params['newList']=$ajaxService->getNewList($categoryName);
 		//print_r($params);die;
 		Render::renderTpl('static/index.html',$params);
 	}
