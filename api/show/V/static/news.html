@@ -1,0 +1,24 @@
+<div class="indexTitle">
+	<div class="titleName">
+		<span class="color1">&gt;</span>
+		<span class="color2">&gt;</span>
+		<span class="color3">&gt;</span>
+		<span class="color4">&gt;</span>
+		<span class="listTitle">站点新闻</span>  
+		<span class="color4">&lt;</span>
+		<span class="color3">&lt;</span>
+		<span class="color2">&lt;</span>
+		<span class="color1">&lt;</span>
+	</div>
+	<div class="more">
+		more
+	</div>
+</div> 
+<div class="listContent indent" id="newList">
+		<?php foreach ($params['news'] as $v):?>
+            <h3 class="noindent"><?php echo $v['article_title'];?></h3>
+            <?php echo $v['article_content'];?>
+            <p class='noindent' style="text-align:right;color:#F00">----| vimkid |----</p>
+		<?php endforeach;?>
+	</ul>
+</div>

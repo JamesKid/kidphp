@@ -59,5 +59,23 @@ class AjaxService {
 		//$result = json_encode($result);
 		return $result;
 	}
+
+	/* 站点新闻 */
+	public function getNews(){
+		$mysql = new system\core\db\Mysql();
+		$sql = "select 
+				article_username,
+				article_id,
+				article_title,
+				article_createtimeymd,
+				article_seodescription,
+				article_content
+			from vimkid_article 
+			where article_categoryname='news'
+			limit 1";
+		$result = $mysql->execute($sql);
+		//$result = json_encode($result);
+		return $result;
+	}
 }
 ?>

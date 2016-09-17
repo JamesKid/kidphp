@@ -217,6 +217,12 @@
 		.listContent .content{
 			text-indent:30px;
 		}
+		.indent{
+			text-indent:30px;
+		}
+		.noindent{
+			text-indent:0px;
+		}
 
 		#content {
 			float:left; 
