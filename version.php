@@ -33,3 +33,16 @@ function getVersion() {
 	);
 	return $version;
 }
+/* 待加功能
+ *
+ * 1. 阅读量，发布时间，更新时间
+ * 2. mysql主从，mysql mongodb数据同步
+ * 3. git钩子自动推送代码
+ * 4. 标签设计
+ * 5. 中英版设计
+ * 6. composer 机制引入
+ * 7. 单元测试
+ * 8. 统计chart图
+ * 9. 站点安全检测脚本机制
+ *
+ */
