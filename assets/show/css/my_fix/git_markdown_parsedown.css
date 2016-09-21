@@ -218,6 +218,9 @@ pre code {
 }
 code {
     padding: 0 3px;
+    background-color:#040;
+    margin:0 3px;
+    color:#0f0;
 }
 sub, sup {
     font-size: 75%;
