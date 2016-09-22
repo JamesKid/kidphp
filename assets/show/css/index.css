@@ -27,7 +27,7 @@
 		border:none;
 	}
 	.detailContent {
-		padding-top:20px;
+        float:left;
 	}
 	#qTip {
 		BORDER: #abab98 1px solid;
