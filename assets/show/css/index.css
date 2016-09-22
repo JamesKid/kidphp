@@ -277,6 +277,18 @@
 				border-bottom:1px solid #004f00; 
 				margin-top:10px;
 			}
+            .topInfo {
+                border-bottom: solid 1px #777;
+                float:left;
+                margin-bottom:20px;
+                padding-bottom:10px;
+                padding-top:10px;
+            }
+            .topInfoDetail {
+                padding-right:10px;
+                color:#0f0;
+            }
+
 
 		/* 脚部样式 */
 		.foot {

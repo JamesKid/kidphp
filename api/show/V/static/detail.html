@@ -9,13 +9,32 @@
 					<span class="color2">&gt;</span>
 					<span class="color3">&gt;</span>
 					<span class="color4">&gt;</span>
-					<span class="listTitle">最新</span>  
+                    <span class="listTitle"><?php print_r($params['article_title']);?></span>  
 					<span class="color4">&lt;</span>
 					<span class="color3">&lt;</span>
 					<span class="color2">&lt;</span>
 					<span class="color1">&lt;</span>
 				</div>
 			</div> 
+            <div class="topInfo">
+                创建时间:&nbsp 
+                <span class="topInfoDetail">
+                    <?php print_r($params['article_createtimeymd']);?>
+                </span>
+                更新时间:&nbsp 
+                <span class="topInfoDetail">
+                    <?php print_r($params['article_updatetimeymd']);?>
+                </span>
+                访问量:
+                <span class="topInfoDetail">
+                    <?php print_r($params['article_visit']);?>
+                </span>
+                标签:
+                <span class="topInfoDetail">
+                    <?php print_r($params['article_seokeywords']);?>
+                </span>
+            </div>
+
 			<div class="detailContent">
 				<?php print_r($params['html']);?>
 			</div>

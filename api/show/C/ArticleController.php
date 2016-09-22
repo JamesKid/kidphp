@@ -7,15 +7,22 @@ class ArticleController {
 	 * @params
 	 * 
 	 */
+    protected $articleService;
+    public function __construct(){
+        //$this->articleService = new ArticleService();
+    }
 	public function detail(){
 		$articleId=$_GET['articleId'];
+        $articleService = new ArticleService();
+		$articleService->addReading($articleId);
+
 		$mysql = new system\core\db\Mysql();
 		$sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
 		$result = $mysql->select($sql);
 		if(isset($result[0])){
 			$params=$result[0];
 			$Parsedown = new system\plugin\outer\parsedown\Parsedown();
-			$params['html'] =  $Parsedown->text($params['article_content']); # prints: <p>Hello <em>Parsedown</em>!</p>
+			$params['html'] =  $Parsedown->text($params['article_content']); 
 			Render::renderTpl('static/detail.html',$params);
 		}else{
 			$params['errorInfo']='访问的文章不存在';
