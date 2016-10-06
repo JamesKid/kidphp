@@ -1,12 +1,21 @@
 <?php
 class ListController {
-	public function index(){
-		$total=90;
-		$pagesize=3;
-		$ajaxService = new AjaxService();
-		$params['randList']=$ajaxService->getRandList();
-		$params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
-		Render::renderTpl('static/list.html',$params);
+    /* 二级目录查询 */
+	public function subCategory(){
+		$category = isset($_GET['category'])? $_GET['category']: '';
+        //print_r($categoryName);
+        if($category!=''){
+            $ajaxService = new CategoryService();
+            $total = $ajaxService->getSubListNumber($category); // 获取总条数
+            $pagesize=10;  // 分页条数
+            $params['list']=$ajaxService->getSubList($category);
+            $params['category']=$category;
+            //print_r($params['list']);
+            $params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
+            Render::renderTpl('static/list.html',$params);
+        }else{
+
+        }
 	}
 }
 ?>

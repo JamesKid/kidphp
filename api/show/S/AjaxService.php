@@ -22,6 +22,7 @@ class AjaxService {
 			return $params;
 		}
 	}
+
 	/* 最热文章 */
 	public function getHotList(){
 		$mysql = new system\core\db\Mysql();
