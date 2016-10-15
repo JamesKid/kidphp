@@ -13,7 +13,7 @@
 </div> 
 <div class="tag">
 		<?php foreach ($params['tags'] as $v):?>
-            <div class="tag1">
+            <div class="<?php echo 'tag'.rand(1,4);?>">
                 <a href="<?php echo '/'.$v['article_id'];?>">
                     <?php $keywordList=explode(',',$v['article_seokeywords']);?>
                     <?php $length=count($keywordList);?>
