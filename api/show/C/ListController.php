@@ -39,6 +39,8 @@ class ListController {
 	}
     /* 获取最新内容 */
 	public function getNew(){
+		$ajaxService = new AjaxService();
+		$params['tags'] = $ajaxService->getTags();
         $ajaxService = new CategoryService();
         $total = $ajaxService->getNumber(); // 获取总条数
         $pagesize=10;  // 分页条数
