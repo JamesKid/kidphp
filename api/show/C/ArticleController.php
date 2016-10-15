@@ -9,13 +9,14 @@ class ArticleController {
 	 */
     protected $articleService;
     public function __construct(){
-        //$this->articleService = new ArticleService();
+        // $articleService = new ArticleService();
     }
 	public function detail(){
+		$ajaxService = new AjaxService();
+		$params['tags'] = $ajaxService->getTags();
 		$articleId=$_GET['articleId'];
         $articleService = new ArticleService();
 		$articleService->addReading($articleId);
-
 		$mysql = new system\core\db\Mysql();
 		$sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
 		$result = $mysql->select($sql);

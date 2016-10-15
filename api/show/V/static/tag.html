@@ -4,33 +4,23 @@
 		<span class="color2">&gt;</span>
 		<span class="color3">&gt;</span>
 		<span class="color4">&gt;</span>
-		<span class="listTitle">标签分类</span>  
+		<span class="listTitle">随机标签</span>  
 		<span class="color4">&lt;</span>
 		<span class="color3">&lt;</span>
 		<span class="color2">&lt;</span>
 		<span class="color1">&lt;</span>
 	</div>
-	<div class="more">
-		more
-	</div>
 </div> 
 <div class="tag">
-	<div class="tag1">
-		vim替换
-	</div>
-	<div class="tag2">
-		vim最强配置
-	</div>
-	<div class="tag3">
-		vim脚本
-	</div>
-	<div class="tag2">
-		vim替换
-	</div>
-	<div class="tag4">
-		vim电子书下载
-	</div>
-	<div class="tag1">
-		vim脚本
-	</div>
+		<?php foreach ($params['tags'] as $v):?>
+            <div class="tag1">
+                <a href="<?php echo '/'.$v['article_id'];?>">
+                    <?php $keywordList=explode(',',$v['article_seokeywords']);?>
+                    <?php $length=count($keywordList);?>
+                    <?php //print_r($keywordList);?>
+                    <?php echo $keywordList[rand(0,$length-1)];?>
+                </a>
+            </div>
+		<?php endforeach;?>
+	</ul>
 </div>

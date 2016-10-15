@@ -1,37 +1,51 @@
 <?php
 class ListController {
-    /* 二级目录查询 */
-	public function subCategory(){
-		$category = isset($_GET['category'])? $_GET['category']: '';
-        //print_r($categoryName);
-        if($category!=''){
-            $ajaxService = new CategoryService();
-            $total = $ajaxService->getSubListNumber($category); // 获取总条数
-            $pagesize=10;  // 分页条数
-            $params['list']=$ajaxService->getSubCategoryList($category);
-            $params['category']=$category;
-            //print_r($params['list']);
-            $params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
-            Render::renderTpl('static/list.html',$params);
-        }else{
-
-        }
-	}
+    public function __construct(){
+        //$this->ajaxService = new AjaxService();
+    }
+    /* 一级目录查询 */
 	public function category(){
+		$ajaxService = new AjaxService();
+		$params['tags'] = $ajaxService->getTags();
 		$category = isset($_GET['category'])? $_GET['category']: '';
-        //print_r($categoryName);
         if($category!=''){
             $ajaxService = new CategoryService();
             $total = $ajaxService->getSubListNumber($category); // 获取总条数
             $pagesize=10;  // 分页条数
             $params['list']=$ajaxService->getCategoryList($category);
             $params['category']=$category;
-            //print_r($params['list']);
             $params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
             Render::renderTpl('static/list.html',$params);
         }else{
 
         }
+	}
+    /* 二级目录查询 */
+	public function subCategory(){
+		$ajaxService = new AjaxService();
+		$params['tags'] = $ajaxService->getTags();
+		$category = isset($_GET['category'])? $_GET['category']: '';
+        if($category!=''){
+            $ajaxService = new CategoryService();
+            $total = $ajaxService->getSubListNumber($category); // 获取总条数
+            $pagesize=10;  // 分页条数
+            $params['list']=$ajaxService->getSubCategoryList($category);
+            $params['category']=$category;
+            $params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
+            Render::renderTpl('static/list.html',$params);
+        }else{
+
+        }
+	}
+    /* 获取最新内容 */
+	public function getNew(){
+        $ajaxService = new CategoryService();
+        $total = $ajaxService->getNumber(); // 获取总条数
+        $pagesize=10;  // 分页条数
+        $params['list']=$ajaxService->getNew();
+        $params['category']='最新文章';
+        $params['page'] = new system\plugin\outer\Page\Page($total,$pagesize);
+        Render::renderTpl('static/list.html',$params);
 	}
 }
 ?>

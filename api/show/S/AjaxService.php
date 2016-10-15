@@ -1,10 +1,5 @@
 <?php
 class AjaxService {
-	/** 获取随机内容 
-	 * @params categoryid
-	 * @params
-	 * 
-	 */
 	/* 获取随机内容 */
 	public function getRandList(){
 		$mysql = new system\core\db\Mysql();
@@ -16,7 +11,24 @@ class AjaxService {
 			$randIn = $randInObject->arrayToFormatString($params['data'],',');
 			$sql = "select article_username,article_id,article_title,article_createtimeymd,article_seodescription from vimkid_article where article_categoryid = 1 and article_id IN (".$randIn.")";
 			$result = $mysql->execute($sql);
-			//$result = json_encode($result);
+			return $result;
+		}else{
+			return $params;
+		}
+	}
+
+	/* 获取标签 */
+	public function getTags(){
+		$mysql = new system\core\db\Mysql();
+		$count = $mysql->getTableRows('article'); //获取表记录数量
+		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
+		$params = $randObject->noRepeatRand(1,$count,4);
+		if(!$params['error']){
+			$randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
+			$randIn = $randInObject->arrayToFormatString($params['data'],',');
+			$sql = "select article_id,article_seokeywords from vimkid_article where article_status = 1 and article_id IN (".$randIn.")";
+			$result = $mysql->execute($sql);
+            $result = $result->fetchAll();
 			return $result;
 		}else{
 			return $params;
@@ -34,7 +46,6 @@ class AjaxService {
 			$randIn = $randInObject->arrayToFormatString($params['data'],',');
 			$sql = "select article_username,article_id,article_title,article_createtimeymd,article_seodescription from vimkid_article where article_categoryid=1 and article_id IN (".$randIn.")";
 			$result = $mysql->execute($sql);
-			//$result = json_encode($result);
 			return $result;
 		}else{
 			return $params;
@@ -57,7 +68,6 @@ class AjaxService {
 			order by article_createtime desc 
 			limit 5";
 		$result = $mysql->execute($sql);
-		//$result = json_encode($result);
 		return $result;
 	}
 
@@ -75,7 +85,6 @@ class AjaxService {
 			where article_categoryname='news'
 			limit 1";
 		$result = $mysql->execute($sql);
-		//$result = json_encode($result);
 		return $result;
 	}
 }

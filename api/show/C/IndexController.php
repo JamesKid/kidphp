@@ -6,7 +6,7 @@ class IndexController {
 		$params['randList'] = $ajaxService->getRandList();
 		$params['newList'] = $ajaxService->getNewList($categoryName);
 		$params['news'] = $ajaxService->getNews();
-		//print_r($params['news']);die;
+		$params['tags'] = $ajaxService->getTags();
 		Render::renderTpl('static/index.html',$params);
 	}
 }
