@@ -2,7 +2,7 @@
 $dbh = new PDO('mysql:host=localhost;dbname=vimkid', 'root', '123456');
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->exec('set names utf8');
-$id = 7;
+$id = 1;
 /* 参数列表 */
 $filename =  exec('ls  /var/www/article | grep '.$id.'_');
 $content = file_get_contents('/var/www/article/'.$filename);
