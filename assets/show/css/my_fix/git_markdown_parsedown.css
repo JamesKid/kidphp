@@ -204,10 +204,17 @@ pre, code {
 
 }
 #rightin pre {
-	border:solid 1px #070;
+	border:solid 1px #050;
+}
+.CodeMirror-linenumber.CodeMirror-gutter-elt {
+    padding:3px;
+    background-color:#030;
+}
+#rightin .CodeMirror-line  {
+	border:solid 1px #020;
 }
 #contentRight pre {
-	 padding: 5px;
+	 padding: 3px;
      white-space: pre-wrap;
      word-wrap: break-word;
 }
