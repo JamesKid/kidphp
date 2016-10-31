@@ -15,11 +15,12 @@
 	"name": "kidphp/kidphp",
 	"repositories": [
 		{
-			"type": "vcs",
-			"url": "https://www.github.com/kidphp/kidphp_rand"
+			"type": "composer",
+			"url": "https://packagist.org"
 		}
 	],
+    "license": ["MIT"],
 	"require": {
-		"kidphp/kidphp_rand": "master"
+		"kidphp/kidphp_rand": "dev-master"
 	}
 }

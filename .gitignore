@@ -1,1 +1,3 @@
 /system/asset/css/git_markdown.css
+/vendor/
+/composer.lock
