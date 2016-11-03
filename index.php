@@ -19,6 +19,10 @@ class Kidphp{
 		@date_default_timezone_set('PRC');
 		$this->configError();
 		require_once($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
+		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
+        //$test = new Kidphp\KidphpRand\Rand();
+        //$result = $test->noRepeatRand(1,10,5);
+        //print_r($result); die;
 		$secure = new Secure;
 		$route = new Route;
 		$uri = $route->initRoute();  //初始化路由
