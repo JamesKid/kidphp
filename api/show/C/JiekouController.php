@@ -19,7 +19,7 @@ class JiekouController {
 	}
 
     /** 
-     * 获IP地址
+     * 获客户端口外网IP地址
      */
     public function getIpFunction(){
         $ip='未知IP';
@@ -39,6 +39,6 @@ class JiekouController {
             }  
         }  
         return preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/',$str);  
-}
+    }
 }
 ?>
