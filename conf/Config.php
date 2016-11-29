@@ -3,20 +3,20 @@ static $config=array(
 	'DB'=>array(
 		'READ'=>array(
 			'DB_NAME'=>'vimkid',
-			'DB_USER'=>'vimkid',
-			'DB_PASSWORD'=>'cbdvimkid',
+			'DB_USER'=>'root',
+			'DB_PASSWORD'=>'123456',
 			'DB_PORT'=>'3306'
 		),
 		'WRITE'=>array(
 			'DB_NAME'=>'vimkid',
-			'DB_USER'=>'vimkidwrite',
-			'DB_PASSWORD'=>'cbdvimkid',
+			'DB_USER'=>'root',
+			'DB_PASSWORD'=>'123456',
 			'DB_PORT'=>'3306'
 		),
 		'IP'=>array(
 			'DB_NAME'=>'ip',
-			'DB_USER'=>'ip',
-			'DB_PASSWORD'=>'cbdvimkid',
+			'DB_USER'=>'root',
+			'DB_PASSWORD'=>'123456',
 			'DB_PORT'=>'3306'
 		),
 		'DB_SLAVE'=>false,  // 是否支持主从
