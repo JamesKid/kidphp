@@ -28,6 +28,9 @@
 	}
 	.detailContent {
         float:left;
+        width:100%;
+        word-break:break-all;
+        word-wrap:break-word;
 	}
 	#qTip {
 		BORDER: #abab98 1px solid;
