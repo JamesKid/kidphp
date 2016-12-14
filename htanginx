@@ -6,6 +6,10 @@ rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
 rewrite ^/([0-9]+).html$  /index.php/article/detail?articleId=$1 last;
 
+# 目录伪静态
+rewrite ^/vimuse/$ /vimuse  permanent;
+rewrite ^/vimuse$  /list/subcategory?category=vim基本使用 last;
+
 #rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
 
 
