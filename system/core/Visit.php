@@ -33,6 +33,10 @@ class Visit{
 		$mysql = new system\core\db\Mysql('WRITE');  // 访问写节点下的权限
 		$ipInfo = new system\plugin\outer\GetIpInfo\GetIpInfo();
 		$ip = $ipInfo->GetIpIn();
+        // 排除本地ip
+        if($ip == '127.0.0.1'){
+            return false;
+        }
 		$address = $this->getAddress($ip);
 		$ipv6='';
 		$source='';
