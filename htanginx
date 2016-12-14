@@ -6,9 +6,22 @@ rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
 rewrite ^/([0-9]+).html$  /index.php/article/detail?articleId=$1 last;
 
-# 目录伪静态
+# 目录vim基本使用
 rewrite ^/vimuse/$ /vimuse  permanent;
 rewrite ^/vimuse$  /list/subcategory?category=vim基本使用 last;
+
+# 目录vim插件
+rewrite ^/vimplugin/$ /vimplugin  permanent;
+rewrite ^/vimplugin$  /list/subcategory?category=vim插件 last;
+
+# 目录vim配置
+rewrite ^/vimconfig/$ /vimconfig  permanent;
+rewrite ^/vimconfig$  /list/subcategory?category=vim配置" last;
+
+# 目录vim学习tips
+rewrite ^/vimlearn/$ /vimlearn  permanent;
+rewrite ^/vimlearn$  /list/subcategory?category=vim学习tips" last;
+
 
 #rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
 
