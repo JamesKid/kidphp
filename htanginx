@@ -16,11 +16,11 @@ rewrite ^/vimplugin$  /list/subcategory?category=vim插件 last;
 
 # 目录vim配置
 rewrite ^/vimconfig/$ /vimconfig  permanent;
-rewrite ^/vimconfig$  /list/subcategory?category=vim配置" last;
+rewrite ^/vimconfig$  /list/subcategory?category=vim配置 last;
 
 # 目录vim学习tips
 rewrite ^/vimlearn/$ /vimlearn  permanent;
-rewrite ^/vimlearn$  /list/subcategory?category=vim学习tips" last;
+rewrite ^/vimlearn$  /list/subcategory?category=vim学习tips last;
 
 
 #rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;

@@ -3,6 +3,7 @@ $dbh = new PDO('mysql:host=localhost;dbname=vimkid', 'root', '123456');
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->exec('set names utf8');
 /* 参数列表 */
+$id = 9;
 $type = 1;   # 类型
 $check = 1;
 $content = file_get_contents('/var/www/article/3_vim插件之MRU.md');
@@ -26,6 +27,7 @@ $sort = "";
 $categoryid = 1;
 $start = 5;  # 推荐星级
 $sql = "insert into vimkid_article ( 
+	article_id, 
 	article_type, 
 	article_check,
 	article_content,
@@ -49,6 +51,7 @@ $sql = "insert into vimkid_article (
 	article_categoryid,
 	article_start
 ) values (
+	'$id',
 	'$type',
 	'$check',
 	'$content',
