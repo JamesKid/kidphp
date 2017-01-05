@@ -10,11 +10,12 @@ class weiqi{
     // 常量
     public $height = 19;
     public $width = 19;
+    public $nowBoard = array(); // 当前棋盘数组
+    public $userColor ; //  当前用户执子颜色 1 黑色 2 白色
+    public $computerColor ; //  当前用户执子颜色 1 黑色 2 白色
    
     // 初始化
 	public function __construct($argv){
-        print_r(intval('c'));
-        die;
         // 如果没有参数则输出帮助文档
         if(!isset($argv[1])){
             $doc = $this->getDoc();
@@ -26,13 +27,27 @@ class weiqi{
             print_r($doc); return;
         }
 
-        // 打印棋盘
-        $board = $this->getBoard($this->height,$this->width);
-        // 下子
-        if(strlen($argv[1]) == 2){
-            $this->play($argv[1]);
+        // 打印棋盘用户执黑(重新开始)
+        if($argv[1] == 's'){
+            $this->nowBoard = $this->newBoard($this->height,$this->width,1,2);
         }
-        $this->printBoard($board);
+        // 打印棋盘用户执白(重新开始)
+        if($argv[1] == 't'){
+            $this->nowBoard = $this->newBoard($this->height,$this->width,2,1);
+        }
+
+        // 渲染当前棋盘(继续对局)
+        $status = $this->getNowStatus();
+        $this->nowBoard = $status['nowBoard']; // 获取当前棋盘状态
+        $this->userColor = $status['userColor']; // 获取用户所执子
+        $this->computerColor = $status['computerColor']; // 获取用户所执子
+
+        // 下子
+        if(strlen($argv[1]) > 1){
+            $this->play($argv[1]); // 用户下子
+            $this->computerPlay();// 电脑下子
+        }
+        $this->printBoard($this->nowBoard); // 打印棋盘
     }
 
     /**************  关于帮助 start ************/
@@ -42,7 +57,8 @@ class weiqi{
 This is help for weiqi project: \n 
 参数: 
 h    :打开帮助
-s    :开始棋局(重新开始棋局)
+s    :开始棋局用户执黑(重新开始棋局)
+t    :开始棋局用户执白(重新开始棋局)
 a1   :落子,输入具体下子坐标如a1
 b    :悔棋
 x    :显示形势\n 
@@ -54,12 +70,22 @@ Example: php weiqi.php h  # 输出帮助文档\n";
 
     /**************  用户下子 Start ************/
     // 下子
-    public function play($height,$width){
+    public function play($position){
+        $nowBoard = $this->nowBoard;
+        // 转换position 为数组坐标
+        $list = $this->charToNumber();
+        $x = substr($position,0,1);
+        $x = $list[$x];  // 获取字母对应数字
+        $y = substr($position,1,2); // 截取最后两个数字
+
+        // 判断是否合法下子
+        
+        // 保存下子到数组
+        $nowBoard[$y][$x] = $this->userColor;
+        $this->nowBoard = $nowBoard;
+        $this->saveBoard($nowBoard);
     }
 
-    // 判断是否合法下子
-    public function checkPlay($height,$width){
-    }
 
     // 保存下子
     public function savePlay($height,$width){
@@ -70,17 +96,34 @@ Example: php weiqi.php h  # 输出帮助文档\n";
 
     /**************  棋盘系统 Start ************/
     // 获取初始化棋盘
-    public function getBoard($height,$width){
+    public function newBoard($height,$width,$userColor,$computerColor){
         $board = array();
-        for($i=0; $i<$height; $i++){
-            for($j=0; $j<$width; $j++){
+        for($i=1; $i<$height+1; $i++){
+            for($j=1; $j<$width+1; $j++){
                 $board[$i][$j] = 0;
             }
         }
+        // 保存初始棋盘到数据库或文件中
+        $params['nowBoard'] = $board;
+        $params['userColor'] = $userColor;
+        $params['computerColor'] = $computerColor;
+        file_put_contents('save_board.txt', serialize($params)); // 序列化并写入文件
         return $board;
     }
-    // 获取当前棋盘
-    public function getNowBoard(){
+  
+    // 保存棋盘
+    public function saveBoard($board){
+        $params['nowBoard'] = $board;
+        $params['userColor'] = $this->userColor;
+        $params['computerColor'] = $this->computerColor;
+        file_put_contents('save_board.txt', serialize($params)); // 序列化并写入文件
+    }
+
+    // 获取当前对局状态(棋盘,用户执子)
+    public function getNowStatus(){
+        $status = unserialize(file_get_contents('save_board.txt'));// 读取并反序列化
+        return $status;
+
     }
     /**************  棋盘系统 End ************/
 
@@ -116,10 +159,10 @@ Example: php weiqi.php h  # 输出帮助文档\n";
                 }
                 // 输出黑白棋
                 if($y == 1){
-                    echo '●';  // 输出黑棋
+                    echo '○ '; // 输出黑棋
                 }
                 if($y == 2){
-                    echo '○'; // 输出白棋
+                    echo '● ';  // 输出白棋
                 }
             }
             echo "\n";
@@ -142,13 +185,40 @@ Example: php weiqi.php h  # 输出帮助文档\n";
     /**************  序列 Start ************/
     public function charToNumber(){
         $numberList = array(
-
+            'a'=>1,
+            'b'=>2,
+            'c'=>3,
+            'd'=>4,
+            'e'=>5,
+            'f'=>6,
+            'g'=>7,
+            'h'=>8,
+            'i'=>9,
+            'j'=>10,
+            'k'=>11,
+            'l'=>12,
+            'm'=>13,
+            'n'=>14,
+            'o'=>15,
+            'p'=>16,
+            'q'=>17,
+            'r'=>18,
+            's'=>19
         );
         return $numberList;
     }
+    /**************  序列 End ************/
 
     /***********  电脑下子系统 Start ****核心算法******/
     // 随机选择下子落点
+    public function computerPlay(){
+        $nowBoard = $this->nowBoard; // 获取当前棋局
+        $x = rand(1,19);
+        $y = rand(1,19);
+        $nowBoard[$y][$x] = $this->computerColor;
+        $this->saveBoard($nowBoard);
+
+    }
     
     /***********  电脑下子系统 Start ****核心算法******/
 
