@@ -3,6 +3,7 @@
 * @author       : Vimkid
 * @description  : This is a programe about weiqi 
 * @history      : 2017.1.5  添加项目基本结构
+*               : 2017.1.6  添加落子池,落子记录
 *
 ***********************************************************************/
 
@@ -87,7 +88,15 @@ Example: php weiqi.php h  # 输出帮助文档\n";
     }
 
 
-    // 保存下子
+    // 保存每一步下子
+    // 数据结构
+    // array(
+    //   'a1'=>array(
+    //      'userColor'=>1,
+    //      'time'=>1,
+    //      'Comment'=>'一步好棋'
+    //   ),
+    // )
     public function savePlay($height,$width){
     }
 
@@ -107,7 +116,7 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         $params['nowBoard'] = $board;
         $params['userColor'] = $userColor;
         $params['computerColor'] = $computerColor;
-        file_put_contents('save_board.txt', serialize($params)); // 序列化并写入文件
+        file_put_contents('data/save_board.txt', serialize($params)); // 序列化并写入文件
         return $board;
     }
   
@@ -116,12 +125,12 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         $params['nowBoard'] = $board;
         $params['userColor'] = $this->userColor;
         $params['computerColor'] = $this->computerColor;
-        file_put_contents('save_board.txt', serialize($params)); // 序列化并写入文件
+        file_put_contents('data/save_board.txt', serialize($params)); // 序列化并写入文件
     }
 
-    // 获取当前对局状态(棋盘,用户执子)
+    // 获取当前对局状态(棋盘盘面,用户执子)
     public function getNowStatus(){
-        $status = unserialize(file_get_contents('save_board.txt'));// 读取并反序列化
+        $status = unserialize(file_get_contents('data/save_board.txt'));// 读取并反序列化
         return $status;
 
     }
@@ -215,19 +224,51 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         $nowBoard = $this->nowBoard; // 获取当前棋局
         $x = rand(1,19);
         $y = rand(1,19);
-        $nowBoard[$y][$x] = $this->computerColor;
+        $nowBoard[$y][$x] = $this->computerColor;  // 更新棋盘盘面
         $this->saveBoard($nowBoard);
 
+    }
+    // 初始化落点池
+    public function initPlayPool(){
+        $playPool = array(
+        );
+    }
+    // 获取落点池
+    public function getPlayPool(){
+        $playPool = unserialize(file_get_contents('data/play_pool.txt'));// 读取落点池并反序列化
+        return $playPool;
+    }
+    // 落点池添加落点
+    public function addPlayPool($position){
+        $playPool = unserialize(file_put_contents('data/play_pool.txt'));// 读取落点池并反序列化
+        return $playPool;
+    }
+    // 落点池移除落点
+    public function removePlayPool($position){
+        $playPool = unserialize(file_put_contents('data/play_pool.txt'));// 读取落点池并反序列化
+        return $playPool;
     }
     
     /***********  电脑下子系统 Start ****核心算法******/
 
     /**************  局面评估系统 Start *****核心算法***/
     // 获取当前局面
+    
+    // 获取当前落点池
+    
+    // 落点价值评估
+
     /**************  局面评估系统 End *******核心算法***/
 
     /**************  棋谱系统 Start *****核心算法***/
     /**************  棋谱系统 End *****核心算法***/
+
+    /**************  坐标转换系统 Start *****核心算法***/
+    // 中心坐标 
+    // x,y轴坐标
+    // 角坐标(左上角,右上角,左下角,右下角)
+    // 3D 坐标
+    /**************  坐标转换系统 End *****核心算法***/
 
 
 }
