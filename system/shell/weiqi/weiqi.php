@@ -17,6 +17,10 @@ class weiqi{
    
     // 初始化
 	public function __construct($argv){
+        $result = $this->initPlayPool();
+        $one = array_rand($result);
+        $otherone = array_rand($result[$one]);
+        print_r($otherone);die;
         // 如果没有参数则输出帮助文档
         if(!isset($argv[1])){
             $doc = $this->getDoc();
@@ -30,11 +34,13 @@ class weiqi{
 
         // 打印棋盘用户执黑(重新开始)
         if($argv[1] == 's'){
-            $this->nowBoard = $this->newBoard($this->height,$this->width,1,2);
+            $this->nowBoard = $this->newBoard($this->height,$this->width,1,2); // 初始化棋盘
+            $this->nowBoard = $this->initPlayPool; // 初始化落子池
         }
         // 打印棋盘用户执白(重新开始)
         if($argv[1] == 't'){
-            $this->nowBoard = $this->newBoard($this->height,$this->width,2,1);
+            $this->nowBoard = $this->newBoard($this->height,$this->width,2,1); // 初始化棋盘
+            $this->nowBoard = $this->initPlayPool; // 初始化落子池
         }
 
         // 渲染当前棋盘(继续对局)
@@ -156,8 +162,8 @@ Example: php weiqi.php h  # 输出帮助文档\n";
                 // 输出空白点
                 if($y == 0){
                     // 输出锚点
-                    if($k == 3 || $k == 9 || $k == 15){
-                        if($x == 3 || $x == 9 || $x == 15){
+                    if($k == 4 || $k == 10 || $k == 16){
+                        if($x == 4 || $x == 10 || $x == 16){
                             echo '∙ ';
                         }else{
                             echo '⋅ ';
@@ -228,10 +234,15 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         $this->saveBoard($nowBoard);
 
     }
-    // 初始化落点池
+    // 初始化落子池
     public function initPlayPool(){
-        $playPool = array(
-        );
+        $playPool = array();
+        for($i=1; $i<20; $i++){
+            for($j=1; $j<20; $j++){
+                $playPool[$i][$j] = 0;
+            }
+        }
+        return $playPool;
     }
     // 获取落点池
     public function getPlayPool(){
