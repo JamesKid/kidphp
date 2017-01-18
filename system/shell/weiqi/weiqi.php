@@ -11,16 +11,23 @@ class weiqi{
     // 常量
     public $height = 19;
     public $width = 19;
+    public $board = array(); // 当前全局棋盘数组
     public $nowBoard = array(); // 当前棋盘数组
     public $userColor ; //  当前用户执子颜色 1 黑色 2 白色
     public $computerColor ; //  当前用户执子颜色 1 黑色 2 白色
+    public $playPool ; // 可落子池
    
     // 初始化
 	public function __construct($argv){
+        /*
         $result = $this->initPlayPool();
+    
         $one = array_rand($result);
         $otherone = array_rand($result[$one]);
+        print_r($one);
+        echo "\n";
         print_r($otherone);die;
+         */
         // 如果没有参数则输出帮助文档
         if(!isset($argv[1])){
             $doc = $this->getDoc();
@@ -35,25 +42,31 @@ class weiqi{
         // 打印棋盘用户执黑(重新开始)
         if($argv[1] == 's'){
             $this->nowBoard = $this->newBoard($this->height,$this->width,1,2); // 初始化棋盘
-            $this->nowBoard = $this->initPlayPool; // 初始化落子池
+            $this->initPlayPool(); // 初始化落子池
         }
         // 打印棋盘用户执白(重新开始)
         if($argv[1] == 't'){
             $this->nowBoard = $this->newBoard($this->height,$this->width,2,1); // 初始化棋盘
-            $this->nowBoard = $this->initPlayPool; // 初始化落子池
+            $this->computerPlay();// 电脑执黑先下一步
+            //$this->nowBoard = $this->initPlayPool; // 初始化落子池
         }
 
         // 渲染当前棋盘(继续对局)
-        $status = $this->getNowStatus();
+        $status = $this->getNowBoard();
         $this->nowBoard = $status['nowBoard']; // 获取当前棋盘状态
         $this->userColor = $status['userColor']; // 获取用户所执子
         $this->computerColor = $status['computerColor']; // 获取用户所执子
 
         // 下子
         if(strlen($argv[1]) > 1){
-            $this->play($argv[1]); // 用户下子
+            $inputString = $argv[1]; // 所输入的落子 如a1,e8
+            $position = $this->stringToNumber($inputString);
+            $this->play($position['x'],$position['y']); // 用户下子
             $this->computerPlay();// 电脑下子
+            $board = $this->getNowBoard();
+            $this->nowBoard = $board['nowBoard'];
         }
+
         $this->printBoard($this->nowBoard); // 打印棋盘
     }
 
@@ -77,20 +90,23 @@ Example: php weiqi.php h  # 输出帮助文档\n";
 
     /**************  用户下子 Start ************/
     // 下子
-    public function play($position){
-        $nowBoard = $this->nowBoard;
-        // 转换position 为数组坐标
+    public function play($x,$y){
+        // 判断是否合法下子
+        $playPool = $this->getPlayPool();
+        $nowBoard = $this->getNowBoard();
+        // 保存下子到数组
+        $nowBoard['nowBoard'][$y][$x] = $nowBoard['userColor'];
+        $this->saveBoard($nowBoard);
+    }
+    // 转换坐标系统 如 a9 转成  1,9
+    public function stringToNumber($position){
+        $result = array();
         $list = $this->charToNumber();
         $x = substr($position,0,1);
-        $x = $list[$x];  // 获取字母对应数字
-        $y = substr($position,1,2); // 截取最后两个数字
+        $result['x'] = $list[$x];  // 获取字母对应数字
+        $result['y'] = substr($position,1,2); // 截取最后两个数字
 
-        // 判断是否合法下子
-        
-        // 保存下子到数组
-        $nowBoard[$y][$x] = $this->userColor;
-        $this->nowBoard = $nowBoard;
-        $this->saveBoard($nowBoard);
+        return $result;
     }
 
 
@@ -126,16 +142,16 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         return $board;
     }
   
-    // 保存棋盘
+    // 保存棋盘 (完全参数棋盘)
     public function saveBoard($board){
-        $params['nowBoard'] = $board;
-        $params['userColor'] = $this->userColor;
-        $params['computerColor'] = $this->computerColor;
+        $params['nowBoard'] = $board['nowBoard'];
+        $params['userColor'] = $board['userColor'];
+        $params['computerColor'] = $board['computerColor'];
         file_put_contents('data/save_board.txt', serialize($params)); // 序列化并写入文件
     }
 
     // 获取当前对局状态(棋盘盘面,用户执子)
-    public function getNowStatus(){
+    public function getNowBoard(){
         $status = unserialize(file_get_contents('data/save_board.txt'));// 读取并反序列化
         return $status;
 
@@ -227,14 +243,18 @@ Example: php weiqi.php h  # 输出帮助文档\n";
     /***********  电脑下子系统 Start ****核心算法******/
     // 随机选择下子落点
     public function computerPlay(){
-        $nowBoard = $this->nowBoard; // 获取当前棋局
+        //$nowBoard = $this->nowBoard; // 获取当前棋局
+        $board = $this->getNowBoard(); // 获取当前棋局
+        //print_r($this->computerColor);die;
+
         $x = rand(1,19);
         $y = rand(1,19);
-        $nowBoard[$y][$x] = $this->computerColor;  // 更新棋盘盘面
-        $this->saveBoard($nowBoard);
+        $board['nowBoard'][$y][$x] = $board['computerColor'];  // 更新棋盘盘面
+        //print_r($board);die;
+        $this->saveBoard($board);
 
     }
-    // 初始化落子池
+    // 初始化可落子池
     public function initPlayPool(){
         $playPool = array();
         for($i=1; $i<20; $i++){
@@ -242,22 +262,22 @@ Example: php weiqi.php h  # 输出帮助文档\n";
                 $playPool[$i][$j] = 0;
             }
         }
-        return $playPool;
+        // 保存落点池
+        file_put_contents('data/play_pool.txt', serialize($playPool)); // 序列化并写入文件
+        return $playPool; // 返回落点池
     }
-    // 获取落点池
+    // 获取落子池
     public function getPlayPool(){
-        $playPool = unserialize(file_get_contents('data/play_pool.txt'));// 读取落点池并反序列化
+        $playPool = unserialize(file_get_contents('data/play_pool.txt'));
         return $playPool;
     }
-    // 落点池添加落点
+    // 添加落子池
     public function addPlayPool($position){
-        $playPool = unserialize(file_put_contents('data/play_pool.txt'));// 读取落点池并反序列化
-        return $playPool;
+        file_put_contents('data/play_pool.txt', serialize($playPool)); // 序列化并写入文件
     }
-    // 落点池移除落点
+    // 移除落点池某点
     public function removePlayPool($position){
-        $playPool = unserialize(file_put_contents('data/play_pool.txt'));// 读取落点池并反序列化
-        return $playPool;
+        file_put_contents('data/play_pool.txt', serialize($playPool)); // 序列化并写入文件
     }
     
     /***********  电脑下子系统 Start ****核心算法******/
