@@ -67,10 +67,9 @@ class weiqi{
         $nowPoint = $this->nowPoint;
         $newBoard[$nowPoint['y']][$nowPoint['x']] = $this->nowColor;
         $this->nowBoard = $newBoard;
-        print_r($this->nowBoard);
-
+        //print_r($this->nowBoard);
         $this->printBoard($this->nowBoard); // 打印棋盘
-        print_r($this->nowPoint);
+        //print_r($this->nowPoint);
     }
 
     /**************  关于帮助 start ************/
@@ -109,6 +108,9 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         // 记录下子点
         $this->nowPoint = array('x' => $x, 'y' => $y,);
         $this->nowColor = $nowBoard['userColor']+2;  // 3 为黑子,4为白子
+        // 判断下子是否形成打劫
+        $this->checkRob($x,$y,$nowBoard['computerColor']);
+        
 
         $this->saveBoard($nowBoard);
     }
@@ -272,11 +274,36 @@ Example: php weiqi.php h  # 输出帮助文档\n";
     /**************  序列及转化 End ************/
 
     /**************  游戏规则系统(打劫系统) Start ********
-    *  1. 打劫算法
-    *  2. 提子算法
+    *  1. 检查是否打劫
+    *  2. 检查当前点是否有气
     *  3. 检查是否落在打劫点,打劫点不能下子
     *
     */
+    // 检查是否打劫
+    public function checkRob($x,$y,$color){
+        // 获取当前棋盘
+        $board = $this->getNowBoard();
+        // 定位到挨着的敌军落子
+        if($board['nowBoard'][$y][$x] == 0){
+        }
+        // 循环检查当前敌军是否有气(有0)
+    }
+    // 检查当前点是否有气
+    public function checkGas($x,$y){
+        $board = $this->getNowBoard();
+        if( $board['nowBoard'][$y+1][$x] !=0 &&
+            $board['nowBoard'][$y-1][$x] !=0 && 
+            $board['nowBoard'][$y][$x+1] !=0 && 
+            $board['nowBoard'][$y][$x-1] !=0
+        ){
+            echo "无气";
+        }
+        
+    }
+
+
+
+
     /**************  游戏规则系统(打劫系统) End ********/
 
     /**************  游戏规则系统(落子系统) Start ********
