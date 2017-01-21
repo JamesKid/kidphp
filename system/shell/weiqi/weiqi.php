@@ -5,6 +5,8 @@
 * @history      : 2017.1.5   添加项目基本结构
 *               : 2017.1.6   添加落子池,落子记录
 *               : 2017.1.19  添加打劫算法,调整项目结构,修改部分bug
+*               : 2017.1.21  添加气算法
+*               : 2017.1.21  添加提子池,记录被提的子
 *
 ***********************************************************************/
 
@@ -109,10 +111,9 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         $this->nowPoint = array('x' => $x, 'y' => $y,);
         $this->nowColor = $nowBoard['userColor']+2;  // 3 为黑子,4为白子
         // 判断下子是否形成打劫
-        $this->checkRob($x,$y,$nowBoard['computerColor']);
         
-
         $this->saveBoard($nowBoard);
+        $this->checkRob($x,$y,$nowBoard['computerColor']);
     }
 
 
@@ -283,26 +284,121 @@ Example: php weiqi.php h  # 输出帮助文档\n";
     public function checkRob($x,$y,$color){
         // 获取当前棋盘
         $board = $this->getNowBoard();
+    
+        // 获取所有敌军
+        $enemy = $this->getEnemy($x,$y,$color);
+        //print_r($enemy);
+
+        // 检查敌军是否有气
+        if(!empty($enemy)){
+            $this->checkGas($enemy);
+        }else {
+            echo "cc";
+        }
+            
+
         // 定位到挨着的敌军落子
         if($board['nowBoard'][$y][$x] == 0){
         }
         // 循环检查当前敌军是否有气(有0)
     }
     // 检查当前点是否有气
-    public function checkGas($x,$y){
-        $board = $this->getNowBoard();
-        if( $board['nowBoard'][$y+1][$x] !=0 &&
-            $board['nowBoard'][$y-1][$x] !=0 && 
-            $board['nowBoard'][$y][$x+1] !=0 && 
-            $board['nowBoard'][$y][$x-1] !=0
-        ){
-            echo "无气";
+    public function checkGas($enemy){
+        print_r($enemy);
+        foreach($enemy as $k => $v){
+            // 获取当前点气列表
+            foreach($v as $a => $b){
+                $gasList = $this->getGas($a,$k);
+            }
+            print_r($gasList);
+            // 如果没有气,则检查是否有友军,没有友军则提子
+
+            // 如果有友军,只要有一个友军有气,则中断
+
+            // 如果所有友军都没气
         }
-        
     }
 
+    // 检查当前点附近是否有友军
+    public function checkFriendly($x,$y){
+    }
 
+    // 检查当前点附近是否有敌军,返回敌军数组
+    public function getEnemy($x,$y,$color){
+        $board = $this->getNowBoard();
+        $nowBoard = $board['nowBoard'];
+    
+        $enemy = array();
+        if( $x-1 > 0){
+            if($nowBoard[$y][$x-1] == $color){
+                $enemy[$y][$x-1] =  $color;
+            }
+        }
+        if( $x+1 <20){
+            if($nowBoard[$y][$x+1] == $color){
+                $enemy[$y][$x+1] =  $color;
+            }
+        }
+        if( $y-1 > 0){
+            if($nowBoard[$y-1][$x] == $color){
+                $enemy[$y-1][$x] =  $color;
+            }
+        }
+        if( $x+1 <20 && $y-1 > 0){
+            if($nowBoard[$y-1][$x+1] == $color){
+                $enemy[$y-1][$x+1] =  $color;
+            }
+        }
+        if( $x-1 > 0 && $y-1 > 0){
+            if($nowBoard[$y-1][$x-1] == $color ){
+                $enemy[$y-1][$x-1] =  $color;
+            }
+        }
+        if( $y+1 < 20){
+            if($nowBoard[$y+1][$x] == $color){
+                $enemy[$y+1][$x] =  $color;
+            }
+        }
+        if( $y+1 <20 && $x-1 > 0){
+            if($nowBoard[$y+1][$x-1] == $color ){
+                $enemy[$y+1][$x-1] =  $color;
+            }
+        }
+        if( $y+1 < 20 && $x+1 < 20){
+            if($nowBoard[$y+1][$x+1] == $color ){
+                $enemy[$y+1][$x+1] =  $color;
+            }
+        }
+        return $enemy;
+    }
 
+    // 检查当前点附近是否有气,返回气数组
+    public function getGas($x,$y){
+        $board = $this->getNowBoard();
+        $nowBoard = $board['nowBoard'];
+        $enemy = array();
+        if( $x-1 > 0){
+            if($nowBoard[$y][$x-1] == 0){
+                $enemy[$y][$x-1] =  0;
+            }
+        }
+        if( $x+1 <20){
+            if($nowBoard[$y][$x+1] == 0){
+                $enemy[$y][$x+1] =  0;
+            }
+        }
+        if( $y-1 > 0){
+            if($nowBoard[$y-1][$x] == 0){
+                $enemy[$y-1][$x] =  0;
+            }
+        }
+        if( $y+1 < 20){
+            if($nowBoard[$y+1][$x] == 0){
+                $enemy[$y+1][$x] =  0;
+            }
+        }
+        return $enemy;
+    }
 
     /**************  游戏规则系统(打劫系统) End ********/
 
