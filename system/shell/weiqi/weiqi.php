@@ -35,6 +35,13 @@ class weiqi{
             $doc = $this->getDoc();
             print_r($doc); return;
         }
+        // 调试添加点,移除点
+        if($argv[1] == 'd'){
+            $operate = $argv[2];   # remove 为移除某  add 为添加某点
+            $color = $argv[3];   # 1黑色,2白色
+            $point = $argv[4];
+            $this->debug($operate,$color,$point);
+        }
 
         // 打印棋盘用户执黑(重新开始)
         if($argv[1] == 's'){
@@ -272,6 +279,15 @@ Example: php weiqi.php h  # 输出帮助文档\n";
 
         return $result;
     }
+
+    // 获取二维数组元素数量,返回数字
+    public function getArrayCount($numberList){
+        $count = 0;
+        foreach($numberList as $k => $v ){
+            $count = $count+count($v);
+        }
+        return $count;
+    }
     /**************  序列及转化 End ************/
 
     /**************  游戏规则系统(打劫系统) Start ********
@@ -291,9 +307,9 @@ Example: php weiqi.php h  # 输出帮助文档\n";
 
         // 检查敌军是否有气
         if(!empty($enemy)){
-            $this->checkGas($enemy);
+            $this->checkGas($enemy,$color);
         }else {
-            echo "cc";
+            //echo "cc";
         }
             
 
@@ -303,24 +319,136 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         // 循环检查当前敌军是否有气(有0)
     }
     // 检查当前点是否有气
-    public function checkGas($enemy){
+    public function checkGas($enemy,$color){
         print_r($enemy);
+        
         foreach($enemy as $k => $v){
+            foreach($v as $a => $b){
+                $friendly[$k][$a]= 5;
+                $searchFriendly = array();
+                $allFriendly[] = $this->getAllFriendly($a,$k,$color,$friendly,$searchFriendly);
+            }
+        }
+        print_r($allFriendly);
             // 获取当前点气列表
+            /*
             foreach($v as $a => $b){
                 $gasList = $this->getGas($a,$k);
+                // 如果当前点有气则退出本次循环,无气测检查是否有友军,
+                // 无友军则提子,有友军查找友军是否有气
+                if(empty($gasList)){  // 无气
+                    //检查是否有友军
+                    $friendly = $this->getFriendly($a,$k,$color);
+                    // 
+                    // 
+                    if(!empty($friendly)){
+                        // 循环检查友军是否有气
+                        foreach($friendly as $c => $d){
+                            foreach($d as $e => $f){
+                            }
+                        }
+
+                    }else{
+                        return false;  // 返回无气
+                    }
+                    print_r($friendly);
+                    
+                }else{  // 否则有气
+                    return true;  // 返回有气
+                }
+                print_r($gasList);
             }
-            print_r($gasList);
+             */
             // 如果没有气,则检查是否有友军,没有友军则提子
 
             // 如果有友军,只要有一个友军有气,则中断
 
             // 如果所有友军都没气
-        }
     }
 
-    // 检查当前点附近是否有友军
-    public function checkFriendly($x,$y){
+    // 检查当前点附近是否有友军,获取友军数组
+    public function getFriendly($x,$y,$color){
+        $board = $this->getNowBoard();
+        $nowBoard = $board['nowBoard'];
+        $enemy = array();
+        if( $x-1 > 0){
+            if($nowBoard[$y][$x-1] == $color){
+                $enemy[$y][$x-1] =  $color;
+            }
+        }
+        if( $x+1 <20){
+            if($nowBoard[$y][$x+1] == $color){
+                $enemy[$y][$x+1] =  $color;
+            }
+        }
+        if( $y-1 > 0){
+            if($nowBoard[$y-1][$x] == $color){
+                $enemy[$y-1][$x] =  $color;
+            }
+        }
+        if( $y+1 < 20){
+            if($nowBoard[$y+1][$x] == $color){
+                $enemy[$y+1][$x] =  $color;
+            }
+        }
+        return $enemy;
+    }
+
+    // 检查当前点附近所有横纵相连的友军,返回友军数组
+    // @searchFriendly 搜索结点
+    //
+    public function getAllFriendly($x,$y,$color,$friendly,$searchFriendly){
+        $board = $this->getNowBoard();
+        $nowBoard = $board['nowBoard'];
+        if(isset($searchFriendly[5][4])){
+            print_r($x);
+            echo "\n";
+            print_r($y);
+            echo "\n";
+            print_r($searchFriendly);
+            print_r($friendly);
+        }
+    
+        if( $x-1 > 0){
+            if($nowBoard[$y][$x-1] == $color){
+                $friendly[$y][$x-1] =  $color;
+                $searchFriendly[$y][$x-1] = 5;
+            }
+        }
+        if( $x+1 <20){
+            if($nowBoard[$y][$x+1] == $color){
+                $friendly[$y][$x+1] =  $color;
+                $searchFriendly[$y][$x+1] = 5;
+            }
+        }
+        if( $y-1 > 0){
+            if($nowBoard[$y-1][$x] == $color){
+                $friendly[$y-1][$x] =  $color;
+                $searchFriendly[$y-1][$x] = 5;
+            }
+        }
+        if( $y+1 < 20){
+            if($nowBoard[$y+1][$x] == $color){
+                $friendly[$y+1][$x] =  $color;
+                $searchFriendly[$y+1][$x] = 5;
+            }
+        }
+        print_r($searchFriendly);
+
+        //print_r($searchFriendly);
+
+        if($searchFriendly == ''){ // 如果前后数
+            print_r($friendly);
+            return $friendly;
+        }else {
+            //　递归查找横纵相连友军
+            
+            foreach($searchFriendly as $k => $v){
+                foreach($v as $a => $b){
+                    $this->getAllFriendly($a,$k,$color,$friendly,$searchFriendly);
+                }
+            }
+        }
     }
 
     // 检查当前点附近是否有敌军,返回敌军数组
@@ -344,6 +472,12 @@ Example: php weiqi.php h  # 输出帮助文档\n";
                 $enemy[$y-1][$x] =  $color;
             }
         }
+        if( $y+1 < 20){
+            if($nowBoard[$y+1][$x] == $color){
+                $enemy[$y+1][$x] =  $color;
+            }
+        }
+        /*
         if( $x+1 <20 && $y-1 > 0){
             if($nowBoard[$y-1][$x+1] == $color){
                 $enemy[$y-1][$x+1] =  $color;
@@ -352,11 +486,6 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         if( $x-1 > 0 && $y-1 > 0){
             if($nowBoard[$y-1][$x-1] == $color ){
                 $enemy[$y-1][$x-1] =  $color;
-            }
-        }
-        if( $y+1 < 20){
-            if($nowBoard[$y+1][$x] == $color){
-                $enemy[$y+1][$x] =  $color;
             }
         }
         if( $y+1 <20 && $x-1 > 0){
@@ -369,6 +498,7 @@ Example: php weiqi.php h  # 输出帮助文档\n";
                 $enemy[$y+1][$x+1] =  $color;
             }
         }
+         */
         return $enemy;
     }
 
@@ -428,7 +558,10 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         return $playPool;
     }
     // 添加落子点到落子池
-    public function addPlayPool($point){
+    public function addPlayPool($x,$y){
+        $playPool = unserialize(file_get_contents('data/play_pool.txt'));
+        $playPool[$y][$x] = 0;
+        
         file_put_contents('data/play_pool.txt', serialize($playPool)); // 序列化并写入文件
     }
     // 移除落点池某点
@@ -511,6 +644,35 @@ Example: php weiqi.php h  # 输出帮助文档\n";
     // 3D 坐标
     /**************  坐标转换系统 End *****核心算法***/
 
+    /**************  调试 Start **********
+    * 1. 添加某点或删除某点
+    *   
+    */
+    //   添加某点或删除某点
+    //  @operator   操作  add:添加点
+    //                    remove:移除点
+    //  @color 添加棋子的颜色　1 黑色　2 白色
+    //  @point  点位数组,x,y
+    //
+    public function debug($operate,$color,$point){
+        $board = $this->getNowBoard();
+        $point = $this->stringToNumber($point);
+        // 添加点
+        if($operate == 'add'){
+            $board['nowBoard'][$point['y']][$point['x']] = $color;
+            $this->saveBoard($board);
+        }
+        // 移除点
+        if($operate == 'remove'){
+            $board['nowBoard'][$point['y']][$point['x']] = 0;
+            $this->saveBoard($board); // 保存棋盘
+            $this->addPlayPool($point['x'],$point['y']); // 为落子池添加回可落子点
+        }
+        // 打印
+        $this->printBoard($board['nowBoard']); // 打印棋盘
+        exit;
+    }
+    /**************  调试 End **********/
 
 }
 $argv = $argv;
