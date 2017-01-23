@@ -94,6 +94,9 @@ s    :开始棋局用户执黑(重新开始棋局)
 t    :开始棋局用户执白(重新开始棋局)
 a1   :落子,输入具体下子坐标如a1
 b    :悔棋
+d    :调试remove 移除点 ,add 添加点 1 表示黑,2表示白 如:
+       php weiqi.php d remove 1 f5  # 表示移除f5点
+       php weiqi.php d add 1 f5  # 添加一个黑点到f5
 x    :显示形势\n 
 Example: php weiqi.php h  # 输出帮助文档\n";
         return $doc;
