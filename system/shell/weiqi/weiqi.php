@@ -9,6 +9,8 @@
 *               : 2017.1.21  添加气算法
 *               : 2017.1.21  添加提子池,记录被提的子
 *               : 2017.1.23  添加查询某点横纵所有友军递归算法
+*               : 2017.1.27  添加打劫实现
+*               : 2017.1.29  添加保存读取对局状态
 *
 ***********************************************************************/
 
@@ -37,6 +39,17 @@ class weiqi{
             $doc = $this->getDoc();
             print_r($doc); return;
         }
+        // 另存为当前棋局状态
+        if($argv[1] == 'save'){
+            $filename = $argv[2];
+            $overwrite = $argv[3]; // 是否覆盖 yes 是no 否
+            $this->saveRecordBoard($filename,$overwrite);
+        }
+        // 读取保存的棋局状态
+        if($argv[1] == 'read'){
+            $this->getRecordBoard('test'); // 读取
+        }
+
         // 调试添加点,移除点
         if($argv[1] == 'd'){
             $operate = $argv[2];   # remove 为移除某  add 为添加某点
@@ -78,9 +91,7 @@ class weiqi{
         $nowPoint = $this->nowPoint;
         $newBoard[$nowPoint['y']][$nowPoint['x']] = $this->nowColor;
         $this->nowBoard = $newBoard;
-        //print_r($this->nowBoard);
         $this->printBoard($this->nowBoard); // 打印棋盘
-        //print_r($this->nowPoint);
     }
 
     /**************  关于帮助 start ************/
@@ -90,6 +101,7 @@ class weiqi{
 This is help for weiqi project: \n 
 参数: 
 h    :打开帮助
+        php weiqi.php h   
 s    :开始棋局用户执黑(重新开始棋局)
 t    :开始棋局用户执白(重新开始棋局)
 a1   :落子,输入具体下子坐标如a1
@@ -97,8 +109,13 @@ b    :悔棋
 d    :调试remove 移除点 ,add 添加点 1 表示黑,2表示白 如:
        php weiqi.php d remove 1 f5  # 表示移除f5点
        php weiqi.php d add 1 f5  # 添加一个黑点到f5
-x    :显示形势\n 
-Example: php weiqi.php h  # 输出帮助文档\n";
+x    :显示形势
+save :另存为当前棋局状态，保存到data/record/下　如:
+        php weiqi.php save filename  no   # 不覆盖
+        php weiqi.php save filename  yes  # 覆盖
+read :读取保存的棋局状态  如：
+        php weiqi.php read filename  
+";
         return $doc;
 
     }
@@ -175,6 +192,25 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         $params['computerColor'] = $board['computerColor'];
         file_put_contents('data/save_board.txt', serialize($params)); // 序列化并写入文件
     }
+    
+    // 保存完整参数棋盘到棋盘记录 data/record文件夹下
+    // @filename   文件名
+    public function saveRecordBoard($filename,$overwrite){
+        // 判断目录是否存在
+        $directory = 'data/record'.$filename;
+        if(is_dir($directory) && $overwrite == 'no'){
+            echo '目录已经存在，请换一个保存名字';exit;
+        }else{
+            if(!is_dir($directory)){
+                mkdir($directory); // 没有目录则创建目录
+            }
+            $save_board = $this->getNowBoard();
+            file_put_contents('data/record/'.$filename.'/save_board.txt', serialize($save_board)); // 序列化并写入文件
+
+        }
+
+    }
+
 
     // 获取完整参数棋盘(棋盘盘面,用户执子)
     public function getNowBoard(){
