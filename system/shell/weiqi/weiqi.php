@@ -306,35 +306,61 @@ Example: php weiqi.php h  # 输出帮助文档\n";
         // 获取当前棋盘
         $board = $this->getNowBoard();
     
-        // 获取所有敌军
+        // 获取附近距离为1所有敌军
         $enemy = $this->getEnemy($x,$y,$color);
-        //print_r($enemy);
 
-        // 检查敌军是否有气
+        // 如果敌军不为空，检查敌军是否有气
         if(!empty($enemy)){
             $this->checkGas($enemy,$color);
         }else {
             //echo "cc";
         }
-        // 定位到挨着的敌军落子
-        if($board['nowBoard'][$y][$x] == 0){
-        }
-        // 循环检查当前敌军是否有气(有0)
     }
-    // 检查当前点是否有气
+    // 检查当前友军列表是否有气
     public function checkGas($enemy,$color){
         print_r($enemy);
-        
         foreach($enemy as $k => $v){
             foreach($v as $a => $b){
                 $friendly[$k][$a]= $color;
                 $searchFriendly = array();
-                //$allFriendly[] = $this->getAllFriendly($a,$k,$color,$friendly,$searchFriendly);
                 $allFriendly = $this->getAllFriendly($friendly,$color);
-                print_r($allFriendly);die;
+                echo "all friend:";
+                print_r($allFriendly);
+                $gas = $this->checkPointGas($allFriendly);
+                var_dump($gas);
+                if($gas == false){ // 如果无气，则打动
+                    $this->rob($allFriendly);
+                }
+                unset($friendly);
             }
         }
-        print_r($allFriendly);
+        //print_r($allFriendly);
+    }
+
+    // 打劫
+    public function rob($enemy){
+        // 获取当前棋盘
+        $board = $this->getNowBoard();
+        foreach($enemy as $k => $v ){
+            foreach($v as $a => $b){
+                $board['nowBoard'][$k][$a] = 0;
+            }
+        }
+        $this->saveBoard($board);
+    }
+
+
+    // 检查当前点列表每一点是否有气    true: 有气，false:无气
+    public function checkPointGas($allFriendly){
+        foreach($allFriendly as $k => $v){
+            foreach($v as $a => $b){
+                $gasList = $this->getGas($a,$k);
+                if(!empty($gasList)){
+                    return true;  // 如果气数组不为空，说明有气
+                }
+            }
+        }
+        return false; // 如果循环到最后气都为空，说明无气
     }
 
     // 检查当前点附近是否有友军,获取友军数组
