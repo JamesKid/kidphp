@@ -26,6 +26,9 @@ rewrite ^/vimlearn$  /list/subcategory?category=vim学习tips last;
 rewrite ^/news/$ /news  permanent;
 rewrite ^/news$  /list/category?category=news last;
 
+# 其他内容
+rewrite ^/math/$ /math  permanent;
+rewrite ^/math$  /list/othercategory?category=math last;
 
 #rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
 

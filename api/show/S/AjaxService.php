@@ -52,7 +52,7 @@ class AjaxService {
 		}
 	}
 
-	/* 最新文章 */
+	/* 最新vim文章 */
 	public function getNewList(){
 		$mysql = new system\core\db\Mysql();
 		$sql = "select 
@@ -65,6 +65,27 @@ class AjaxService {
 			where article_categoryid=1 
 				and article_status=1 
 				and article_id 
+			order by article_createtime desc 
+			limit 5";
+		$result = $mysql->execute($sql);
+		return $result;
+	}
+
+	/* 最新其他文章 */
+	public function getOtherNewList(){
+		$mysql = new system\core\db\Mysql();
+		$sql = "select 
+				article_username,
+				article_id,
+				article_title,
+				article_createtimeymd,
+				article_seodescription 
+			from vimkid_article 
+			where article_categoryid=1 
+				and article_status=1 
+				and article_id 
+				and article_categoryname != 'vim'
+				and article_categoryname != 'news'
 			order by article_createtime desc 
 			limit 5";
 		$result = $mysql->execute($sql);
