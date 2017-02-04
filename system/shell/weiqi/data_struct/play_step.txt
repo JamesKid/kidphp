@@ -1,0 +1,16 @@
+# 每一步棋盘当前全局盘面
+# 数据结构(队列)
+array(
+    '0'=>array(
+        'save_board'=array(),   // 当前棋盘
+        'play_pool'=array(),  // 落点池
+        'rob_pool'=array();  // 打劫池
+    ),
+    '1'=>array(
+        'save_board'=array(),   // 当前棋盘
+        'play_pool'=array(),  // 落点池
+        'rob_pool'=array();  // 打劫池
+    ),
+    ...
+);
+

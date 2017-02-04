@@ -1,0 +1,15 @@
+每一步棋盘当前全局盘面
+数据结构
+array(
+    '1'=>array(
+        'save_board'=array(),
+        'play_pool'=array(),
+        'rob_pool'=array();
+    ),
+    '2'=>array(
+        'save_board'=array(),
+        'play_pool'=array(),
+        'rob_pool'=array();
+    ),
+);
+

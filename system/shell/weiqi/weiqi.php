@@ -11,6 +11,7 @@
 *               : 2017.1.23  添加查询某点横纵所有友军递归算法
 *               : 2017.1.27  添加打劫实现
 *               : 2017.1.29  添加保存读取对局状态
+*               : 2017.2.4   添加每一步数据结构及保存
 *
 ***********************************************************************/
 
@@ -30,6 +31,8 @@ class weiqi{
     // 初始化
 	public function __construct($argv){
         // 如果没有参数则输出帮助文档
+        $test = $this->getNowBoard();
+        print_r($test);die;
         if(!isset($argv[1])){
             $doc = $this->getDoc();
             print_r($doc); return;
@@ -106,6 +109,7 @@ s    :开始棋局用户执黑(重新开始棋局)
 t    :开始棋局用户执白(重新开始棋局)
 a1   :落子,输入具体下子坐标如a1
 b    :悔棋
+u    :撤消悔棋
 d    :调试remove 移除点 ,add 添加点 1 表示黑,2表示白 如:
        php weiqi.php d remove 1 f5  # 表示移除f5点
        php weiqi.php d add 1 f5  # 添加一个黑点到f5
@@ -139,10 +143,11 @@ read :读取保存的棋局状态  如：
         // 记录下子点
         $this->nowPoint = array('x' => $x, 'y' => $y,);
         $this->nowColor = $nowBoard['userColor']+2;  // 3 为黑子,4为白子
-        // 判断下子是否形成打劫
-        
         $this->saveBoard($nowBoard);
+        // 判断下子是否形成打劫
         $this->checkRob($x,$y,$nowBoard['computerColor']);
+        // 保存当步所有状态
+        $this->saveStep();
     }
 
     // 保存每一步下子
@@ -211,11 +216,29 @@ read :读取保存的棋局状态  如：
 
     }
 
-
     // 获取完整参数棋盘(棋盘盘面,用户执子)
     public function getNowBoard(){
         $status = unserialize(file_get_contents('data/save_board.txt'));// 读取并反序列化
         return $status;
+
+    }
+    // 获取完整参数棋盘(棋盘盘面,用户执子)
+    public function getStep(){
+        $status = unserialize(file_get_contents('data/save_board.txt'));// 读取并反序列化
+        return $status;
+
+    }
+
+    // 保存每一步下子状态(队列)
+    public function saveStep(){
+        $step = array();
+        // 获取之前队列
+
+        
+        // 更新队列
+        
+        // 保存队列
+        $save_board = $this->getNowBoard();
 
     }
     /**************  棋盘系统 End ************/
@@ -487,28 +510,6 @@ read :读取保存的棋局状态  如：
                 $enemy[$y+1][$x] =  $color;
             }
         }
-        /*
-        if( $x+1 <20 && $y-1 > 0){
-            if($nowBoard[$y-1][$x+1] == $color){
-                $enemy[$y-1][$x+1] =  $color;
-            }
-        }
-        if( $x-1 > 0 && $y-1 > 0){
-            if($nowBoard[$y-1][$x-1] == $color ){
-                $enemy[$y-1][$x-1] =  $color;
-            }
-        }
-        if( $y+1 <20 && $x-1 > 0){
-            if($nowBoard[$y+1][$x-1] == $color ){
-                $enemy[$y+1][$x-1] =  $color;
-            }
-        }
-        if( $y+1 < 20 && $x+1 < 20){
-            if($nowBoard[$y+1][$x+1] == $color ){
-                $enemy[$y+1][$x+1] =  $color;
-            }
-        }
-         */
         return $enemy;
     }
 
