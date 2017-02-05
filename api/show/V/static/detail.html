@@ -1,6 +1,12 @@
 <?php include('headdetail.html')?>	
 <div id="content">
-	<?php include('left.html')?>	
+	<?php 
+    if($params['article_categoryname'] == 'vim' || $params['article_categoryname'] == 'news'){
+        include('left.html');
+    }else{
+        include('other_category.html');
+    }
+    ?>	
 	<div id="contentRight">
 		<div id="rightin">
 			<div class="indexTitle">
