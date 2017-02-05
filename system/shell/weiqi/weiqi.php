@@ -31,8 +31,6 @@ class weiqi{
     // 初始化
 	public function __construct($argv){
         // 如果没有参数则输出帮助文档
-        $test = $this->getNowBoard();
-        print_r($test);die;
         if(!isset($argv[1])){
             $doc = $this->getDoc();
             print_r($doc); return;
@@ -64,12 +62,12 @@ class weiqi{
         // 打印棋盘用户执黑(重新开始)
         if($argv[1] == 's'){
             $this->nowBoard = $this->newBoard($this->height,$this->width,1,2); // 初始化棋盘
-            $this->initPlayPool(); // 初始化落子池
+            $this->init(); // 初始化所有保存的状态
         }
         // 打印棋盘用户执白(重新开始)
         if($argv[1] == 't'){
             $this->nowBoard = $this->newBoard($this->height,$this->width,2,1); // 初始化棋盘
-            $this->initPlayPool(); // 初始化落子池
+            $this->init(); // 初始化所有保存的状态
             $this->computerPlay();// 电脑执黑先下一步
         }
 
@@ -111,8 +109,8 @@ a1   :落子,输入具体下子坐标如a1
 b    :悔棋
 u    :撤消悔棋
 d    :调试remove 移除点 ,add 添加点 1 表示黑,2表示白 如:
-       php weiqi.php d remove 1 f5  # 表示移除f5点
-       php weiqi.php d add 1 f5  # 添加一个黑点到f5
+        php weiqi.php d remove 1 f5  # 表示移除f5点
+        php weiqi.php d add 1 f5  # 添加一个黑点到f5
 x    :显示形势
 save :另存为当前棋局状态，保存到data/record/下　如:
         php weiqi.php save filename  no   # 不覆盖
@@ -148,6 +146,8 @@ read :读取保存的棋局状态  如：
         $this->checkRob($x,$y,$nowBoard['computerColor']);
         // 保存当步所有状态
         $this->saveStep();
+        // 当前步数加１保存到step_number.txt
+        $this->saveStepNumber();
     }
 
     // 保存每一步下子
@@ -173,6 +173,12 @@ read :读取保存的棋局状态  如：
     * 2. 保存完整参数棋盘(棋盘盘面,用户执子)
     * 3. 获取完整参数棋盘(棋盘盘面,用户执子)
     */
+    // 初始化方法
+    public function init(){
+        $this->initPlayPool();  // 初始化落点池
+        $this->initStepNumber();  // 初始化步数
+        $this->initStep();  // 初始化
+    }
 
     // 获取初始化棋盘
     public function newBoard($height,$width,$userColor,$computerColor){
@@ -220,25 +226,59 @@ read :读取保存的棋局状态  如：
     public function getNowBoard(){
         $status = unserialize(file_get_contents('data/save_board.txt'));// 读取并反序列化
         return $status;
+    }
 
+    // 初始完整参数棋盘
+    public function initStep(){
+        file_put_contents('data/play_step.txt', ''); // 序列化并写入文件
     }
     // 获取完整参数棋盘(棋盘盘面,用户执子)
     public function getStep(){
-        $status = unserialize(file_get_contents('data/save_board.txt'));// 读取并反序列化
-        return $status;
+        $step = unserialize(file_get_contents('data/play_step.txt'));// 读取并反序列化
+        return $step;
 
     }
 
+    // 初始化步数
+    public function initStepNumber(){
+        file_put_contents('data/step_number.txt', '0'); // 序列化并写入文件
+    }
+    // 获取当前步
+    public function getStepNumber(){
+        $stepNumber = file_get_contents('data/step_number.txt');
+        return $stepNumber;
+
+    }
+    // 当前步加１
+    public function saveStepNumber(){
+        $stepNumber = $this->getStepNumber();
+        $stepNumber = $stepNumber+1;
+        file_put_contents('data/step_number.txt', $stepNumber); // 序列化并写入文件
+    }
+
+
     // 保存每一步下子状态(队列)
     public function saveStep(){
-        $step = array();
-        // 获取之前队列
+        // 获取数据
+        $step = $this->getStep(); // 获取之前队列
+        $save_board = $this->getNowBoard();
+        $play_pool = $this->getPlayPool();
+        // 拼接数据
 
-        
-        // 更新队列
+        $status = array(
+            'save_board'=>$save_board,
+            'play_pool'=>$play_pool,
+        );
+        if($step == ''){
+            $step[1] = $status;
+        }else{
+            array_push($step,$status);
+        }
+        print_r($step);
+        //die;
         
         // 保存队列
-        $save_board = $this->getNowBoard();
+        file_put_contents('data/play_step.txt', serialize($step)); // 序列化并写入文件
 
     }
     /**************  棋盘系统 End ************/
@@ -619,6 +659,10 @@ read :读取保存的棋局状态  如：
         // 保存棋盘盘面
         $board['nowBoard'][$y][$x] = $board['computerColor'];  
         $this->saveBoard($board); // 保存全局棋局
+        // 保存当步所有状态
+        $this->saveStep();
+        // 当前步数加１保存到step_number.txt
+        $this->saveStepNumber();
     }
     // 获取最佳落子点
     public function getBestPlay(){
