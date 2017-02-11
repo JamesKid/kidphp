@@ -22,6 +22,10 @@ rewrite ^/vimconfig$  /list/subcategory?category=vim配置 last;
 rewrite ^/vimlearn/$ /vimlearn  permanent;
 rewrite ^/vimlearn$  /list/subcategory?category=vim学习tips last;
 
+# 目录vim手册解读
+rewrite ^/vimmanual/$ /vimmanual  permanent;
+rewrite ^/vimmanual$  /list/subcategory?category=vim手册解读 last;
+
 # 目录新闻
 rewrite ^/news/$ /news  permanent;
 rewrite ^/news$  /list/category?category=news last;

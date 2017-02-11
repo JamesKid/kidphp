@@ -3,20 +3,20 @@ $dbh = new PDO('mysql:host=localhost;dbname=vimkid', 'root', '123456');
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->exec('set names utf8');
 /* 参数列表 */
-$id = 10;
+$id = 11;
 $status = 1;
-$categoryname = 'math';
-$subcategoryname = '趣味小算法';
-$title = '程序计算三角形个数';
-$seotitle ="程序计算三角形个数";
-$seokeywords ="程序计算图形三角形个数,计算三角形个数";
-$seodescription = "程序计算图形中三角形个数";
+$categoryname = 'vim';
+$subcategoryname = 'vim手册解读';
+$title = 'vim手册解读第1周usr_toc';
+$seotitle ="vim手册解读";
+$seokeywords ="vim手册解读,vim手册精华";
+$seodescription = "解读vim手册,摘取vim手册精华进行讲解";
 $check = 1;
 $filename =  exec('ls  /var/www/article | grep '.$id.'_');
 $content = file_get_contents('/var/www/article/'.$filename);
 $createtimeymd = date('Y-m-d',time());
 $link = "content";
-$type = 0;   # 类型是否包含代码，0包含 1不包含
+$type = 0;   # 类型是否包含代码，1包含 0不包含
 $createtime = time();
 $updatetime = time();
 $updatetimeymd = date('Y-m-d',time());
@@ -26,7 +26,7 @@ $images = "";
 $visit = 0;
 $recommend = 5;
 $source = "vimkid website";
-$seosubtitle = "程序计算三角形个数";
+$seosubtitle = "vim手册解读";
 $sort = "";
 $categoryid = 1;
 $up = 0;
