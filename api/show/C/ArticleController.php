@@ -24,7 +24,11 @@ class ArticleController {
 			$params=$result[0];
 			$Parsedown = new system\plugin\outer\parsedown\Parsedown();
 			$params['html'] =  $Parsedown->text($params['article_content']); 
-			Render::renderTpl('static/detail.html',$params);
+            if($params['article_type'] == 2 ){ // 宣染music模板
+			    Render::renderTpl('static/music_detail.html',$params);
+            }else{
+			    Render::renderTpl('static/detail.html',$params);
+            }
 		}else{
 			$params['errorInfo']='访问的文章不存在';
 			Render::renderTpl('static/info.html',$params);

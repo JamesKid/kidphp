@@ -318,6 +318,22 @@
 			padding-right:3%;
 		}
 
+        /* share */
+        .bdsharebuttonbox {
+            float:left;
+            width:100%;
+        }
+        input {
+            background-color:#994;
+            border:none;
+            border-radius:5px;
+            padding-top:4px;
+            padding-bottom:4px;
+            padding-left:13px;
+            padding-right:13px;
+            color:#fff;
+        }
+
 		hr   {color:#007f00; float:left; width:100%;}
 		/* fontTitle {color:#cccc99;font-size:18px;}    右边自定义标题头样式 */
 		.listTitle {font-size:18px;}   /* 右边自定义标题头样式 */

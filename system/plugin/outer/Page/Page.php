@@ -49,7 +49,8 @@ class Page {
 		if (isset($_par['query'])) {  
 			parse_str($_par['query'],$_query);  
 			unset($_query['page']);  
-			$_url = $_par['path'].'?'.http_build_query($_query);  
+			//$_url = $_par['path'].'?'.http_build_query($_query);  
+			$_url = $_par['path'].http_build_query($_query);  
 		}  
 		return $_url;  
 	}     
@@ -59,13 +60,13 @@ class Page {
 		for ($i=$this->bothnum;$i>=1;$i--) {  
 			$_page = $this->page-$i;  
 			if ($_page < 1) continue;  
-			$_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';  
+			$_pagelist .= ' <a href="'.$this->url.'?page='.$_page.'">'.$_page.'</a> ';  
 		}  
 		$_pagelist .= ' <span class="current">'.$this->page.'</span> ';  
 		for ($i=1;$i<=$this->bothnum;$i++) {  
 			$_page = $this->page+$i;  
 			if ($_page > $this->pagenum) break;  
-			$_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';  
+			$_pagelist .= ' <a href="'.$this->url.'?page='.$_page.'">'.$_page.'</a> ';  
 		}  
 		return $_pagelist;  
 	}  
@@ -82,7 +83,7 @@ class Page {
 		if ($this->page == 1) {  
 			return '<span class="disabled">上一页</span>';  
 		}  
-		return ' <a href="'.$this->url.'&page='.($this->page-1).'">上一页</a> ';  
+		return ' <a href="'.$this->url.'?page='.($this->page-1).'">上一页</a> ';  
 	}  
 
 	//下一页  
@@ -90,13 +91,13 @@ class Page {
 		if ($this->page == $this->pagenum) {  
 			return '<span class="disabled">下一页</span>';  
 		}  
-		return ' <a href="'.$this->url.'&page='.($this->page+1).'">下一页</a> ';  
+		return ' <a href="'.$this->url.'?page='.($this->page+1).'">下一页</a> ';  
 	}  
 
 	//尾页  
 	public function last() {  
 		if ($this->pagenum - $this->page > $this->bothnum) {  
-			return '<span>...</span><a href="'.$this->url.'&page='.$this->pagenum.'">'.$this->pagenum.'</a> ';  
+			return '<span>...</span><a href="'.$this->url.'?page='.$this->pagenum.'">'.$this->pagenum.'</a> ';  
 		}  
 	}  
 
