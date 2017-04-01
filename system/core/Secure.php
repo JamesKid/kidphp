@@ -1,14 +1,6 @@
 <?php
 /* 安全模块 
-class Secure {
-	public static function onlyLettersOrDigits($string){
-        if (ctype_alnum($string)) {
-            return true; // 只包含数字或字母
-        } else {
-            return false;  // 有其他符号
-        }
-	}
-}
+ *
  */
 //class Route extends PublicCore{
 class Secure {

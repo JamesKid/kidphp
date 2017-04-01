@@ -17,15 +17,15 @@ class Kidphp{
 		header("content-type:text/html; charset=utf-8");
 		spl_autoload_register(array($this,'__autoload'));
 		@date_default_timezone_set('PRC');
-		$this->configError();
+		$this->configEnv(); // 配置环境
 		require_once($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
         //$test = new Kidphp\KidphpRand\Rand();
         //$result = $test->noRepeatRand(1,10,5);
         //print_r($result); die;
-		$secure = new Secure;
-		$route = new Route;
-		$uri = $route->initRoute();  //初始化路由
+		$Secure = new Secure;
+		$Route = new Route;
+		$uri = $Route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
 		/* 记录访客内部记录 */
@@ -43,12 +43,36 @@ class Kidphp{
 		$this->callFunction($classRoute,$uri);
 	}
 
-	/* 配置错误信息 */
-	private function configError(){
-		ini_set('display_errors',1);            //错误信息
-		ini_set('display_startup_errors',1);   //打开调试
-		error_reporting(E_ALL);  // 错误报告级别
+    /* 配置每个环境的状态 
+     * @param $envirement  test    测试环境  
+     *                     online  线上环境
+     */
+	private function configEnv(){
+        $env = $this->getLine('env.txt',1); // 获取env文件第一行
+		$Env = new Env(trim($env)); // 实例化环境配置
 	}
+
+    /**
+    * 获取指定行内容
+    *
+    * @param $file 文件路径
+    * @param $line 行数
+    * @param $length 指定行返回内容长度
+    */
+    private function getLine($file, $line, $length = 1024){
+        $returnTxt = null; // 初始化返回
+        $i = 1; // 行数
+        $handle = @fopen($file, "r");
+        if ($handle) {
+            while (!feof($handle)) {
+                $buffer = fgets($handle, $length);
+                if($line == $i) $returnTxt = $buffer;
+                $i++;
+            }
+            fclose($handle);
+        }
+        return $returnTxt;
+    }
 
 	/* 回调函数方法 */
 	private function callFunction($classRoute,$uri){
