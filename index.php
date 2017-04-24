@@ -1,15 +1,16 @@
 <?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
-* ================================JamesKid==========================================
+* ================================VimKid==========================================
 * @author		: VimKid  
 * @title        : kidphp framework
 * @description  : This is a web frame edit by vimkid ,this program is free, and totaliy
-*				  support php7! and you can redistribute it and  modify it under the 
+*				  support php7! You can redistribute it and  modify it under the 
 *				  terms of the original BSD license.
 *				  
 * @change		: 2016.04.14 13:52  add program
 *				: 2016.04.19 16:52  add plugin 'CodeMirror' 'parsedown' 'PHPMarkdown'
 *				: 2016.04.20 16:52  add kidphp plugin 'kidphp_check'
+*				: 2017.04.24 19:52  add memcache to System
 *  ==================================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class Kidphp{
@@ -20,16 +21,16 @@ class Kidphp{
 		$this->configEnv(); // 配置环境
 		require_once($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
-        //$test = new Kidphp\KidphpRand\Rand();
+        //$test = new Kidphp\KidphpRand\Rand();  // 调用composer 文件
         //$result = $test->noRepeatRand(1,10,5);
         //print_r($result); die;
-		$Secure = new Secure;
-		$Route = new Route;
+		$Secure = new Secure;  // 实例化安全框架
+		$Route = new Route;    // 实例化路由框架
+
 		$uri = $Route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
-		/* 记录访客内部记录 */
-		$check = new Visit($uri);
+		$check = new Visit($uri); // 记录访客内部记录
 		/* 检查路由,不存在返回404 */
 		$check = new Check;
 		$result = $check->checkRoute($classPath,$uri);
@@ -40,7 +41,7 @@ class Kidphp{
 		/* 引用路由 */
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
-		$this->callFunction($classRoute,$uri);
+		$this->callFunction($classRoute,$uri);  // 调用对应方法
 	}
 
     /* 配置每个环境的状态 

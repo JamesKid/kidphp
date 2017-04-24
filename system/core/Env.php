@@ -10,7 +10,7 @@ class Env {
         $this->configEnv($env);
 	}
 
-    /* url地址安全检测 */
+    /* 配置不同环境的安全配置 */
 	public function configEnv($env){
         if($env == "test"){
             echo '<div style="background-color:#f00;color:#fff">当前为测试环境， 
@@ -25,9 +25,8 @@ class Env {
             ini_set('disable_functions',system);    // 关闭调试
             ini_set('expose_php','Off');
         }else{
-            ini_set('display_errors',0);            // 错误信息
-            ini_set('display_startup_errors',0);    // 打开调试
-            error_reporting(0);                     // 不报告错误
+            echo '<div style="background-color:#f00;color:#fff">当前未配置环境,请在根目录下添加env.txt文件第一行添加test或online,test 为测试环境，online为线上环境</div>'; // 提示当前在测试环境
+            exit;
 
         }
 

@@ -12,6 +12,9 @@ class ArticleController {
         // $articleService = new ArticleService();
     }
 	public function detail(){
+        //$mem = new Mem;
+        //$mem->set('key5', 'This is a test55!', 10, 5);
+        //$val = $mem->get('key5');
 		$ajaxService = new AjaxService();
 		$params['tags'] = $ajaxService->getTags();
 		$articleId=$_GET['articleId'];

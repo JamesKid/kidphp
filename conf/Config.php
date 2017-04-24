@@ -20,11 +20,47 @@ static $config=array(
 			'DB_PORT'=>'3306'
 		),
 		'DB_SLAVE'=>false,  // 是否支持主从
-		'DB_SLAVE_IP'=>array(
-			'server1'=>'192.168.1.32',
-			'server2'=>'192.168.1.33',
-		),  // 主从ip
+		'MASTER'=>array(
+            '0'=> array(
+                'IP'=>'192.168.1.32',
+                'PORT'=>'3306',
+                'USER'=>'root',
+                'PASSWORD'=>'232323',
+            )
+		),  // 主库ip
+		'SLAVE'=>array(
+            '0'=> array(
+                'IP'=>'192.168.1.33',
+                'PORT'=>'3306',
+                'USER'=>'root',
+                'PASSWORD'=>'232323',
+            ),
+            '1'=> array(
+                'IP'=>'192.168.1.33',
+                'PORT'=>'3306',
+                'USER'=>'root',
+                'PASSWORD'=>'232323',
+            )
+		),  // 从库ip
 		'DB_TABLE_HEAD'=>'vimkid', //数据库表前缀
+	),
+	'MEMERCACHE'=>array(
+        'MASTER'=>array(
+            '0'=>array(
+                'IP'=>'127.0.0.1',
+                'PORT'=>'11211',
+                'USER'=>'root',
+                'PASSWORD'=>'232323',
+            ),
+        ),
+        'SLAVE'=>array(
+            '0'=>array(
+                'IP'=>'192.168.1.33',
+                'PORT'=>'11211',
+                'USER'=>'root',
+                'PASSWORD'=>'232323',
+            ),
+        ),
 	),
 	'ROUTE'=>array(
 		'DEFAULT_API'=>'show',

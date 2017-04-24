@@ -16,8 +16,8 @@ $result = getVersion();
 print_r($result);
 function getVersion() {
 	$version = array(
-		'VERSION'=>'v1.0 Released',
-		'UPDATETIME'=>'2016.4.14',
+		'VERSION'=>'v1.3 Released',
+		'UPDATETIME'=>'2017.4.24',
 		'CONTRIBUTER'=>'vimkid',
 		'HISTORY'=>array(
 			'2016.04.14 19:00'=>'add program by vimkid',
@@ -29,6 +29,9 @@ function getVersion() {
 			'2016.05.28 19:19'=>'add sitemap',
 			'2016.05.29 19:19'=>'add nginx rewrite and nginx config',
 			'2016.06.01 19:19'=>'add debug_backtrace()函数回溯取到api,然后自动加载Service!',
+			'2017.01.20 19:19'=>'add 访问监控',
+			'2017.04.20 19:19'=>'add 主机监控',
+			'2017.04.24 19:19'=>'add memcache',
 		)
 	);
 	return $version;
