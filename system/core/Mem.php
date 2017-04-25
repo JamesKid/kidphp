@@ -1,7 +1,6 @@
 <?php
 /* memcache缓存配置
- *  test    测试环境
- *  online  线上环境
+ * 这里只封装常用方法，更多方法请参考: http://php.net/manual/zh/book.memcached.php
  */
 class Mem {
     /** 
@@ -21,12 +20,19 @@ class Mem {
         $mem->connect($memIp, $memPort);
         $this->mem = $mem; 
 	}
+    /* 设置key */
 	public function set($key,$text,$other,$time){
         $result = $this->mem->set($key, $text, $other, $time);
         return $result;
     }
+    /* 获取key */
 	public function get($key){
         $result = $this->mem->get($key);
+        return $result;
+    }
+    /* 删除key */
+	public function delete($key){
+        $result = $this->mem->delete($key);
         return $result;
     }
 
