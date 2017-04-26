@@ -44,7 +44,7 @@ static $config=array(
 		),  // 从库ip
 		'DB_TABLE_HEAD'=>'vimkid', //数据库表前缀
 	),
-	'MEMERCACHE'=>array(
+	'MEMCACHE'=>array(
         'MASTER'=>array(
             '0'=>array(
                 'IP'=>'127.0.0.1',

@@ -9,8 +9,8 @@ class Mem {
     protected $mem;
 	public function __construct(){
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
-		$memIp = $config['MEMERCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
-		$memPort = $config['MEMERCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
+		$memIp = $config['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
+		$memPort = $config['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
         $this->initMem($memIp,$memPort);
 	}
 
