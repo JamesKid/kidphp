@@ -15,10 +15,13 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class Kidphp{
 	public function __construct(){
+        $env = $this->getLine('env.txt',1); // 获取env文件第一行
+        if($env == 'test'){ // 如果为test环境，则打开xhprof
+            xhprof_enable();
+        }
 		header("content-type:text/html; charset=utf-8"); // 设置编码
 		spl_autoload_register(array($this,'__autoload'));
 		@date_default_timezone_set('PRC'); // 设置时区
-        $env = $this->getLine('env.txt',1); // 获取env文件第一行
 		$this->configEnv($env); // 配置环境
 
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
@@ -40,6 +43,15 @@ class Kidphp{
 		$classRoute = $uri['class'].'Controller';
 		$classRoute = new $classRoute;
 		$this->callFunction($classRoute,$uri);  // 调用对应方法
+
+        /* xhprof 性能监控 */
+        if($env == 'test'){ // 如果为test环境，则打开xhprof
+            $xhprof_data = xhprof_disable();
+            include_once '/var/www/vimkid/xhprof/xhprof_lib/utils/xhprof_lib.php';
+            include_once '/var/www/vimkid/xhprof/xhprof_lib/utils/xhprof_runs.php';
+            $xhprof_runs = new XHProfRuns_Default();
+            $run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_test");
+        }
 	}
 
     /* 配置每个环境的状态 
@@ -105,3 +117,4 @@ class Kidphp{
 	}
 }
 $init = new Kidphp();
+
