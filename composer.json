@@ -21,6 +21,7 @@
 	],
     "license": ["MIT"],
 	"require": {
-		"kidphp/kidphp_rand": "^v1.0.1"
+		"kidphp/kidphp_rand": "^v1.0.1",
+		"kidphp/kidphp_file": "^v1.0.0"
 	}
 }

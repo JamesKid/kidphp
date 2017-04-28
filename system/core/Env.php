@@ -27,7 +27,6 @@ class Env {
         }else{
             echo '<div style="background-color:#f00;color:#fff">当前未配置环境,请在根目录下添加env.txt文件第一行添加test或online,test 为测试环境，online为线上环境</div>'; // 提示当前在测试环境
             exit;
-
         }
 
 	}

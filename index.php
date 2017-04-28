@@ -15,15 +15,13 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class Kidphp{
 	public function __construct(){
-		header("content-type:text/html; charset=utf-8");
+		header("content-type:text/html; charset=utf-8"); // 设置编码
 		spl_autoload_register(array($this,'__autoload'));
-		@date_default_timezone_set('PRC');
-		$this->configEnv(); // 配置环境
-		require_once($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
+		@date_default_timezone_set('PRC'); // 设置时区
+        $env = $this->getLine('env.txt',1); // 获取env文件第一行
+		$this->configEnv($env); // 配置环境
+
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
-        //$test = new Kidphp\KidphpRand\Rand();  // 调用composer 文件
-        //$result = $test->noRepeatRand(1,10,5);
-        //print_r($result); die;
 		$Secure = new Secure;  // 实例化安全框架
 		$Route = new Route;    // 实例化路由框架
 
@@ -48,8 +46,7 @@ class Kidphp{
      * @param $envirement  test    测试环境  
      *                     online  线上环境
      */
-	private function configEnv(){
-        $env = $this->getLine('env.txt',1); // 获取env文件第一行
+	private function configEnv($env){
 		$Env = new Env(trim($env)); // 实例化环境配置
 	}
 

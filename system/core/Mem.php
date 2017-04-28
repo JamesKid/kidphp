@@ -2,16 +2,16 @@
 /* memcache缓存配置
  * 这里只封装常用方法，更多方法请参考: http://php.net/manual/zh/book.memcached.php
  */
-class Mem {
+class Mem extends PublicCore{
     /** 
      * 初始化方法
 	 */
     protected $mem;
 	public function __construct(){
-		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
-		$memIp = $config['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
-		$memPort = $config['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
-        $this->initMem($memIp,$memPort);
+        parent::__construct();   // 调用父类构造方法,获取config 公共配置
+		$memIp = $this->config['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
+		$memPort = $this->config['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
+        $this->initMem($memIp,$memPort); // 初始化缓存
 	}
 
     /* 初始化缓存 */
