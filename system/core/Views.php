@@ -23,9 +23,7 @@ class view{
         if(is_null(self::$view_type)){ 
             self::set_view_type(); 
         } 
-         
         $view = SIMPLE_PATH . '/view/' . self::$view_type . '/' . $location; 
-         
         extract($param, EXTR_OVERWRITE); 
         ob_start(); 
         file_exists($view) ? require $view : exit($view . ' 不存在'); 

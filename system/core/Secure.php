@@ -3,13 +3,11 @@
  *
  */
 //class Route extends PublicCore{
-class Secure {
+class Secure extends PublicCore{
 	/** 初始化路由
 	 */
-	public $config = array();
 	public function __construct(){
-		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
-		$this->config = $config;
+        parent::__construct();   // 调用父类构造方法,获取config 公共配置
         $this->checkUrl();
 	}
 

@@ -67,8 +67,8 @@ static $config=array(
 	),
 	'IMAGESURL'=>array(
 		'SERVER1'=>'https://raw.githubusercontent.com/vimkidgit/article/master/images/',
-		'SERVER2'=>'http://www.vimkid.com/public/images/',
 		'SERVER2'=>'http://images.vimkid.com/images/',
+		'SERVER3'=>'http://images2.vimkid.com/images/',
 	),
 );
 /*

@@ -1,20 +1,18 @@
 <?php
 /* note : fix by jameskid 2016.4.28 
  * history: fix mysql_query to pdo 
- *
+ j
  */
 namespace system\core\db;
 use PDO; //声明引用PDO
-class Mysql {
+class Mysql extends PublicDb{
 	private $_writeLink = NULL; //主
 	private $_readLink = NULL; //从
 	private $_replication = false; //标志是否支持主从
-	private $config = array();
 	public $sql = "";
 	
 	public function __construct($readWrite = 'READ', $config = array() ){
-		include($_SERVER['DOCUMENT_ROOT'].'/conf/Config.php'); //引用配置文件
-		$this->config = $config;
+        parent::__construct();   // 调用父类构造方法,获取config 公共配置
 		$this->dbTableHead = $this->config['DB']['DB_TABLE_HEAD'];
 		//判断是否支持主从				
 		/* 配置pdo */
