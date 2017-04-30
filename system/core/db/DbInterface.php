@@ -4,7 +4,7 @@
  * 数据库驱动接口
  */
 
-namespace framework\base\db;
+namespace system\core\db;
 
 interface DbInterface {
 	
