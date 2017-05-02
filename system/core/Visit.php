@@ -1,5 +1,5 @@
 <?php
-class Visit{ 
+class Visit extends PublicCore{ 
 	/* 保存访客 */
 	public function __construct($uri){
 		/* 控制不能直接访问ajax接口 */
@@ -31,7 +31,7 @@ class Visit{
 		$type=1; //0正常访问，１非法访问
 
 		$mysql = new system\core\db\Mysql('WRITE');  // 访问写节点下的权限
-		$ipInfo = new system\plugin\outer\GetIpInfo\GetIpInfo();
+		$ipInfo = $this->getIpInfo();
 		$ip = $ipInfo->GetIpIn();
         // 排除本地ip
         if($ip == '127.0.0.1'){
@@ -115,15 +115,5 @@ class Visit{
 		)
 		";
 		$result = $mysql->execute($sql);
-	}
-	public function getAddress($ip){
-		/* 获取表 */
-		$point = strpos($ip,'.');
-		$table = substr($ip,0,$point);
-		$getIpInfo = new system\core\db\Mysql('IP');
-		$sql = "select ip_country,ip_city,ip_province from `".$table."` where inet_aton(ip_begin) < inet_aton('".$ip."') and inet_aton(ip_end)> inet_aton('".$ip."')";
-		$getIpInfo = $getIpInfo->execute($sql);
-		$result =  $getIpInfo->fetchAll(PDO::FETCH_ASSOC);
-		return $result[0];
 	}
 }
