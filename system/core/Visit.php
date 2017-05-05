@@ -30,7 +30,8 @@ class Visit extends PublicCore{
 		}
 		$type=1; //0正常访问，１非法访问
 
-		$mysql = new system\core\db\Mysql('WRITE');  // 访问写节点下的权限
+		//$mysql = new system\core\db\Mysql('WRITE');  // 访问写节点下的权限
+		$mysql = $this->getMysqlRead();  // 访问写节点下的权限
 		$ipInfo = $this->getIpInfo();
 		$ip = $ipInfo->GetIpIn();
         // 排除本地ip

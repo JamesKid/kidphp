@@ -1,11 +1,15 @@
 <?php
 class PublicCore {
 	public $config = array();
+	public $mysqlRead;
+	public $mysqlWrite;
 	public function __construct($config=array()){
+        /* 获取共公配置文件 */
         $File = new Kidphp\KidphpFile\File();  // 调用composer 文件
         $env = $File->getLine($_SERVER['DOCUMENT_ROOT'].'/env.txt',1); // 
 		include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
 		$this->config = $config;  //获取配置
+        /* mysql 链接*/
 	}
 
 	public function getAddress($ip){
@@ -21,5 +25,15 @@ class PublicCore {
 	public function getIpInfo(){
         $ipInfo = new system\plugin\outer\GetIpInfo\GetIpInfo(); // 获取ip
         return $ipInfo;
+    }
+    /* 获取mysql读取 链接*/
+	public function getMysqlRead(){
+		$this->mysqlRead = new system\core\db\Mysql();
+        return $this->mysqlRead;
+    }
+    /* 获取mysql写 链接*/
+	public function getMysqlWrite(){
+		$this->mysqlWrite = new system\core\db\Mysql('WRITE');
+        return $this->mysqlWrite;
     }
 }
