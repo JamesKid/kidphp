@@ -20,7 +20,7 @@ class Mysql extends PublicDb{
 		$dbUser = $this->config['DB'][$readWrite]['DB_USER'];
 		$dbPwd = $this->config['DB'][$readWrite]['DB_PASSWORD'];
 		$this->dbh = new PDO('mysql:host=localhost;dbname='.$dbName, $dbUser,$dbPwd);
-		$this->dbh->query('set names utf8;'); /* 设置编码 */
+		//$this->dbh->query('set names utf8;'); /* 设置编码,影响性能，请在/etc/my.cnf配置 */
 		$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 	

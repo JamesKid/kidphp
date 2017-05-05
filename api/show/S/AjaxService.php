@@ -1,8 +1,13 @@
 <?php
-class AjaxService {
+class AjaxService extends PublicCore {
 	/* 获取随机内容 */
+    public $mysqlRead;
+    public function __construct(){
+        $this->mysqlRead = parent::getMysqlRead();
+    }
 	public function getRandList(){
-		$mysql = new system\core\db\Mysql();
+		//$mysql = new system\core\db\Mysql();
+		$mysql = $this->mysqlRead;
 		$count = $mysql->getTableRows('article'); //获取表记录数量
 		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
 		$params = $randObject->noRepeatRand(1,$count,4);
@@ -19,7 +24,8 @@ class AjaxService {
 
 	/* 获取标签 */
 	public function getTags(){
-		$mysql = new system\core\db\Mysql();
+		//$mysql = new system\core\db\Mysql();
+		$mysql = $this->mysqlRead;
 		$count = $mysql->getTableRows('article'); //获取表记录数量
 		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
 		$params = $randObject->noRepeatRand(1,$count,4);
@@ -54,7 +60,7 @@ class AjaxService {
 
 	/* 最新vim文章 */
 	public function getNewList(){
-		$mysql = new system\core\db\Mysql();
+		$mysql = $this->mysqlRead;
 		$sql = "select 
 				article_username,
 				article_id,
@@ -94,7 +100,7 @@ class AjaxService {
 
 	/* 站点新闻 */
 	public function getNews(){
-		$mysql = new system\core\db\Mysql();
+		$mysql = $this->mysqlRead;
 		$sql = "select 
 				article_username,
 				article_id,
@@ -111,7 +117,7 @@ class AjaxService {
 
 	/* 获取最新内容*/
 	public function getNew($offset,$size){
-		$mysql = new system\core\db\Mysql();
+		$mysql = $this->mysqlRead;
 		$sql = "select 
                 article_id,
                 article_title,

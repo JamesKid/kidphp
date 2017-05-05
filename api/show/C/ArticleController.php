@@ -9,22 +9,24 @@ class ArticleController {
 	 */
     protected $articleService;
     public function __construct(){
-        // $articleService = new ArticleService();
+        //parent::__construct();   // 调用父类构造方法,获取config 公共配置
     }
 	public function detail(){
-		$ajaxService = new AjaxService();
-		$params['tags'] = $ajaxService->getTags();
 		$articleId = $_GET['articleId'];
         $articleService = new ArticleService();
 		$articleService->addReading($articleId);
+		$params['tags'] = $articleService->getTags();
 
         $mem = new Mem; // 实列化缓存
         $key = $_SERVER['HTTP_HOST'].'/'.$articleId;
         $result = $mem->get($key);
         if(empty($result)){ // 如果缓存为空，则调取数据
-		    $mysql = new system\core\db\Mysql();
-		    $sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
-		    $result = $mysql->select($sql);
+            $result = $articleService->getArticleById($articleId);
+
+            //$mysql = $this->getMysqlRead();
+		    //$sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
+		    //$result = $mysql->select($sql);
+
             $mem->set($key,$result,0,60*60*24*2); // 缓存2天
         }
 		if(isset($result[0])){

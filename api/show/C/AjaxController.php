@@ -9,7 +9,8 @@ class AjaxController {
 	 * 
 	 */
 	public function getRandList(){
-		$mysql = new system\core\db\Mysql();
+		//$mysql = new system\core\db\Mysql();
+		$mysql = $this->mysqlRead;
 		$count = $mysql->getTableRows('article'); //获取表记录数量
 		$randObject = new system\plugin\kidphp\kidphp_rand\Rand();
 		$params = $randObject->noRepeatRand(1,$count,4);
