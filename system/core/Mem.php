@@ -7,11 +7,9 @@ class Mem extends PublicCore{
      * 初始化方法
 	 */
     public $mem;
-    public $config;
     public function __construct(){
-        $this->config = parent::getConfig();
-        $memIp = $this->config['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
-        $memPort = $this->config['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
+        $memIp = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
+        $memPort = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
         $this->initMem($memIp,$memPort); // 初始化缓存
     }
 

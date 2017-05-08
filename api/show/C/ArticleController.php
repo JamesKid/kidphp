@@ -25,11 +25,7 @@ class ArticleController {
         }
         if(isset($result[0])){
             $params=$result[0];
-            $Parsedown = $mem->get('parsedown');
-            if(empty($Parsedown)){
-                $Parsedown = new system\plugin\outer\parsedown\Parsedown();
-                $mem->set('parsedown',$Parsedown,0,60*60*24*2); // 缓存2天
-            }
+            $Parsedown = new system\plugin\outer\parsedown\Parsedown();
             $params['html'] =  $Parsedown->text($params['article_content']); 
             if($params['article_type'] == 2 ){ // 宣染music模板
                 Render::renderTpl('static/music_detail.html',$params);

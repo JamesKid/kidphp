@@ -17,6 +17,9 @@ class Kidphp{
 	public function __construct(){
         $env = file_get_contents('env.txt',1); // 获取env文件第一行
         $env = trim($env); // 过滤空格
+        include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
+        $GLOBALS['CONFIG'] = $config; // 定义全局变量
+
         if($env == 'test'){ // 如果为test环境，则打开xhprof
             xhprof_enable();
         }
