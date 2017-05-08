@@ -1,13 +1,8 @@
 <?php
 class PublicCore {
-	public $config = array();
 	public $mysqlRead;
 	public $mysqlWrite;
 	public function __construct($config=array()){
-        /* 获取共公配置文件 */
-        //$env = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/env.txt',1); 
-		//include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
-		//$this->config = $config;  //获取配置
 	}
 
 	public function getAddress($ip){
@@ -33,12 +28,5 @@ class PublicCore {
 	public function getMysqlWrite(){
 		$this->mysqlWrite = new system\core\db\Mysql('WRITE');
         return $this->mysqlWrite;
-    }
-
-    /* 获取配置文件*/
-	public function getConfig(){
-        $env = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/env.txt',1); 
-        include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
-        return $config;
     }
 }

@@ -5,20 +5,19 @@
  */
 namespace system\core\db;
 use PDO; //声明引用PDO
-class Mysql extends PublicDb{
+class Mysql {
 	private $_writeLink = NULL; //主
 	private $_readLink = NULL; //从
 	private $_replication = false; //标志是否支持主从
 	public $sql = "";
 	
 	public function __construct($readWrite = 'READ', $config = array() ){
-        parent::__construct();   // 调用父类构造方法,获取config 公共配置
-		$this->dbTableHead = $this->config['DB']['DB_TABLE_HEAD'];
+		$this->dbTableHead = $GLOBALS['CONFIG']['DB']['DB_TABLE_HEAD'];
 		//判断是否支持主从				
 		/* 配置pdo */
-		$dbName = $this->config['DB'][$readWrite]['DB_NAME'];
-		$dbUser = $this->config['DB'][$readWrite]['DB_USER'];
-		$dbPwd = $this->config['DB'][$readWrite]['DB_PASSWORD'];
+		$dbName = $GLOBALS['CONFIG']['DB'][$readWrite]['DB_NAME'];
+		$dbUser = $GLOBALS['CONFIG']['DB'][$readWrite]['DB_USER'];
+		$dbPwd = $GLOBALS['CONFIG']['DB'][$readWrite]['DB_PASSWORD'];
 		$this->dbh = new PDO('mysql:host=localhost;dbname='.$dbName, $dbUser,$dbPwd);
 		//$this->dbh->query('set names utf8;'); /* 设置编码,影响性能，请在/etc/my.cnf配置 */
 		$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
