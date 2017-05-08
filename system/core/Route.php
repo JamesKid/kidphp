@@ -3,8 +3,10 @@
 class Route extends PublicCore{
 	/** 初始化路由
 	 */
+    public $config;
 	public function __construct(){
-        parent::__construct();   // 调用父类构造方法,获取config 公共配置
+        //parent::__construct();   // 调用父类构造方法,获取config 公共配置
+        $this->config = parent::getConfig();
 	}
 	public function initRoute($request = ''){
 		//获得请求地址

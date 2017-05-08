@@ -7,7 +7,6 @@ class Secure extends PublicCore{
 	/** 初始化路由
 	 */
 	public function __construct(){
-        parent::__construct();   // 调用父类构造方法,获取config 公共配置
         $this->checkUrl();
 	}
 
@@ -26,7 +25,7 @@ class Secure extends PublicCore{
         // 如果除了/ ? & = . 还有其他特殊字符，则重新跳转
         if(!$this->onlyLettersOrDigits($url) && $url!=''){
             // 将black.txt至为777 权限
-            $ipInfo = $this->getIpInfo();
+            $ipInfo = $this->getIpInfo(); // 从父类PublicCore中获取ip信息
             $ip = $ipInfo->GetIpIn(); // 获取ip
 		    $address = $this->getAddress($ip); // 获取地址
             $os = $ipInfo->GetOs();

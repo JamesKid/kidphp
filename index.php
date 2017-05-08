@@ -15,8 +15,9 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class Kidphp{
 	public function __construct(){
-        $env = $this->getLine('env.txt',1); // 获取env文件第一行
-        if(trim($env) == 'test'){ // 如果为test环境，则打开xhprof
+        $env = file_get_contents('env.txt',1); // 获取env文件第一行
+        $env = trim($env); // 过滤空格
+        if($env == 'test'){ // 如果为test环境，则打开xhprof
             xhprof_enable();
         }
 		header("content-type:text/html; charset=utf-8"); // 设置编码
@@ -45,7 +46,7 @@ class Kidphp{
 		$this->callFunction($classRoute,$uri);  // 调用对应方法
 
         /* xhprof 性能监控 */
-        if(trim($env) == 'test'){ // 如果为test环境，则打开xhprof
+        if($env == 'test'){ // 如果为test环境，则打开xhprof
             $xhprof_data = xhprof_disable();
             include_once '/var/www/vimkid/xhprof/xhprof_lib/utils/xhprof_lib.php';
             include_once '/var/www/vimkid/xhprof/xhprof_lib/utils/xhprof_runs.php';
@@ -59,30 +60,8 @@ class Kidphp{
      *                     online  线上环境
      */
 	private function configEnv($env){
-		$Env = new Env(trim($env)); // 实例化环境配置
+		$Env = new Env($env); // 实例化环境配置
 	}
-
-    /**
-    * 获取指定行内容
-    *
-    * @param $file 文件路径
-    * @param $line 行数
-    * @param $length 指定行返回内容长度
-    */
-    private function getLine($file, $line, $length = 1024){
-        $returnTxt = null; // 初始化返回
-        $i = 1; // 行数
-        $handle = @fopen($file, "r");
-        if ($handle) {
-            while (!feof($handle)) {
-                $buffer = fgets($handle, $length);
-                if($line == $i) $returnTxt = $buffer;
-                $i++;
-            }
-            fclose($handle);
-        }
-        return $returnTxt;
-    }
 
 	/* 回调函数方法 */
 	private function callFunction($classRoute,$uri){
