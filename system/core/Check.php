@@ -5,7 +5,7 @@ class Check {
     public function checkRoute($classPath,$uri){
         $sign = 0;
         //检查是否有controller (class)
-        if (file_exists($classPath)) {
+        if (is_file($classPath)) {
             require_once($classPath);
         } else {
             return false;//跳转到404页面

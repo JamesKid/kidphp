@@ -79,12 +79,12 @@ class Kidphp{
 		/* 自动加载命名空间路径 */
 		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
 		$file = __DIR__.'/'.$space.'.php';
-		if(file_exists($file)){
+		if(is_file($file)){
 			return require_once($file);
 		}
 		/* 自动加载system/core 核心 */
 		$coreFile = __DIR__.'/system/core/'.$class.'.php';
-		if(file_exists($coreFile)){
+		if(is_file($coreFile)){
 			return require_once($coreFile);
 		}
 		/* 自动加载service */
@@ -92,7 +92,7 @@ class Kidphp{
 		if(substr($space,-7)=='Service'){  //截取最后7个字符判断是否Service
 			$trace = debug_backtrace();
 			$serviceFile = __DIR__.'/api/'.$trace[3]['args'][1]['api'].'/S/'.$class.'.php';
-			if(file_exists($serviceFile)){
+			if(is_file($serviceFile)){
 				return require_once($serviceFile);
 			}
 		}
