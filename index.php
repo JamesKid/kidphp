@@ -30,14 +30,14 @@ class Kidphp{
 		$Secure = new Secure;  // 实例化安全框架
         $staticUrl = 'system/page_cache'.$_SERVER['REQUEST_URI']; // 获取静态地址
         //if(is_file($staticUrl) && (time()-filemtime($staticUrl)) < 3000) {//设置缓时间, 检查文件是否存在
-        if(is_file($staticUrl)){// 检查文件是否存在
-            require_once($staticUrl);exit;
-        } 
 		$Route = new Route;    // 实例化路由框架
 		$uri = $Route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
 		$check = new Visit($uri); // 记录访客内部记录
+        if(is_file($staticUrl)){// 检查文件是否存在
+            require_once($staticUrl);exit;
+        } 
 		/* 检查路由,不存在返回404 */
 		$check = new Check;
 		$result = $check->checkRoute($classPath,$uri);
