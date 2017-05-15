@@ -15,23 +15,25 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class Kidphp{
 	public function __construct(){
+		header("content-type:text/html; charset=utf-8"); // 设置编码
+		@date_default_timezone_set('PRC'); // 设置时区
         $env = file_get_contents('env.txt',1); // 获取env文件第一行
         $env = trim($env); // 过滤空格
         include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
         $GLOBALS['CONFIG'] = $config; // 定义全局变量
-
         if($env == 'test'){ // 如果为test环境，则打开xhprof
             xhprof_enable();
         }
-		header("content-type:text/html; charset=utf-8"); // 设置编码
 		spl_autoload_register(array($this,'__autoload'));
-		@date_default_timezone_set('PRC'); // 设置时区
 		$this->configEnv($env); // 配置环境
-
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
 		$Secure = new Secure;  // 实例化安全框架
+        $staticUrl = 'system/page_cache'.$_SERVER['REQUEST_URI']; // 获取静态地址
+        //if(is_file($staticUrl) && (time()-filemtime($staticUrl)) < 3000) {//设置缓时间, 检查文件是否存在
+        if(is_file($staticUrl)){// 检查文件是否存在
+            require_once($staticUrl);exit;
+        } 
 		$Route = new Route;    // 实例化路由框架
-
 		$uri = $Route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
 		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
