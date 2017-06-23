@@ -13,8 +13,12 @@
 *				: 2017.04.24 19:52  add memcache to System
 *  ==================================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Handler\JsonResponseHandler;
 class Kidphp{
+
 	public function __construct(){
+
 		header("content-type:text/html; charset=utf-8"); // 设置编码
 		@date_default_timezone_set('PRC'); // 设置时区
         $env = file_get_contents('env.txt',1); // 获取env文件第一行
@@ -27,6 +31,10 @@ class Kidphp{
 		spl_autoload_register(array($this,'__autoload'));
 		$this->configEnv($env); // 配置环境
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
+        
+        $run     = new Whoops\Run;
+        $handler = new PrettyPageHandler;
+
 		$Secure = new Secure;  // 实例化安全框架
         $staticUrl = 'system/page_cache'.$_SERVER['REQUEST_URI']; // 获取静态地址
         //if(is_file($staticUrl) && (time()-filemtime($staticUrl)) < 3000) {//设置缓时间, 检查文件是否存在
@@ -58,6 +66,7 @@ class Kidphp{
             $xhprof_runs = new XHProfRuns_Default();
             $run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_test");
         }
+
 	}
 
     /* 配置每个环境的状态 
