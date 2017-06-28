@@ -1,3 +1,6 @@
 /system/asset/css/git_markdown.css
 /vendor/
 /composer.lock
+/env.txt
+/conf/config_online.php
+/system/page_cache/
