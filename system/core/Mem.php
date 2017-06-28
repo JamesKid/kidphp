@@ -6,32 +6,31 @@ class Mem extends PublicCore{
     /** 
      * 初始化方法
 	 */
-    protected $mem;
-	public function __construct(){
-        parent::__construct();   // 调用父类构造方法,获取config 公共配置
-		$memIp = $this->config['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
-		$memPort = $this->config['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
+    public $mem;
+    public function __construct(){
+        $memIp = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
+        $memPort = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
         $this->initMem($memIp,$memPort); // 初始化缓存
-	}
+    }
 
     /* 初始化缓存 */
-	public function initMem($memIp,$memPort){
+    public function initMem($memIp,$memPort){
         $mem = new Memcache;
         $mem->connect($memIp, $memPort);
         $this->mem = $mem; 
-	}
+    }
     /* 设置key */
-	public function set($key,$text,$other,$time){
+    public function set($key,$text,$other,$time){
         $result = $this->mem->set($key, $text, $other, $time);
         return $result;
     }
     /* 获取key */
-	public function get($key){
+    public function get($key){
         $result = $this->mem->get($key);
         return $result;
     }
     /* 删除key */
-	public function delete($key){
+    public function delete($key){
         $result = $this->mem->delete($key);
         return $result;
     }

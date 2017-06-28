@@ -4,7 +4,6 @@ class Route extends PublicCore{
 	/** 初始化路由
 	 */
 	public function __construct(){
-        parent::__construct();   // 调用父类构造方法,获取config 公共配置
 	}
 	public function initRoute($request = ''){
 		//获得请求地址
@@ -20,7 +19,7 @@ class Route extends PublicCore{
 		//	$request = substr($request,0,$position); //删除问号后内容
 		// 过滤地址,过滤第一个斜杠  
 		$url = trim(str_replace($root,'', $request),'/');   
-		$api = $this->config['ROUTE']['DEFAULT_API'];  //引用配置的默认api
+		$api = $GLOBALS['CONFIG']['ROUTE']['DEFAULT_API'];  //引用配置的默认api
 		$uri = $this->getControllerFunction($url,$api);
 		return $uri;
 	}
