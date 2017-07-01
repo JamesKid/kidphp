@@ -1,0 +1,28 @@
+.box {
+    float:left;
+    width:100%;
+    border-bottom:#eee solid 1px ;
+}
+.name {
+    width:26%;
+    float:left;
+    padding-left:4%;
+    height:40px;
+    line-height:30px;    
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.content {
+    width:70%;
+    float:left;
+}
+.content input {
+    border:0px;
+    margin:0px;
+}
+
+.address {
+    float:right;
+    text-align:right;
+
+}
