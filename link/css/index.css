@@ -5,6 +5,7 @@
     border-bottom:#eee solid 1px ;
 }
 .name {
+    color:#666;
     width:26%;
     float:left;
     padding-left:4%;
@@ -23,6 +24,7 @@
 }
 
 .address {
+    color:#666;
     float:right;
     text-align:right;
 
