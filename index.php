@@ -13,18 +13,20 @@
 *				: 2017.04.24 19:52  add memcache to System
 *  ==================================================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-class Kidphp{
-	public function __construct(){
+class Kidphp
+{
+    public function __construct()
+    {
 		header("content-type:text/html; charset=utf-8"); // 设置编码
 		@date_default_timezone_set('PRC'); // 设置时区
         $env = file_get_contents('env.txt',1); // 获取env文件第一行
-        $env = trim($env); // 过滤空格
+        $env = trim($env); // 获取当前环境 test: 测试环境 online: 线上环境
         include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
         $GLOBALS['CONFIG'] = $config; // 定义全局变量
         if($env == 'test'){ // 如果为test环境，则打开xhprof
             xhprof_enable();
         }
-		spl_autoload_register(array($this,'__autoload'));
+		spl_autoload_register(array($this,'__autoload')); // 自动加载
 		$this->configEnv($env); // 配置环境
 		require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
 
@@ -38,15 +40,15 @@ class Kidphp{
 		$Route = new Route;    // 实例化路由框架
 		$uri = $Route->initRoute();  //初始化路由
 		/* 引入Controller文件 */
-		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
+		$classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php'; // 路幅指向Controller
 		$check = new Visit($uri); // 记录访客内部记录
         if(is_file($staticUrl)){// 检查文件是否存在
-            require_once($staticUrl);exit;
+            require_once($staticUrl);exit; // 如果静态缓存存在，则返回内容，结束
         } 
 		/* 检查路由,不存在返回404 */
 		$check = new Check;
 		$result = $check->checkRoute($classPath,$uri);
-		if($result ==false){
+		if($result == false){
             header('Location: http://'.$_SERVER['HTTP_HOST'].'/404page.html');
             exit;
 		}
@@ -63,19 +65,20 @@ class Kidphp{
             $xhprof_runs = new XHProfRuns_Default();
             $run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_test");
         }
-
 	}
 
     /* 配置每个环境的状态 
      * @param $envirement  test    测试环境  
      *                     online  线上环境
      */
-	private function configEnv($env){
+    private function configEnv($env)
+    {
 		$Env = new Env($env); // 实例化环境配置
 	}
 
 	/* 回调函数方法 */
-	private function callFunction($classRoute,$uri){
+    private function callFunction($classRoute,$uri)
+    {
 		call_user_func_array(
 			array($classRoute, $uri['function']),
 			array()
@@ -83,7 +86,8 @@ class Kidphp{
 	}
 
 	/* 自动加载方法 */
-	private function __autoload($class){
+    private function __autoload($class)
+    {
 		/* 自动加载命名空间路径 */
 		$space = str_replace( '\\', DIRECTORY_SEPARATOR, $class ); 
 		$file = __DIR__.'/'.$space.'.php';
