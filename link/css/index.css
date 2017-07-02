@@ -1,18 +1,35 @@
+.background {
+    float:left; 
+    background-color:#333;
+    opacity:0.7;
+    color:#0072bd;
+    
+
+}
+.flow {
+    background-color:#fff;
+    float:left;
+    width:96%;
+    margin:2%;
+    
+}
 .box {
-    color:#666;
     float:left;
     width:100%;
     border-bottom:#eee solid 1px ;
 }
+.boxBottom {
+    float:left;
+    width:100%;
+}
 .name {
-    color:#666;
     width:26%;
     float:left;
     padding-left:4%;
-    height:40px;
+    height:48px;
     line-height:30px;    
-    padding-top:5px;
-    padding-bottom:5px;
+    padding-top:10px;
+    padding-bottom:10px;
 }
 .content {
     width:70%;
@@ -21,11 +38,39 @@
 .content input {
     border:0px;
     margin:0px;
+    height:48px;
 }
 
 .address {
-    color:#666;
+    color:#0072bd;
     float:right;
     text-align:right;
 
 }
+
+.money {
+    width:76%;
+    float:left;
+    padding-left:4%;
+    height:48px;
+    line-height:30px;    
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.pay {
+    text-align:center;
+    background-color:#0072bd;
+    color:#fff;
+    float:left;
+    width:24%;
+    padding-top:10px;
+    padding-bottom:10px;
+    height:48px;
+    line-height:30px;    
+    margin-right:0px;
+    padding-right:0px;
+}
+
+
+
+
