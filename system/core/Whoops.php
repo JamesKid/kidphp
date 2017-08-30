@@ -19,7 +19,8 @@ class Whoops extends PublicCore{
             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
             $whoops->register();
         } catch (Exception $e) {
-            echo $e->getMessage();
+            file_put_contents('/tmp/hello.txt','abc');
+            //echo $e->getMessage();
         }
 	}
 }
