@@ -1,17 +1,23 @@
 <?php
 /* 环境配置
- *  test    测试环境
- *  online  线上环境
+ *     test    测试环境
+ *     online  线上环境
+ *
+ * php.ini安全 (根据环境定义在Env.php文件中)
+ *     open_basedir       # 不定义可能会存在文件包含漏洞
+ *     safe_mode          # 安全模式
+ *     disable_functions  # 禁止危险函数
+ *     short_open_tag     # 打开会更安全,参照http://www.91ri.org/2758.html
  */
 class Env {
-	/** 初始化方法
-	 */
-	public function __construct($env){
+    /** 初始化方法
+     */
+    public function __construct($env){
         $this->configEnv($env);
-	}
+    }
 
     /* 配置不同环境的安全配置 */
-	public function configEnv($env){
+    public function configEnv($env){
         if($env == "test"){
             echo '<div style="background-color:#f00;color:#fff">当前为测试环境， 
                 不具备安全性,如上线请将根目录下env.txt文件第一行test改为online</div>'; // 提示当前在测试环境
@@ -19,17 +25,17 @@ class Env {
             ini_set('display_startup_errors',1);   // 打开调试
             error_reporting(E_ALL);                // 报告所有错误
         }else if($env == 'online'){
-            ini_set('display_errors',0);            // 不显示错误信息
-            ini_set('display_startup_errors',0);    // 关闭调试
-            error_reporting(0);                 // 错误报告级别
-            ini_set('disable_functions',system);    // 关闭调试
+            ini_set('display_errors',0);           // 不显示错误信息
+            ini_set('display_startup_errors',0);   // 关闭调试
+            error_reporting(0);                    // 错误报告级别
+            ini_set('disable_functions',system);   // 关闭system函数,有风险
             ini_set('expose_php','Off');
         }else{
             echo '<div style="background-color:#f00;color:#fff">当前未配置环境,请在根目录下添加env.txt文件第一行添加test或online,test 为测试环境，online为线上环境</div>'; // 提示当前在测试环境
             exit;
         }
 
-	}
+    }
     /* error_reporting
      * 1 E_ERROR 致命的运行错误。错误无法恢复，暂停执行脚本。
      * 2 E_WARNING 运行时警告(非致命性错误)。非致命的运行错误，脚本执行不会停止。
