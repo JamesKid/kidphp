@@ -5,7 +5,7 @@
 class Mem extends PublicCore{
     /** 
      * 初始化方法
-	 */
+     */
     public $mem;
     public function __construct(){
         $memIp = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
