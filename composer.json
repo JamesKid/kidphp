@@ -1,28 +1,28 @@
 {
-	"authors": [
-		{
-			"name": "kid",
-			"email": "3403682791@qq.com",
-			"homepage": "http://www.vimkid.com",
-			"role": "Main Developer"
-		},
-		{
-			"name": "vimkid",
-			"email": "234234@qq.com",
-			"role": "Developer"
-		}
-	],
-	"name": "kidphp/kidphp",
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://packagist.phpcomposer.com"
-		}
-	],
+    "authors": [
+        {
+            "name": "kid",
+            "email": "3403682791@qq.com",
+            "homepage": "http://www.vimkid.com",
+            "role": "Main Developer"
+        },
+        {
+            "name": "vimkid",
+            "email": "234234@qq.com",
+            "role": "Developer"
+        }
+    ],
+    "name": "kidphp/kidphp",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    ],
     "license": ["MIT"],
-	"require": {
-		"kidphp/kidphp_rand": "^v1.0.1",
-		"kidphp/kidphp_file": "^v1.0.0",
+    "require": {
+        "kidphp/kidphp_rand": "^v1.0.1",
+        "kidphp/kidphp_file": "^v1.0.0",
         "filp/whoops": "2.*"
-	}
+    }
 }

@@ -40,6 +40,6 @@ rewrite ^/test/$ /test permanent;
 rewrite ^/test$  /index.php/article/test last;
 
 if (!-e $request_filename){
-	rewrite ^/(.*)$ /$1 last;
-	break;
+    rewrite ^/(.*)$ /$1 last;
+    break;
 }
