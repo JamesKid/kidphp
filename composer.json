@@ -24,5 +24,8 @@
         "kidphp/kidphp_rand": "^v1.0.1",
         "kidphp/kidphp_file": "^v1.0.0",
         "filp/whoops": "2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.5.*"
     }
 }
