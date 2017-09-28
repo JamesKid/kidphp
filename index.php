@@ -29,22 +29,16 @@ class Kidphp
         spl_autoload_register(array($this,'__autoload')); // 自动加载
         $this->configEnv($env); // 配置环境
         require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
-
         if($env == 'test'){
             $Whoops = new Whoops();  // 实例Whoops查错框架
         }
-        $Secure = new Secure;  // 实例化安全框架
-        $staticUrl = 'system/page_cache'.$_SERVER['REQUEST_URI']; // 获取静态地址
-        //if(is_file($staticUrl) && (time()-filemtime($staticUrl)) < 3000) {//设置缓时间, 检查文件是否存在
-
+        new Secure;  // 实例化安全框架
         $Route = new Route;    // 实例化路由框架
         $uri = $Route->initRoute();  //初始化路由
         /* 引入Controller文件 */
         $classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php'; // 路幅指向Controller
         $check = new Visit($uri); // 记录访客内部记录
-        if(is_file($staticUrl)){// 检查文件是否存在
-            require_once($staticUrl);exit; // 如果静态缓存存在，则返回内容，结束
-        } 
+        new PageCache; // 实例化文件缓存,存在则直接读取页面
         /* 检查路由,不存在返回404 */
         $check = new Check;
         $result = $check->checkRoute($classPath,$uri);

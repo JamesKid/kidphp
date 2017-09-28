@@ -3,7 +3,7 @@
 	<?php 
 		if(isset($params['page'])){
 			echo '<span>共'.$params['page']->total.'条记录&nbsp;&nbsp;</span>';
-			print_r($params['page']->showpage());
+			echo $params['page']->showpage();
 		}
 	?>
 </div>

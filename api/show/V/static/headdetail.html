@@ -23,11 +23,11 @@
 	<link charset="utf-8" rel="stylesheet" type="text/css" href="http://www.vimkid.com/assets/outer/CodeMirror/theme/solarized.css">
     <!-- 如果文章带代码添加以下样式 -->
     <?php if($params['article_type'] == 1){
-        print_r('<script type="text/javascript" src="http://www.vimkid.com/assets/show/js/codemirror.js"></script>
+        echo '<script type="text/javascript" src="http://www.vimkid.com/assets/show/js/codemirror.js"></script>
             <script type="text/javascript" src="http://www.vimkid.com/assets/outer/CodeMirror/lib/codemirror.js"></script>
             <script type="text/javascript" src="http://www.vimkid.com/assets/outer/CodeMirror/mode/clike/clike.js"></script>
             <script type="text/javascript" src="http://www.vimkid.com/assets/outer/CodeMirror/keymap/vim.js"></script>
-        ');
+        ';
     } ?>
 	<script type="text/javascript" src="http://www.vimkid.com/assets/outer/CodeMirror/addon/dialog/dialog.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="http://www.vimkid.com/assets/outer/CodeMirror/addon/search/searchcursor.js" charset="UTF-8"></script>
