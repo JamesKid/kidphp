@@ -46,3 +46,9 @@
 
 #### 配置文件路径
     /conf/conf_环境.php
+
+#### composer 配置
+    http://docs.phpcomposer.com/03-cli.html  # composer命令行地址
+    composer install --no-dev   # 不安装require-dev下的包,线上环境
+
+    

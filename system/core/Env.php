@@ -23,6 +23,8 @@ class Env {
                 不具备安全性,如上线请将根目录下env.txt文件第一行test改为online</div>'; // 提示当前在测试环境
             ini_set('display_errors',1);           // 显示错误信息
             ini_set('display_startup_errors',1);   // 打开调试
+            ini_set("allow_url_fopen","Off");     //关闭fopen
+            ini_set("allow_url_include","Off");   // 关闭include
             error_reporting(E_ALL);                // 报告所有错误
         }else if($env == 'online'){
             ini_set('display_errors',0);           // 不显示错误信息
@@ -30,6 +32,8 @@ class Env {
             error_reporting(0);                    // 错误报告级别
             ini_set('disable_functions',system);   // 关闭system函数,有风险
             ini_set('expose_php','Off');
+            ini_set("allow_url_fopen","Off");     //关闭fopen
+            ini_set("allow_url_include","Off");   // 关闭include
         }else{
             echo '<div style="background-color:#f00;color:#fff">当前未配置环境,请在根目录下添加env.txt文件第一行添加test或online,test 为测试环境，online为线上环境</div>'; // 提示当前在测试环境
             exit;

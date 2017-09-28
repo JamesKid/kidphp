@@ -17,7 +17,6 @@
                 <a href="<?php echo '/'.$v['article_id'];?>">
                     <?php $keywordList=explode(',',$v['article_seokeywords']);?>
                     <?php $length=count($keywordList);?>
-                    <?php //print_r($keywordList);?>
                     <?php echo $keywordList[rand(0,$length-1)];?>
                 </a>
             </div>
