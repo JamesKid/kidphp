@@ -22,7 +22,7 @@ class Kidphp
         $env = file_get_contents('env.txt',1); // 获取env文件第一行
         $env = trim($env); // 获取当前环境 test: 测试环境 online: 线上环境
         include($_SERVER['DOCUMENT_ROOT'].'/conf/config_'.trim($env).'.php'); //引用配置文件
-        $GLOBALS['CONFIG'] = $config; // 定义全局变量
+        include($_SERVER['DOCUMENT_ROOT'].'/conf/config_language.php'); //引用配置文件
         if($env == 'test'){ // 如果为test环境，则打开xhprof
             xhprof_enable();
         }
@@ -33,6 +33,7 @@ class Kidphp
             $Whoops = new Whoops();  // 实例Whoops查错框架
         }
         new Secure;  // 实例化安全框架
+        new Language;  // 实例化多国语言框架
         $Route = new Route;    // 实例化路由框架
         $uri = $Route->initRoute();  //初始化路由
         /* 引入Controller文件 */
@@ -94,14 +95,32 @@ class Kidphp
             return require_once($coreFile);
         }
         /* 自动加载service */
-            /* debug_backtrace()  用这个php自带函数获取api*/
         if(substr($space,-7)=='Service'){  //截取最后7个字符判断是否Service
-            $trace = debug_backtrace();
-            $serviceFile = __DIR__.'/api/'.$trace[3]['args'][1]['api'].'/S/'.$class.'.php';
+            $serviceFile = __DIR__.'/api/show/S/'.$class.'.php';
             if(is_file($serviceFile)){
                 return require_once($serviceFile);
             }
         }
+
+        /* 自动加载public */
+        $serviceFile = __DIR__.'/api/show/P/'.$class.'.php';
+        if(is_file($serviceFile)){
+            return require_once($serviceFile);
+        }
+
+        /* 自动加载service */
+            /* debug_backtrace()  用这个php自带函数获取api*/
+        /*
+        if(substr($space,-7)=='Service'){  //截取最后7个字符判断是否Service
+            $trace = debug_backtrace();
+            print_r($trace);die;
+            $serviceFile = __DIR__.'/api/'.$trace[3]['args'][1]['api'].'/S/'.$class.'.php';
+            print_r($serviceFile);die;
+            if(is_file($serviceFile)){
+                return require_once($serviceFile);
+            }
+        }
+         */
     }
 }
 $init = new Kidphp();

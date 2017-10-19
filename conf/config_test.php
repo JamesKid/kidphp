@@ -1,5 +1,8 @@
 <?php
-static $config=array(
+//static $config=array(
+$GLOBALS['CONFIG'] = array(
+  'KEY'=>'leichxpeHEHN',    // 加密字符串
+  'DOMAIN'=>'http://www.vimkid.com/',    // 项目域名
 	'DB'=>array(
 		'READ'=>array(
 			'DB_NAME'=>'vimkid',

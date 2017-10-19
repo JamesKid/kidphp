@@ -43,6 +43,7 @@ class ListController {
     }
     /* 二级目录查询 */
     public function subCategory(){
+
         $page = isset($_GET['page'])? $_GET['page']: 1;
         $offset = ($page-1)*$this->pagesize;
         $ajaxService = new AjaxService();

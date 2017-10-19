@@ -1,33 +1,15 @@
 <div id="contentLeft">
-	<div id="leftin">
-		<ul>
-			<li>
-                <a href="/vimuse">
+    <div id="leftin">
+        <ul>
+					  <?php foreach ($GLOBALS['LANGUAGE']['vimCategory'] as $v):?>
+            <li>
+                    <a href="<?php echo $v['link'];?>">
                     <span class='innerHref'>
-                            vim基本使用
+                        <?php echo $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
                     </span>
                 </a>
             </li>
-			<li>
-                <a href="/vimplugin">
-                    <span class='innerHref'> vim插件</span>
-                </a>
-            </li>
-			<li>
-                <a href="/vimmanual">
-                    <span class='innerHref'> vim手册解读</span>
-                </a>
-            </li>
-			<li>
-                <a href="/vimconfig">
-                    <span class='innerHref'> vim配置</span>
-                </a>
-            </li>
-			<li>
-                <a href="/vimlearn">
-                    <span class='innerHref'> vim学习tips</span>
-                </a>
-             </li>
-		</ul>
-	</div>
+					  <?php endforeach;?>
+        </ul>
+    </div>
 </div>

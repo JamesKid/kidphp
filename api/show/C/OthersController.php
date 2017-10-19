@@ -1,5 +1,5 @@
 <?php
-class OtherController {
+class OthersController {
     public function index(){
         $ajaxService = new AjaxService();
         $params['randList'] = $ajaxService->getRandList();

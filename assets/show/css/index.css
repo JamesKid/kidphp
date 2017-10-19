@@ -22,6 +22,7 @@
 	}
 	a:hover {
 		background-color:#000;
+    color:#ff9;
 	}
 	a:active {
 		border:none;
@@ -300,22 +301,22 @@
 
 		/* 脚部样式 */
 		.foot {
-			float:left;
-			width:100%;
+        float:left;
+        width:100%;
 		}	
 
 		/* 公共类样式　*/
 		.language {
-			color:#bfbfbf;
-			float:left;
-			width:97%;
-			padding-top:20px;
-			padding-left:10px;
-			padding-bottom:10px;
+        float:left;
+        width:97%;
+        padding-top:15px;
+        padding-right:3%;
+        padding-bottom:15px;
+        font-size:0.8em;
 		}
 		.languageType {
-			float:left;
-			padding-right:3%;
+        float:right;
+        padding-right:3%;
 		}
 
         /* share */
