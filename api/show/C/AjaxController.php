@@ -2,6 +2,9 @@
 //class Index extends AppPublic{
 use system\core\db;
 class AjaxController {
+    public function __construct(){
+
+    }
 
     /** 获取随机内容 
      * @params categoryid
@@ -9,7 +12,6 @@ class AjaxController {
      * 
      */
     public function getRandList(){
-        //$mysql = new system\core\db\Mysql();
         $mysql = $this->mysqlRead;
         $count = $mysql->getTableRows('article'); //获取表记录数量
         $randObject = new system\plugin\kidphp\kidphp_rand\Rand();
@@ -25,9 +27,22 @@ class AjaxController {
             echo $params['errorInfo'];
         }
     }
+
     /* 获取推荐内容 */
     public function getRecommendList(){
-        echo "cc";
+    }
+
+    /* 获取访问量 */
+    public function getVisit(){
+        echo 'ccb';
+        /*
+        if(isset($_GET['articleId'])){
+            $articleId = $this->getStr($_GET['articleId']);
+            print_r($articleId);die;
+        }
+        $mysql = $this->mysqlRead;
+        $sql = "select article_username,article_id,article_title,article_createtimeymd from vimkid_article where article_id IN (".$randIn.")";
+         */
     }
 
     /* 保存访客 */

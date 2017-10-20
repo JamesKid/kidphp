@@ -23,19 +23,19 @@
 				</div>
 			</div> 
             <div class="topInfo">
-                创建时间:&nbsp 
+                <?php echo $GLOBALS['LANGUAGE']['status']['createTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
                     <?php echo $params['article_createtimeymd'];?>
                 </span>
-                更新时间:&nbsp 
+                <?php echo $GLOBALS['LANGUAGE']['status']['updateTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
                     <?php echo $params['article_updatetimeymd'];?>
                 </span>
-                访问量:
-                <span class="topInfoDetail">
+                <?php echo $GLOBALS['LANGUAGE']['status']['visit'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
+                <span id="visited" class="topInfoDetail">
                     <?php echo $params['article_visit'];?>
                 </span>
-                标签:
+                <?php echo $GLOBALS['LANGUAGE']['status']['tags'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
                     <?php echo $params['article_seokeywords'];?>
                 </span>

@@ -81,17 +81,17 @@ class Page {
 	//上一页  
 	public function prev() {  
 		if ($this->page == 1) {  
-			return '<span class="disabled">上一页</span>';  
+			return '<span class="disabled">Prev</span>';  
 		}  
-		return ' <a href="'.$this->url.'?page='.($this->page-1).'">上一页</a> ';  
+		return ' <a href="'.$this->url.'?page='.($this->page-1).'">Prev</a> ';  
 	}  
 
 	//下一页  
 	public function next() {  
 		if ($this->page == $this->pagenum) {  
-			return '<span class="disabled">下一页</span>';  
+			return '<span class="disabled">Next</span>';  
 		}  
-		return ' <a href="'.$this->url.'?page='.($this->page+1).'">下一页</a> ';  
+		return ' <a href="'.$this->url.'?page='.($this->page+1).'">Next</a> ';  
 	}  
 
 	//尾页  
