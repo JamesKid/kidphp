@@ -1,12 +1,12 @@
 <?php
-class ListController {
+class ListController extends AppPublic{
     public $pagesize=10;  // 分页条数
     public $ajaxService;
     public function __construct(){
     }
     /* 一级目录查询 */
     public function category(){
-        $page = isset($_GET['page'])? $_GET['page']: 1;
+        $page = isset($_GET['page'])? $_GET['page'] : 1;
         $offset = ($page-1)*$this->pagesize;
         $ajaxService = new AjaxService();
         $params['tags'] = $ajaxService->getTags();
@@ -68,7 +68,6 @@ class ListController {
         $params['tags'] = $ajaxService->getTags();
         $total = $ajaxService->getNumber(); // 获取总条数
         $params['list']=$ajaxService->getNew($offset,$this->pagesize);
-        $params['category']='最新文章';
         $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
         Render::renderTpl('static/list.html',$params);
     }

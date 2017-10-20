@@ -21,7 +21,7 @@
 		color:#cccc99;
 	}
 	a:hover {
-		background-color:#000;
+		/* background-color:#000; */
     color:#ff9;
 	}
 	a:active {
@@ -157,14 +157,14 @@
 			border-bottom:1px dashed #555511;
 		}
         .innerHref {
-			width:97%;
-			float:left;
+            width:96%;
+            float:left;
             background-color:#002f00;
             border-radius:6px;
             margin-top:10px;
             padding-bottom:6px;
             padding-top:6px;
-            padding-left:3%;
+            padding-left:4%;
         }
 		.designer-name {
 			background: #000600 none repeat scroll 0 0;
@@ -280,7 +280,7 @@
 				float:left;
 				width:100%;
 				margin-bottom:5px;
-				color:#00cf00; 
+				color:#afa; 
 				text-align:center; 
 				border-bottom:1px solid #004f00; 
 				margin-top:10px;
@@ -291,6 +291,8 @@
                 margin-bottom:20px;
                 padding-bottom:10px;
                 padding-top:10px;
+                width:100%;
+                font-size:0.9em;
             }
             .topInfoDetail {
                 padding-right:10px;
@@ -347,6 +349,9 @@
         .category {
             float:left;
             padding-left:13px;
+        }
+        .eachCategory {
+            float:left;
         }
 		.greenToDark {
 		  background-image:-webkit-linear-gradient(-360deg, #000000, #007f00);

@@ -37,7 +37,7 @@ class PublicCore {
         $staticUrl = str_replace('/','_',$staticUrl);
         $staticUrl = str_replace('.html','',$staticUrl);
         $staticUrl = $staticUrl.'.html';
-        $staticUrl = $_SERVER['DOCUMENT_ROOT'].'/system/page_cache/'.$staticUrl;
+        $staticUrl = $_SERVER['DOCUMENT_ROOT'].'/system/page_cache/'.$GLOBALS['LANGUAGE']['nowLanguage'].'/'.$staticUrl;
         return $staticUrl;
     }
 }

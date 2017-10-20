@@ -2,7 +2,7 @@
 <div class="scott">
 	<?php 
 		if(isset($params['page'])){
-			echo '<span>共'.$params['page']->total.'条记录&nbsp;&nbsp;</span>';
+			echo '<span>Totals:&nbsp;&nbsp;'.$params['page']->total.'&nbsp;&nbsp;</span>';
 			echo $params['page']->showpage();
 		}
 	?>

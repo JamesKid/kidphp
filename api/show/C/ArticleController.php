@@ -1,6 +1,6 @@
 <?php
 use system\core\db;
-class ArticleController {
+class ArticleController extends AppPublic {
 
     /** 获取文章详细内容 
      * @params articleId   文章id
@@ -11,7 +11,7 @@ class ArticleController {
     public function __construct(){
     }
     public function detail(){
-        $articleId = $_GET['articleId'];
+        $articleId = $this->getStr($_GET['articleId']);
         $articleService = new ArticleService();
         $articleService->addReading($articleId);
         $params['tags'] = $articleService->getTags();

@@ -36,20 +36,15 @@
 					More use, more learn,more powerful.
 				</a>
 			</div>
-			<div class="language">
-        <div title="中文" class="languageType">
-            <a href="/index/setLanguage?language=zh">中文</a>
-        </div>
-        <div title="english" class="languageType">
-            <a href="/index/setLanguage?language=en">English</a>
-        </div>
-			</div>
+      <?php include('language.html')?>	
 			<div class="category">
-                <div style="text-align:center" class="languageColor">
-                    --| <a title="首页" href="/index.html">首页</a > |--
-                    --| <a title="其他" href="/other">其他</a > |--
-                    --| <a title="关于我们" href="/about.html">关于我们</a > |--
-                    --| <a title="下载" href="/wait/index">下载</a > |--
-                </div>
+          <div style="text-align:center" class="languageColor">
+              <?php foreach ($GLOBALS['LANGUAGE']['mainCategory'] as $v):?>
+                  <?php $value = $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+                  <div class="eachCategory">
+                    --| <a title="<?php echo $value;?>"  href="<?php echo $v['link'];?>"><?php echo $value;?></a > |--
+                  </div>
+              <?php endforeach;?>
+          </div>
 			</div>
 		</div>

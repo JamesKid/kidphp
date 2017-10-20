@@ -1,37 +1,38 @@
 <?php
 //static $config=array(
 $GLOBALS['CONFIG'] = array(
-  'KEY'=>'leichxpeHEHN',    // 加密字符串
-  'DOMAIN'=>'http://www.vimkid.com/',    // 项目域名
-	'DB'=>array(
-		'READ'=>array(
-			'DB_NAME'=>'vimkid',
-			'DB_USER'=>'root',
-			'DB_PASSWORD'=>'123456',
-			'DB_PORT'=>'3306'
-		),
-		'WRITE'=>array(
-			'DB_NAME'=>'vimkid',
-			'DB_USER'=>'root',
-			'DB_PASSWORD'=>'123456',
-			'DB_PORT'=>'3306'
-		),
-		'IP'=>array(
-			'DB_NAME'=>'ip',
-			'DB_USER'=>'root',
-			'DB_PASSWORD'=>'123456',
-			'DB_PORT'=>'3306'
-		),
-		'DB_SLAVE'=>false,  // 是否支持主从
-		'MASTER'=>array(
+    'KEY'=>'leichxpeHEHN',        // 加密字符串
+    'DOMAIN'=>'www.vimkid.com',        // 项目域名
+    'PAGECACHE'=>'open',        // 是否打开文件缓存 open 打开,close关闭
+    'DB'=>array(
+        'READ'=>array(
+            'DB_NAME'=>'vimkid',
+            'DB_USER'=>'root',
+            'DB_PASSWORD'=>'123456',
+            'DB_PORT'=>'3306'
+        ),
+        'WRITE'=>array(
+            'DB_NAME'=>'vimkid',
+            'DB_USER'=>'root',
+            'DB_PASSWORD'=>'123456',
+            'DB_PORT'=>'3306'
+        ),
+        'IP'=>array(
+            'DB_NAME'=>'ip',
+            'DB_USER'=>'root',
+            'DB_PASSWORD'=>'123456',
+            'DB_PORT'=>'3306'
+        ),
+        'DB_SLAVE'=>false,    // 是否支持主从
+        'MASTER'=>array(
             '0'=> array(
                 'IP'=>'192.168.1.32',
                 'PORT'=>'3306',
                 'USER'=>'root',
                 'PASSWORD'=>'232323',
             )
-		),  // 主库ip
-		'SLAVE'=>array(
+        ),    // 主库ip
+        'SLAVE'=>array(
             '0'=> array(
                 'IP'=>'192.168.1.33',
                 'PORT'=>'3306',
@@ -44,10 +45,10 @@ $GLOBALS['CONFIG'] = array(
                 'USER'=>'root',
                 'PASSWORD'=>'232323',
             )
-		),  // 从库ip
-		'DB_TABLE_HEAD'=>'vimkid', //数据库表前缀
-	),
-	'MEMCACHE'=>array(
+        ),    // 从库ip
+        'DB_TABLE_HEAD'=>'vimkid', //数据库表前缀
+    ),
+    'MEMCACHE'=>array(
         'MASTER'=>array(
             '0'=>array(
                 'IP'=>'127.0.0.1',
@@ -64,19 +65,19 @@ $GLOBALS['CONFIG'] = array(
                 'PASSWORD'=>'232323',
             ),
         ),
-	),
-	'ROUTE'=>array(
-		'DEFAULT_API'=>'show',
-	),
-	'IMAGESURL'=>array(
-		'SERVER1'=>'https://raw.githubusercontent.com/vimkidgit/article/master/images/',
-		'SERVER2'=>'http://www.vimkid.com/public/images/',
-		'SERVER2'=>'http://images.vimkid.com/images/',
-	),
+    ),
+    'ROUTE'=>array(
+        'DEFAULT_API'=>'show',
+    ),
+    'IMAGESURL'=>array(
+        'SERVER1'=>'https://raw.githubusercontent.com/vimkidgit/article/master/images/',
+        'SERVER2'=>'http://www.vimkid.com/public/images/',
+        'SERVER2'=>'http://images.vimkid.com/images/',
+    ),
 );
 /*
 $config['DEFAULT_API']='show'; //默认api
-$config['APPPATH']=trim(__DIR__,'/');   
+$config['APPPATH']=trim(__DIR__,'/');     
 //全局开关
 $config['IP_STATUS']=false; //IP获取地址状态
 $config['LANG_OPEN']=false; //多国语言开关
@@ -136,8 +137,8 @@ $config['TPL_CACHE_TYPE']='';//数据缓存类型，为空或Memcache或SaeMemca
 //多国语言
 $config['LANG_PACK_PATH']='./lang/';//语言包目录
 
-//插件配置         
-$config['PLUGIN_PATH']='./plugins/';//插件目录         
+//插件配置                 
+$config['PLUGIN_PATH']='./plugins/';//插件目录                 
 $config['PLUGIN_SUFFIX']='Plugin.class.php';//插件模块后缀
 $config['LANG_DEFAULT']='zh';
 

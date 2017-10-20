@@ -1,12 +1,12 @@
 		<div class="foot">
 			<div style="text-align:center" class="languageColor">
-                ----| <a title="首页" href="/index.html">首页</a > |--
-                --| <a title="其他" href="/other">其他</a > |--
-                --| <a title="关于我们" href="/about.html">关于我们</a > |--
-                --| <a title="下载" href="/wait/index">下载</a > |----
+          <?php foreach ($GLOBALS['LANGUAGE']['mainCategory'] as $v):?>
+              <?php $value = $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+              --| <a title="<?php echo $value;?>"  href="<?php echo $v['link'];?>"><?php echo $value;?></a > |--
+          <?php endforeach;?>
 			</div>
 			<div class="copyRight">
-		    copyright 2016@ vimkid 版权所有 email:1779156598@qq.com  新浪微博: vimkid qq:1779156598
+		    Copyright 2016@vimkid Email:1779156598@qq.com  新浪微博: vimkid qq:1779156598
 			</div>
 		</div>
 	</body>

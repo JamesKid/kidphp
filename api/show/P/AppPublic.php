@@ -11,7 +11,8 @@ class AppPublic{
         if(!isset($_SERVER['HTTP_REFERER'])){
             return false;
         }
-        if($_SERVER['HTTP_REFERER'] != $GLOBALS['CONFIG']['DOMAIN']){
+        $refererArray = explode('/',$_SERVER['HTTP_REFERER']);
+        if($refererArray[2] != $GLOBALS['CONFIG']['DOMAIN']){
             return false;
         }
         return true;
