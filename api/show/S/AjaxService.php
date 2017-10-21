@@ -56,6 +56,15 @@ class AjaxService extends PublicCore {
         }
     }
 
+    /* 获取访问量 */
+    public function getVisited($articleId){
+        $mysql = new system\core\db\Mysql();
+        $sql = "select article_visit from vimkid_article where article_id=".$articleId;
+        $result = $mysql->execute($sql);
+        $result = $result->fetchAll();
+        return $result[0]['article_visit'];
+    }
+
     /* 最新vim文章 */
     public function getNewList(){
         $mysql = $this->mysqlRead;
@@ -93,6 +102,7 @@ class AjaxService extends PublicCore {
             order by article_createtime desc 
             limit 5";
         $result = $mysql->execute($sql);
+        $result = $result->fetchAll();
         return $result;
     }
 

@@ -1,52 +1,55 @@
-<?php include('headdetail.html')?>	
+<?php include('headdetail.html')?>    
 <div id="content">
-	<?php 
+    <?php 
     if($params['article_categoryname'] == 'vim' || $params['article_categoryname'] == 'news'){
-        include('left.html');
+      include('left.html');
     }else{
-        include('other_category.html');
+      include('other_category.html');
     }
-    ?>	
-	<div id="contentRight">
-		<div id="rightin">
-			<div class="indexTitle">
-				<div class="titleName">
-					<span class="color1">&gt;</span>
-					<span class="color2">&gt;</span>
-					<span class="color3">&gt;</span>
-					<span class="color4">&gt;</span>
-                    <span class="listTitle"><?php echo $params['article_title'];?></span>  
-					<span class="color4">&lt;</span>
-					<span class="color3">&lt;</span>
-					<span class="color2">&lt;</span>
-					<span class="color1">&lt;</span>
-				</div>
-			</div> 
+    ?>    
+    <div id="contentRight">
+        <div id="rightin">
+            <div class="indexTitle">
+                <div class="titleName">
+                    <span class="color1">&gt;</span>
+                    <span class="color2">&gt;</span>
+                    <span class="color3">&gt;</span>
+                    <span class="color4">&gt;</span>
+                        <span class="listTitle"><?php echo $params['article_title'];?></span>  
+                    <span class="color4">&lt;</span>
+                    <span class="color3">&lt;</span>
+                    <span class="color2">&lt;</span>
+                    <span class="color1">&lt;</span>
+                </div>
+            </div> 
+
             <div class="topInfo">
                 <?php echo $GLOBALS['LANGUAGE']['status']['createTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                    <?php echo $params['article_createtimeymd'];?>
+                  <?php echo $params['article_createtimeymd'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['updateTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                    <?php echo $params['article_updatetimeymd'];?>
+                  <?php echo $params['article_updatetimeymd'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['visit'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span id="visited" class="topInfoDetail">
-                    <?php echo $params['article_visit'];?>
+                  <?php echo $params['article_visit'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['tags'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                    <?php echo $params['article_seokeywords'];?>
+                  <?php echo $params['article_seokeywords'];?>
                 </span>
             </div>
 
-			<div class="detailContent">
-				<?php echo $params['html'];?>
-			</div>
-            <?php include('share.html')?>	
-		</div>
-	</div>
+            <div class="detailContent">
+                <?php echo $params['html'];?>
+            </div>
+            <!-- 隐藏域 articleId -->
+            <input id="articleId" type="hidden" value="<?php echo $params['article_id'];?>">
+            <?php include('share.html')?>    
+        </div>
+    </div>
 </div>
-<?php include('footjs.html')?>	
-<?php include('foot.html')?>	
+<?php include('footjs.html')?>    
+<?php include('foot.html')?>    

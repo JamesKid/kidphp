@@ -1,14 +1,15 @@
 $(document).ready(function(){
     getVisit(); // 获取访问量
     function getVisit(){
+        articleId = $("#articleId").val();
         $.ajax({
             type: "GET",
             contentType: "text/html",
-            url:"/ajax/getVisit",
+            url:"/ajaxa/getVisited",
+            data:"articleId="+articleId,
             dataType:"json",
             success:function(result){
-                console.log(result);
-            //$("#div1").html(result);
+                $("#visited").html(result);
             }
         });
     }
