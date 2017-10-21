@@ -34,7 +34,7 @@ class AjaxController {
 
     /* 获取访问量 */
     public function getVisit(){
-        echo 'ccb';
+        echo json_encode('abc',true);;
         /*
         if(isset($_GET['articleId'])){
             $articleId = $this->getStr($_GET['articleId']);

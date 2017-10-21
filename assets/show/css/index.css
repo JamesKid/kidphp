@@ -277,16 +277,19 @@
 				background-color:#000600;
 			}
 			.indexTitle { 
-				float:left;
-				width:100%;
-				margin-bottom:5px;
-				color:#afa; 
-				text-align:center; 
-				border-bottom:1px solid #004f00; 
-				margin-top:10px;
+          float:left;
+          width:100%;
+          color:#afa; 
+          text-align:center; 
+          border-bottom:1px solid #004f00; 
+          margin-top:10px;
 			}
+      .titleName {
+          padding-bottom:10px; 
+        
+      }
             .topInfo {
-                border-bottom: solid 1px #777;
+                border-bottom: solid 1px #004f00;
                 float:left;
                 margin-bottom:20px;
                 padding-bottom:10px;
