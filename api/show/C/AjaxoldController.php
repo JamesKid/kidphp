@@ -1,10 +1,6 @@
 <?php
-//class Index extends AppPublic{
-use system\core\db;
+//use system\core\db;
 class AjaxController {
-    public function __construct(){
-
-    }
 
     /** 获取随机内容 
      * @params categoryid
@@ -32,18 +28,10 @@ class AjaxController {
     public function getRecommendList(){
     }
 
-    /* 获取访问量 */
-    public function getVisit(){
-        echo json_encode('abc',true);;
-        /*
-        if(isset($_GET['articleId'])){
-            $articleId = $this->getStr($_GET['articleId']);
-            print_r($articleId);die;
-        }
-        $mysql = $this->mysqlRead;
-        $sql = "select article_username,article_id,article_title,article_createtimeymd from vimkid_article where article_id IN (".$randIn.")";
-         */
+    public function test(){
+        echo 'test'; // ab -kc 100 -n 1000  响应 760/second
     }
+
 
     /* 保存访客 */
     public function vimkid(){
