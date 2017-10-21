@@ -19,8 +19,8 @@ class Env {
     /* 配置不同环境的安全配置 */
     public function configEnv($env){
         if($env == "test"){
-            echo '<div style="background-color:#f00;color:#fff">当前为测试环境， 
-                不具备安全性,如上线请将根目录下env.txt文件第一行test改为online</div>'; // 提示当前在测试环境
+           // echo '<div style="background-color:#f00;color:#fff">当前为测试环境， 
+                //不具备安全性,如上线请将根目录下env.txt文件第一行test改为online</div>'; // 提示当前在测试环境
             ini_set('display_errors',1);           // 显示错误信息
             ini_set('display_startup_errors',1);   // 打开调试
             ini_set("allow_url_fopen","Off");     //关闭fopen
