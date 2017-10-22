@@ -13,8 +13,19 @@ class AjaxService extends PublicCore {
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select article_username,article_id,article_title,article_createtimeymd,article_seodescription from vimkid_article where article_categoryid = 1 and article_id IN (".$randIn.")";
+            $sql = "select 
+                    article_username,
+                    article_id,
+                    article_createtimeymd
+                from vimkid_article 
+                where article_categoryid = 1 and article_id IN (".$randIn.")";
+                    // article_seodescription 
+                    // article_title,
             $result = $mysql->execute($sql);
+            $result = $result->fetchAll();
+            $articleIds = BaseLib::fetchArticleId($result); // 获取过滤后的ids,逗号分隔
+
+
             return $result;
         }else{
             return $params;
