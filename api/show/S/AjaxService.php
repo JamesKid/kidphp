@@ -24,9 +24,17 @@ class AjaxService extends PublicCore {
             $result = $mysql->execute($sql);
             $result = $result->fetchAll();
             $articleIds = BaseLib::fetchArticleId($result); // 获取过滤后的ids,逗号分隔
+            $sqlInfo = "select 
+                    article_id,
+                    article_seodescription,
+                    article_title
+                from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
+                ." where article_id IN (".$articleIds.")";
+            $resultInfo = $mysql->execute($sqlInfo);
+            $resultInfo = $resultInfo->fetchAll();
+            print_r($resultInfo);die;
+            return $resultInfo;
 
-
-            return $result;
         }else{
             return $params;
         }
