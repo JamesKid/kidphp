@@ -28,8 +28,15 @@ class ArticleService extends PublicCore{
         $mysql = $this->mysqlRead;
         $sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
         $result = $mysql->select($sql);
-        print_r($result);die;
-        return $result;
+        $sqlContent = "select article_content from vimkid_article_content_".$GLOBALS['LANGUAGE']['nowLanguage']
+            ." where article_id =".$articleId;
+        $resultContent = $mysql->select($sqlContent);
+        $sqlInfo = "select * from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
+            ." where article_id =".$articleId;
+        $resultInfo = $mysql->select($sqlInfo);
+
+        $resultMerge = array_merge($result[0],$resultInfo[0],$resultContent[0]);
+        return $resultMerge;
     }
 
     /* 获取标签 */
@@ -41,15 +48,17 @@ class ArticleService extends PublicCore{
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            //$sql = "select article_id from vimkid_article_info_zh where article_status = 1 and article_id IN (".$randIn.")";
-            $sql = "select vimkid_article.article_id, article_seodescription from vimkid_article, vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." where vimkid_article.article_status = 1 and vimkid_article.article_id IN (".$randIn.")";
-            $result = $mysql->execute($sql);
+            $sql = "select article_id from vimkid_article where article_status = 1 and article_id IN (".$randIn.")";
+            $idResult = $mysql->execute($sql);
+            $idResult = $idResult->fetchAll();
+            $articleIds = BaseLib::fetchArticleId($idResult);
+            $sql2 = "select article_id,article_seokeywords from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." where article_id IN (".$articleIds.")"; 
+            $result = $mysql->execute($sql2);
             $result = $result->fetchAll();
-            print_r($result);die;
             return $result;
         }else{
             return $params;
         }
     }
+
 }
-?>

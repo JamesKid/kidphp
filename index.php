@@ -108,6 +108,13 @@ class Kidphp
             return require_once($serviceFile);
         }
 
+        /* 自动加载lib */
+        $serviceFile = __DIR__.'/api/show/L/'.$class.'.php';
+        if(is_file($serviceFile)){
+            return require_once($serviceFile);
+        }
+
+
         /* 自动加载service */
             /* debug_backtrace()  用这个php自带函数获取api*/
         /*

@@ -2,7 +2,7 @@
 class PageCache extends PublicCore{
     public function __construct(){
         
-        if($GLOBALS['CONFIG']['PAGECACHE'] == 'close'){ // 如果示打开收不读取缓存
+        if($GLOBALS['CONFIG']['PAGECACHE_STATUS'] == 'close'){ // 如果示打开收不读取缓存
            return;
         }
         if($_SERVER['REQUEST_URI'] != '/'){
