@@ -28,12 +28,12 @@ class AjaxService extends PublicCore {
                     article_id,
                     article_seodescription,
                     article_title
-                from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
-                ." where article_id IN (".$articleIds.")";
+                from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']."
+                where article_id IN (".$articleIds.")";
             $resultInfo = $mysql->execute($sqlInfo);
             $resultInfo = $resultInfo->fetchAll();
-            print_r($resultInfo);die;
-            return $resultInfo;
+            $resultMerge = BaseLib::mergeInfo($result,$resultInfo);
+            return $resultMerge;
 
         }else{
             return $params;
@@ -49,7 +49,11 @@ class AjaxService extends PublicCore {
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select article_id,article_seokeywords from vimkid_article where article_status = 1 and article_id IN (".$randIn.")";
+            $sql = "select 
+                article_id,
+                article_seokeywords 
+                from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']."
+                where article_id IN (".$randIn.")";
             $result = $mysql->execute($sql);
             $result = $result->fetchAll();
             return $result;
@@ -90,9 +94,7 @@ class AjaxService extends PublicCore {
         $sql = "select 
                 article_username,
                 article_id,
-                article_title,
-                article_createtimeymd,
-                article_seodescription 
+                article_createtimeymd
             from vimkid_article 
             where article_categoryid=1 
                 and article_status=1 
@@ -100,7 +102,19 @@ class AjaxService extends PublicCore {
             order by article_createtime desc 
             limit 5";
         $result = $mysql->execute($sql);
-        return $result;
+        $result = $result->fetchAll();
+        $articleIds = BaseLib::fetchArticleId($result); // 获取过滤后的ids,逗号分隔
+        $sqlInfo = "select 
+                article_id,
+                article_seodescription,
+                article_title
+            from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
+            ." where article_id IN (".$articleIds.")";
+        $resultInfo = $mysql->execute($sqlInfo);
+        $resultInfo = $resultInfo->fetchAll();
+        $resultMerge = BaseLib::mergeInfo($result,$resultInfo);
+
+        return $resultMerge;
     }
 
     /* 最新其他文章 */
@@ -131,15 +145,36 @@ class AjaxService extends PublicCore {
         $sql = "select 
                 article_username,
                 article_id,
-                article_title,
-                article_createtimeymd,
-                article_seodescription,
-                article_content
+                article_createtimeymd
             from vimkid_article 
             where article_categoryname='news'
             limit 0,1";
+                //article_title,
+                //article_content
+                //article_seodescription,
+
         $result = $mysql->execute($sql);
-        return $result;
+        $result = $result->fetchAll();
+
+        $sqlInfo = "select 
+                article_id,
+                article_title,
+                article_seodescription
+            from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
+            ." where article_id=".$result[0]['article_id'];
+        $resultInfo = $mysql->execute($sqlInfo);
+        $resultInfo = $resultInfo->fetchAll();
+
+        $sqlContent = "select 
+                article_id,
+                article_content
+            from vimkid_article_content_".$GLOBALS['LANGUAGE']['nowLanguage']
+            ." where article_id=".$result[0]['article_id'];
+        $resultContent = $mysql->execute($sqlContent);
+        $resultContent = $resultContent->fetchAll();
+
+        $resultMerge = array_merge($result[0],$resultInfo[0],$resultContent[0]);
+        return $resultMerge;
     }
 
     /* 获取最新内容*/

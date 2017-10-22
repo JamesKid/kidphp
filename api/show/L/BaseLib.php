@@ -10,5 +10,15 @@ class BaseLib {
         $result = substr($result,0,strlen($result)-1);
         return $result;
     }
+
+    /* 合并两个数组的info */
+    public static function mergeInfo($result1,$result2){
+        $result = $result1;
+        foreach( $result1 as $k => $v ){
+            $result[$k] = array_merge($v,$result2[$k]);
+        }
+        return $result;
+        
+    }
 }
 
