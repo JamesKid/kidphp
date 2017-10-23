@@ -7,6 +7,7 @@
 		background-image:linear-gradient(-330deg,#000000,#001a00);
 		margin-left:15%;
 		margin-right:15%;
+        font-family:arial,helvetica,sans-serif;
 	} /* 去掉body 的默认白边 */
 	p {
 		/* text-indent:2em;段落开头缩进两字符*/
@@ -30,8 +31,10 @@
 	.detailContent {
         float:left;
         width:100%;
-        word-break:break-all;
+        /*word-break:break-all;*/
         word-wrap:break-word;
+        word-spacing:4px;
+        letter-spacing:0.5px;
 	}
 	#qTip {
 		BORDER: #abab98 1px solid;
@@ -240,7 +243,7 @@
 		#content {
 			float:left; 
 			clear:both; 
-			color:#bfbfbf;
+			color:#cfcfcf;
 			border:1px solid #002f00;
 			margin-top:15px;
 			margin-bottom:15px;
@@ -277,13 +280,18 @@
 				background-color:#000600;
 			}
 			.indexTitle { 
-          float:left;
-          width:100%;
-          color:#afa; 
-          text-align:center; 
-          border-bottom:1px solid #004f00; 
-          margin-top:10px;
+                  float:left;
+                  width:100%;
+                  color:#afa; 
+                  text-align:center; 
+                  border-bottom:1px solid #004f00; 
+                  margin-top:10px;
 			}
+            #newList {
+                word-wrap:break-word;
+                word-spacing:4px;
+                letter-spacing:0.5px;
+            }
       .titleName {
           padding-bottom:10px; 
         
