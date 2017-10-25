@@ -9,6 +9,20 @@ class JiekouController {
     }
 
     /** 
+     * 获取英语每日一句
+     */
+    public function getDailySentence(){
+        header('Content-Type:text/html; charset=utf-8');
+        $nowyear=date("Y");
+        $nowmouth = date('m');
+        $nowday = date('d');
+        $date = mt_rand("2012",$nowyear)."-".mt_rand("1",$nowmouth)."-".mt_rand("1",$nowday);
+        $content=file_get_contents('http://open.iciba.com/dsapi/?date='.$date);
+        $arr=json_decode($content,true);
+        print_r($arr); 
+    }
+
+    /** 
      * 获客户端口外网IP地址
      */
     public function getIpFunction(){
