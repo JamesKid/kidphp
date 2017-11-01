@@ -12,9 +12,9 @@ class ListController extends AppPublic{
         $params['tags'] = $ajaxService->getTags();
         $category = isset($_GET['category'])? $_GET['category']: '';
         if($category!=''){
-            $ajaxService = new CategoryService();
-            $total = $ajaxService->getSubListNumber($category); // 获取总条数
-            $params['list']=$ajaxService->getCategoryList($category,$offset,$this->pagesize);
+            $categoryService = new CategoryService();
+            $total = $categoryService->getSubListNumber($category); // 获取总条数
+            $params['list']=$categoryService->getCategoryList($category,$offset,$this->pagesize);
             $params['category']=$category;
             $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
             Render::renderTpl('static/list.html',$params);
@@ -31,9 +31,9 @@ class ListController extends AppPublic{
         $params['tags'] = $ajaxService->getTags();
         $category = isset($_GET['category'])? $_GET['category']: '';
         if($category!=''){
-            $ajaxService = new CategoryService();
-            $total = $ajaxService->getSubListNumber($category); // 获取总条数
-            $params['newList']=$ajaxService->getCategoryList($category,$offset,$this->pagesize);
+            $categoryService = new CategoryService();
+            $total = $categoryService->getSubListNumber($category); // 获取总条数
+            $params['newList']=$categoryService->getCategoryList($category,$offset,$this->pagesize);
             $params['category']=$category;
             $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
             Render::renderTpl('static/other_index.html',$params);
@@ -50,9 +50,9 @@ class ListController extends AppPublic{
         $params['tags'] = $ajaxService->getTags();
         $category = isset($_GET['category'])? $_GET['category']: '';
         if($category!=''){
-            $ajaxService = new CategoryService();
-            $total = $ajaxService->getSubListNumber($category); // 获取总条数
-            $params['list']=$ajaxService->getSubCategoryList($category,$offset,$this->pagesize);
+            $categoryService = new CategoryService();
+            $total = $categoryService->getSubListNumber($category); // 获取总条数
+            $params['list']=$categoryService->getSubCategoryList($category,$offset,$this->pagesize);
             $params['category']=$category;
             $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
             Render::renderTpl('static/list.html',$params);

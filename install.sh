@@ -4,6 +4,7 @@ read -p "
 
 1. Make page_cache moutiple country directory
 2. other
+3. clean page_cache
 
 ============================  ^_^  Make your select:
 " var
@@ -20,6 +21,11 @@ case $var in
           touch /var/log/vimkid/black.txt
           chmod -R 777 /var/log/vimkid/black.txt
           echo "make log directory ok" ;;
+
+      # 清除page_cache
+      3)  rm -rf system/page_cache/en/*
+          rm -rf system/page_cache/zh/*
+          echo "clean ok" ;;
 
       *) echo "Wrong" ;;
 esac
