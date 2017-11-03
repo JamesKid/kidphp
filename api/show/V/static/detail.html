@@ -47,7 +47,7 @@
             </div>
             <!-- 隐藏域 articleId -->
             <input id="articleId" type="hidden" value="<?php echo $params['article_id'];?>">
-            <?php include('share.html')?>    
+            <?php if($GLOBALS['LANGUAGE']['nowLanguage'] == 'zh'){include('share.html');}?>    
         </div>
     </div>
 </div>
