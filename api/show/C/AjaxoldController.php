@@ -15,7 +15,7 @@ class AjaxController {
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select article_username,article_id,article_title,article_createtimeymd from vimkid_article where article_id IN (".$randIn.")";
+            $sql = "select username,article_id,title,createtimeymd from vimkid_article where article_id IN (".$randIn.")";
             $result = $mysql->select($sql);
             $result = json_encode($result);
             echo $result;

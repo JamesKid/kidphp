@@ -1,7 +1,7 @@
 <?php include('headdetail.html')?>    
 <div id="content">
     <?php 
-    if($params['article_categoryname'] == 'vim' || $params['article_categoryname'] == 'news'){
+    if($params['categoryname'] == 'vim' || $params['categoryname'] == 'news'){
       include('left.html');
     }else{
       include('other_category.html');
@@ -15,7 +15,7 @@
                     <span class="color2">&gt;</span>
                     <span class="color3">&gt;</span>
                     <span class="color4">&gt;</span>
-                        <span class="listTitle"><?php echo $params['article_title'];?></span>  
+                        <span class="listTitle"><?php echo $params['title'];?></span>  
                     <span class="color4">&lt;</span>
                     <span class="color3">&lt;</span>
                     <span class="color2">&lt;</span>
@@ -26,19 +26,19 @@
             <div class="topInfo">
                 <?php echo $GLOBALS['LANGUAGE']['status']['createTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                  <?php echo $params['article_createtimeymd'];?>
+                  <?php echo $params['createtimeymd'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['updateTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                  <?php echo $params['article_updatetimeymd'];?>
+                  <?php echo $params['updatetimeymd'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['visit'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span id="visited" class="topInfoDetail">
-                  <?php echo $params['article_visit'];?>
+                  <?php echo $params['visit'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['tags'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                  <?php echo $params['article_seokeywords'];?>
+                  <?php echo $params['seokeywords'];?>
                 </span>
             </div>
 

@@ -6,8 +6,8 @@ class CategoryService {
         $mysql = new system\core\db\Mysql();
         $sql = "select count(1)  as number
             from vimkid_article AS a, vimkid_article_info_en AS b
-            where a.article_id = b.article_id and a.article_status=1 
-                and b.article_subcategoryname='".$category."'";
+            where a.article_id = b.article_id and a.status=1 
+                and b.subcategoryname='".$category."'";
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
         return $result[0]['number'];
@@ -18,14 +18,14 @@ class CategoryService {
         $mysql = new system\core\db\Mysql();
         $sql = "select 
                 a.article_id,
-                a.article_username,
-                a.article_createtimeymd,
-                b.article_seodescription,
-                b.article_title
+                a.username,
+                a.createtimeymd,
+                b.seodescription,
+                b.title
             from vimkid_article AS a, vimkid_article_info_en AS b 
-            where a.article_id = b.article_id and a.article_status=1 
-                and b.article_subcategoryname='".$category."' "."
-            order by a.article_createtime desc
+            where a.article_id = b.article_id and a.status=1 
+                and b.subcategoryname='".$category."' "."
+            order by a.createtime desc
             limit ".$offset.",".$size;
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
@@ -37,14 +37,14 @@ class CategoryService {
         $mysql = new system\core\db\Mysql();
         $sql = "select 
                 article_id,
-                article_title,
-                article_seodescription,
-                article_username,
-                article_createtimeymd
+                title,
+                seodescription,
+                username,
+                createtimeymd
             from vimkid_article 
-            where article_status=1 
-                and article_categoryname='".$category."' "."
-            order by article_createtime desc
+            where status=1 
+                and categoryname='".$category."' "."
+            order by createtime desc
             limit ".$offset.",".$size;
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();

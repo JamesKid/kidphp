@@ -10,26 +10,49 @@ class ArticleService extends PublicCore{
     /* 添加阅读量 */
     public function addReading($articleId){
         $mysql = $this->getMysqlWrite();
-        $sql = "update vimkid_article set article_visit = article_visit+1 where article_id = $articleId";
+        $sql = "
+            update 
+                vimkid_article 
+            set 
+                visit = visit+1 where article_id = $articleId";
         $result = $mysql->execute($sql);
     }
 
     /* 获取访问量 */
     public function getVisited($articleId){
         $mysql = new system\core\db\Mysql();
-        $sql = "select article_visit from vimkid_article where article_id=".$articleId;
+        $sql = "
+            select 
+                visit 
+            from 
+                vimkid_article 
+            where 
+                article_id=".$articleId;
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
-        return $result[0]['article_visit'];
+        return $result[0]['visit'];
     }
 
     /* 获取文章 */
     public function getArticleById($articleId){
+        echo 'cc'die;
         $mysql = $this->mysqlRead;
-        $sql = "select * from vimkid_article where article_status = 1 and article_id =".$articleId;
+        $sql = "
+            select 
+                * 
+            from 
+                vimkid_article 
+            where 
+                status = 1 and 
+                article_id =".$articleId;
         $result = $mysql->select($sql);
-        $sqlContent = "select article_content from vimkid_article_content_".$GLOBALS['LANGUAGE']['nowLanguage']
-            ." where article_id =".$articleId;
+        $sqlContent = "
+            select 
+                content 
+            from 
+                vimkid_content_".$GLOBALS['LANGUAGE']['nowLanguage']." 
+            where 
+                article_id =".$articleId;
         $resultContent = $mysql->select($sqlContent);
         $sqlInfo = "select * from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
             ." where article_id =".$articleId;
@@ -48,11 +71,11 @@ class ArticleService extends PublicCore{
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select article_id from vimkid_article where article_status = 1 and article_id IN (".$randIn.")";
+            $sql = "select article_id from vimkid_article where status = 1 and article_id IN (".$randIn.")";
             $idResult = $mysql->execute($sql);
             $idResult = $idResult->fetchAll();
             $articleIds = BaseLib::fetchArticleId($idResult);
-            $sql2 = "select article_id,article_seokeywords from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." where article_id IN (".$articleIds.")"; 
+            $sql2 = "select article_id,seokeywords from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." where article_id IN (".$articleIds.")"; 
             $result = $mysql->execute($sql2);
             $result = $result->fetchAll();
             return $result;

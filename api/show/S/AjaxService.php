@@ -13,28 +13,25 @@ class AjaxService extends PublicCore {
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select 
-                    article_username,
-                    article_id,
-                    article_createtimeymd
-                from vimkid_article 
-                where article_categoryid = 1 and article_id IN (".$randIn.")";
-                    // article_seodescription 
-                    // article_title,
+            $sql = "
+                select 
+                    a.article_id,
+                    a.username,
+                    a.createtimeymd,
+                    b.seodescription,
+                    b.title
+                from 
+                    vimkid_article AS a, 
+                    vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage'] ." AS b  
+                where 
+                    a.article_id = b.article_id 
+                    and a.categoryid = 1 
+                    and a.status = 1 
+                    and a.article_id IN (".$randIn.")";
             $result = $mysql->execute($sql);
             $result = $result->fetchAll();
             $articleIds = BaseLib::fetchArticleId($result); // 获取过滤后的ids,逗号分隔
-            $sqlInfo = "select 
-                    article_id,
-                    article_seodescription,
-                    article_title
-                from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']."
-                where article_id IN (".$articleIds.")";
-            $resultInfo = $mysql->execute($sqlInfo);
-            $resultInfo = $resultInfo->fetchAll();
-            $resultMerge = BaseLib::mergeInfo($result,$resultInfo);
-            return $resultMerge;
-
+            return $result;
         }else{
             return $params;
         }
@@ -49,11 +46,14 @@ class AjaxService extends PublicCore {
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select 
-                article_id,
-                article_seokeywords 
-                from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']."
-                where article_id IN (".$randIn.")";
+            $sql = "
+                select 
+                    article_id,
+                    seokeywords 
+                from 
+                    vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']."
+                where 
+                    article_id IN (".$randIn.")";
             $result = $mysql->execute($sql);
             $result = $result->fetchAll();
             return $result;
@@ -71,7 +71,18 @@ class AjaxService extends PublicCore {
         if(!$params['error']){
             $randInObject = new system\plugin\kidphp\kidphp_convert\Convert();
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
-            $sql = "select article_username,article_id,article_title,article_createtimeymd,article_seodescription from vimkid_article where article_categoryid=1 and article_id IN (".$randIn.")";
+            $sql = "
+                select 
+                    username,
+                    article_id,
+                    title,
+                    createtimeymd,
+                    seodescription,
+                    status = 1 
+                from 
+                    vimkid_article 
+                where 
+                    categoryid=1 and article_id IN (".$randIn.")";
             $result = $mysql->execute($sql);
             return $result;
         }else{
@@ -82,57 +93,63 @@ class AjaxService extends PublicCore {
     /* 获取访问量 */
     public function getVisited($articleId){
         $mysql = new system\core\db\Mysql();
-        $sql = "select article_visit from vimkid_article where article_id=".$articleId;
+        $sql = "
+            select 
+                visit 
+            from 
+                vimkid_article 
+            where 
+                article_id=".$articleId;
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
-        return $result[0]['article_visit'];
+        return $result[0]['visit'];
     }
 
     /* 最新vim文章 */
     public function getNewList(){
         $mysql = $this->mysqlRead;
-        $sql = "select 
-                article_username,
-                article_id,
-                article_createtimeymd
-            from vimkid_article 
-            where article_categoryid=1 
-                and article_status=1 
-                and article_id 
-            order by article_createtime desc 
+        $sql = "
+            select 
+                a.article_id,
+                a.username,
+                a.createtimeymd,
+                b.seodescription,
+                b.title
+            from 
+                vimkid_article AS a, 
+                vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b 
+            where 
+                a.article_id = b.article_id 
+                and categoryid=1 
+                and a.status=1 
+                and a.article_id 
+            order by 
+                a.createtime desc 
             limit 5";
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
-        $articleIds = BaseLib::fetchArticleId($result); // 获取过滤后的ids,逗号分隔
-        $sqlInfo = "select 
-                article_id,
-                article_seodescription,
-                article_title
-            from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
-            ." where article_id IN (".$articleIds.")";
-        $resultInfo = $mysql->execute($sqlInfo);
-        $resultInfo = $resultInfo->fetchAll();
-        $resultMerge = BaseLib::mergeInfo($result,$resultInfo);
-
-        return $resultMerge;
+        return $result;
     }
 
     /* 最新其他文章 */
     public function getOtherNewList(){
         $mysql = new system\core\db\Mysql();
-        $sql = "select 
-                article_username,
+        $sql = "
+            select 
+                username,
                 article_id,
-                article_title,
-                article_createtimeymd,
-                article_seodescription 
-            from vimkid_article 
-            where article_categoryid=1 
-                and article_status=1 
+                title,
+                createtimeymd,
+                seodescription 
+            from 
+                vimkid_article 
+            where categoryid=1 
+                and status=1 
                 and article_id 
-                and article_categoryname != 'vim'
-                and article_categoryname != 'news'
-            order by article_createtime desc 
+                and categoryname != 'vim'
+                and categoryname != 'news'
+            order by 
+                createtime desc 
             limit 5";
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
@@ -142,54 +159,48 @@ class AjaxService extends PublicCore {
     /* 站点新闻 */
     public function getNews(){
         $mysql = $this->mysqlRead;
-        $sql = "select 
-                article_username,
-                article_id,
-                article_createtimeymd
-            from vimkid_article 
-            where article_categoryname='news'
+        $sql = "
+            select 
+                a.article_id,
+                a.username,
+                a.createtimeymd,
+                b.title,
+                b.seodescription,
+                c.content
+            from 
+                vimkid_article AS a,
+                vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b,
+                vimkid_article_content_".$GLOBALS['LANGUAGE']['nowLanguage']." AS c 
+            where 
+                a.article_id = b.article_id and 
+                a.article_id = c.article_id and 
+                categoryname='news' 
             limit 0,1";
-                //article_title,
-                //article_content
-                //article_seodescription,
-
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
-
-        $sqlInfo = "select 
-                article_id,
-                article_title,
-                article_seodescription
-            from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
-            ." where article_id=".$result[0]['article_id'];
-        $resultInfo = $mysql->execute($sqlInfo);
-        $resultInfo = $resultInfo->fetchAll();
-
-        $sqlContent = "select 
-                article_id,
-                article_content
-            from vimkid_article_content_".$GLOBALS['LANGUAGE']['nowLanguage']
-            ." where article_id=".$result[0]['article_id'];
-        $resultContent = $mysql->execute($sqlContent);
-        $resultContent = $resultContent->fetchAll();
-
-        $resultMerge = array_merge($result[0],$resultInfo[0],$resultContent[0]);
-        return $resultMerge;
+        return $result[0];
     }
 
     /* 获取最新内容*/
     public function getNew($offset,$size){
         $mysql = $this->mysqlRead;
-        $sql = "select 
-                article_id,
-                article_title,
-                article_seodescription,
-                article_username,
-                article_createtimeymd
-            from vimkid_article 
-            where article_status=1 
-            order by article_createtime desc
-            limit ".$offset.",".$size;
+        $sql = "
+            select 
+                a.article_id,
+                a.username,
+                a.createtimeymd,
+                b.title,
+                b.seodescription
+            from 
+                vimkid_article As a, 
+                vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b
+            where 
+                a.article_id = b.article_id and
+                a.status=1 
+            order by 
+                a.createtime desc
+            limit 
+                ".$offset.",".$size;
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
         return $result;
@@ -198,10 +209,13 @@ class AjaxService extends PublicCore {
     /* 获取上线文章条数 */
     public function getNumber(){
         $mysql = new system\core\db\Mysql();
-        $sql = "select 
+        $sql = "
+            select 
                 count(1)  as number
-            from vimkid_article 
-            where article_status=1";
+            from 
+                vimkid_article 
+            where 
+                status=1";
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
         return $result[0]['number'];

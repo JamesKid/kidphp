@@ -20,12 +20,12 @@
 	<ul>
 		<?php foreach ($params['randList'] as $v):?>
 			<li>
-				<a title="<?php echo $v['article_seodescription'];?>" href="<?php echo '/'.$v['article_id'];?>">
+				<a title="<?php echo $v['seodescription'];?>" href="<?php echo '/'.$v['article_id'];?>">
 					<div class="listSpan">
-						<span class="design-name" ><?php echo $v['article_title'];?></span>
+						<span class="design-name" ><?php echo $v['title'];?></span>
 						<span class="designer-name">
-							<?php echo $v['article_username'];?>
-							<?php echo $v['article_createtimeymd'];?>
+							<?php echo $v['username'];?>
+							<?php echo $v['createtimeymd'];?>
 						</span>
 					</div>
 					<div class="tipsLine">
