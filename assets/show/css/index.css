@@ -31,10 +31,9 @@
 	.detailContent {
         float:left;
         width:100%;
-        /*word-break:break-all;*/
         word-wrap:break-word;
-        word-spacing:4px;
-        letter-spacing:0.5px;
+        /*word-spacing:2px;*/
+        letter-spacing:1px;
 	}
 	#qTip {
 		BORDER: #abab98 1px solid;
