@@ -20,8 +20,8 @@ class ArticleController extends AppPublic {
         if(isset($result)){
             $params=$result;
             $Parsedown = new system\plugin\outer\parsedown\Parsedown();
-            $params['html'] =  $Parsedown->text($params['article_content']); 
-            if($params['article_type'] == 2 ){ // 宣染music模板
+            $params['html'] =  $Parsedown->text($params['content']); 
+            if($params['type'] == 2 ){ // 宣染music模板
                 Render::renderTpl('static/music_detail.html',$params);
             }else{
                 Render::renderTpl('static/detail.html',$params);

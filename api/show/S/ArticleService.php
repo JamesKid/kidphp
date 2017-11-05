@@ -1,7 +1,7 @@
 <?php
 class ArticleService extends PublicCore{
-    /** 文章服务
-     * 
+    /** 
+     * 文章服务
      */
     public $mysqlRead;
     public function __construct(){
@@ -14,7 +14,9 @@ class ArticleService extends PublicCore{
             update 
                 vimkid_article 
             set 
-                visit = visit+1 where article_id = $articleId";
+                visit = visit+1 
+            where 
+                article_id = $articleId";
         $result = $mysql->execute($sql);
     }
 
@@ -35,31 +37,31 @@ class ArticleService extends PublicCore{
 
     /* 获取文章 */
     public function getArticleById($articleId){
-        echo 'cc'die;
         $mysql = $this->mysqlRead;
         $sql = "
             select 
-                * 
+                a.createtimeymd, 
+                a.visit,
+                a.type,
+                a.categoryname,
+                a.updatetimeymd,
+                a.article_id,
+                b.title,
+                b.seotitle,
+                b.seokeywords,
+                b.seodescription,
+                c.content
             from 
-                vimkid_article 
+                vimkid_article AS a,
+                vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b,
+                vimkid_article_content_".$GLOBALS['LANGUAGE']['nowLanguage']." AS c
             where 
-                status = 1 and 
-                article_id =".$articleId;
+                a.article_id = b.article_id and 
+                a.article_id = c.article_id and 
+                a.article_id =".$articleId." and 
+                a.status = 1";
         $result = $mysql->select($sql);
-        $sqlContent = "
-            select 
-                content 
-            from 
-                vimkid_content_".$GLOBALS['LANGUAGE']['nowLanguage']." 
-            where 
-                article_id =".$articleId;
-        $resultContent = $mysql->select($sqlContent);
-        $sqlInfo = "select * from vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']
-            ." where article_id =".$articleId;
-        $resultInfo = $mysql->select($sqlInfo);
-
-        $resultMerge = array_merge($result[0],$resultInfo[0],$resultContent[0]);
-        return $resultMerge;
+        return $result[0];
     }
 
     /* 获取标签 */
