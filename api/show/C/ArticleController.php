@@ -13,7 +13,7 @@ class ArticleController extends AppPublic {
     }
     public function detail(){
         $articleId = $this->getStr($_GET['articleId']);
-        $this->articleService->addReading($articleId);
+        //$this->articleService->addReading($articleId);
         $params['tags'] = $this->articleService->getTags();
 
         $result = $this->getMemcache($articleId);

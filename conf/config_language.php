@@ -1,6 +1,6 @@
 <?php
 $GLOBALS['LANGUAGE'] = array(
-    'nowLanguage' => 'zh',  // 当前默认语言
+    'nowLanguage' => 'en',  // 当前默认语言
     'vimCategory'=>array(   // vim 目录
         'vimuse'=>array(
             'link'=> '/vimuse',
@@ -113,7 +113,7 @@ $GLOBALS['LANGUAGE'] = array(
             'zh'=>'创建时间',
         ),
         'visit'=> array(
-            'en'=>'Visit',
+            'en'=>'Views',
             'zh'=>'访问量',
         ),
         'tags'=> array(
@@ -124,9 +124,21 @@ $GLOBALS['LANGUAGE'] = array(
     // 栏目介绍
     'description'=>array(   
         'others'=> array(
-            'en'=>'This part of web is about some technology',
+            'en'=>'This part of content is about some technology except vim, such as linux, php, mysql, algorithm, 
+                    math, Remix, guitar, and so on. You can select the categories you interested in.',
             'zh'=>'本栏目主要介绍除vim技术外的一些技术，如linux,php,mysql,algorithm(算法),math(数学),
-                   Remix(混音)等,请在菜单选择感兴趣的主题进入相关文章',
+                   Remix(混音),吉它等,请在菜单选择感兴趣的主题进入相关文章',
         ),
+        'aboutUs'=> array(
+            'en'=>'This is the vim technology sharing website. Sharing of vim config, vim script, vim plugin and so on.
+                    Otherwise, there are also something other interesting categories, like Linux, shell, zzsh, tmux, git,
+                    php, python, go, and so on. If you have any issue, you can contact me as showed below',
+            'zh'=>'本站为vim技术分享网站 ，分享各种vim配置,vim脚本开发技术，和有趣强大的vim插件，
+                   当然除此之外还有其他诸如linux,shell,zsh,tmux,git,php,python,go语言等其他技术 ，但主要还是vim分享. 有问题或意见可以联系作者: ',
+        ),
+        'blog'=> array(
+            'en'=>'Sina micro-blog',
+            'zh'=>'新浪微博'
+        )
     ),
 );

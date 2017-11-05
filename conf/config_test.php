@@ -3,8 +3,8 @@
 $GLOBALS['CONFIG'] = array(
     'KEY'=>'leichxpeHEHN',        // 加密字符串
     'DOMAIN'=>'www.vimkid.com',        // 项目域名
-    'PAGECACHE_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
-    'MEMCACHE_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
+    'PAGECACHE_STATUS'=>'open',        // 是否打开文件缓存 open 打开,close关闭
+    'MEMCACHE_STATUS'=>'open',        // 是否打开文件缓存 open 打开,close关闭
     'DB'=>array(
         'READ'=>array(
             'DB_NAME'=>'vimkid',
