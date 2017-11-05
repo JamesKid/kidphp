@@ -73,16 +73,19 @@ class AjaxService extends PublicCore {
             $randIn = $randInObject->arrayToFormatString($params['data'],',');
             $sql = "
                 select 
-                    username,
-                    article_id,
-                    title,
-                    createtimeymd,
-                    seodescription,
-                    status = 1 
+                    a.article_id,
+                    a.username,
+                    a.createtimeymd,
+                    a.status = 1 
+                    b.title,
+                    b.seodescription
                 from 
-                    vimkid_article 
+                    vimkid_article AS a,
+                    vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b  
                 where 
-                    categoryid=1 and article_id IN (".$randIn.")";
+                    a.article_id = b.article_id and 
+                    a.categoryid=1 and 
+                    a.article_id IN (".$randIn.")";
             $result = $mysql->execute($sql);
             return $result;
         }else{
@@ -136,20 +139,22 @@ class AjaxService extends PublicCore {
         $mysql = new system\core\db\Mysql();
         $sql = "
             select 
-                username,
-                article_id,
-                title,
-                createtimeymd,
-                seodescription 
+                a.article_id,
+                a.username,
+                a.createtimeymd,
+                b.title,
+                b.seodescription 
             from 
-                vimkid_article 
-            where categoryid=1 
-                and status=1 
-                and article_id 
-                and categoryname != 'vim'
-                and categoryname != 'news'
+                vimkid_article AS a,
+                vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b 
+            where 
+                a.article_id = b.article_id and 
+                a.categoryid=1 and 
+                a.status=1 and 
+                a.categoryname != 'vim' and 
+                a.categoryname != 'news'
             order by 
-                createtime desc 
+                a.createtime desc 
             limit 5";
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();

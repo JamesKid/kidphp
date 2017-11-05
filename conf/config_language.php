@@ -121,4 +121,12 @@ $GLOBALS['LANGUAGE'] = array(
             'zh'=>'标签',
         ),
     ),
+    // 栏目介绍
+    'description'=>array(   
+        'others'=> array(
+            'en'=>'This part of web is about some technology',
+            'zh'=>'本栏目主要介绍除vim技术外的一些技术，如linux,php,mysql,algorithm(算法),math(数学),
+                   Remix(混音)等,请在菜单选择感兴趣的主题进入相关文章',
+        ),
+    ),
 );
