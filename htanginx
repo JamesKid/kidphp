@@ -6,9 +6,9 @@ rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
 rewrite ^/([0-9]+).html$  /index.php/article/detail?articleId=$1 last;
 
-# 自动读取目录
-rewrite ^/vimuse/$ /vimuse  permanent;
-rewrite ^/vimuse$  /list/subcategory?category=vim_basic_usage last;
+# 自动目录伪静态
+rewrite ^/vim/([a-z]+)/$ /vim/$1  permanent;
+rewrite ^/vim/([a-z]+)$  /list/subcategory?category=$1 last;
 
 
 # 目录vim基本使用
@@ -34,6 +34,10 @@ rewrite ^/vimmanual$  /list/subcategory?category=vim_manual last;
 # 目录新闻
 rewrite ^/news/$ /news  permanent;
 rewrite ^/news$  /list/category?category=news last;
+
+# 其他内容
+rewrite ^/math/$ /math  permanent;
+rewrite ^/math$  /list/othercategory?category=math last;
 
 # 其他内容
 rewrite ^/math/$ /math  permanent;
