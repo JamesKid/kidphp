@@ -35,6 +35,7 @@ class JiekouController {
             return $this->is_ip($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:$ip;
         }
     }
+
     public function is_ip($str){
         $ip=explode('.',$str);
         for($i=0;$i<count($ip);$i++){  
@@ -43,6 +44,12 @@ class JiekouController {
             }  
         }  
         return preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/',$str);  
+    }
+
+    /** 
+     * 获客是否存在新评论
+     */
+    public function getComments(){
     }
 }
 ?>
