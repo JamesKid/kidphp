@@ -76,7 +76,6 @@ $GLOBALS['CONFIG'] = array(
     ),
 );
 /*
-$config['DEFAULT_API']='show'; //默认api
 $config['APPPATH']=trim(__DIR__,'/');     
 //全局开关
 $config['IP_STATUS']=false; //IP获取地址状态

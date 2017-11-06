@@ -1,6 +1,10 @@
 <?php
 $GLOBALS['LANGUAGE'] = array(
     'nowLanguage' => 'en',  // 当前默认语言
+    'languageList' => array( // 支持的语言列表
+        'zh',
+        'en',
+    ),
     'vimCategory'=>array(   // vim 目录
         'vimuse'=>array(
             'link'=> '/vimuse',

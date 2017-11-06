@@ -6,6 +6,11 @@ rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
 rewrite ^/([0-9]+).html$  /index.php/article/detail?articleId=$1 last;
 
+# 自动读取目录
+rewrite ^/vimuse/$ /vimuse  permanent;
+rewrite ^/vimuse$  /list/subcategory?category=vim_basic_usage last;
+
+
 # 目录vim基本使用
 rewrite ^/vimuse/$ /vimuse  permanent;
 rewrite ^/vimuse$  /list/subcategory?category=vim_basic_usage last;
@@ -33,11 +38,6 @@ rewrite ^/news$  /list/category?category=news last;
 # 其他内容
 rewrite ^/math/$ /math  permanent;
 rewrite ^/math$  /list/othercategory?category=math last;
-
-#rewrite ^/article/detail?article_id=([0-9]+)$ /article/$1 permanent;
-
-rewrite ^/test/$ /test permanent;
-rewrite ^/test$  /index.php/article/test last;
 
 if (!-e $request_filename){
     rewrite ^/(.*)$ /$1 last;
