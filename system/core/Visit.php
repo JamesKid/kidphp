@@ -13,10 +13,9 @@ class Visit extends PublicCore{
         /*  正常访问 */
         $route = new Route;
         $uri = $route->initRoute($_SERVER['PHP_SELF']);  //获取uri
-        $classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
+        $classPath = 'app/C/'.ucfirst($uri['class']).'Controller.php';
         $check = new Check;
         $statusSign = $check->checkRoute($classPath,$uri);
-        $api = $uri['api'];
         $class = $uri['class'];
         $function = $uri['function'];
         if(isset($_SERVER['HTTP_REFERER']) && $class=='Ajax'){

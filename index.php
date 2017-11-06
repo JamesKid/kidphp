@@ -37,7 +37,7 @@ class Kidphp
         $Route = new Route;    // 实例化路由框架
         $uri = $Route->initRoute();  //初始化路由
         /* 引入Controller文件 */
-        $classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php'; // 路幅指向Controller
+        $classPath = 'app/C/'.ucfirst($uri['class']).'Controller.php'; // 路幅指向Controller
         $check = new Visit($uri); // 记录访客内部记录
         new PageCache; // 实例化文件缓存,存在则直接读取页面
         /* 检查路由,不存在返回404 */
@@ -96,38 +96,24 @@ class Kidphp
         }
         /* 自动加载service */
         if(substr($space,-7)=='Service'){  //截取最后7个字符判断是否Service
-            $serviceFile = __DIR__.'/api/show/S/'.$class.'.php';
+            $serviceFile = __DIR__.'/app/S/'.$class.'.php';
             if(is_file($serviceFile)){
                 return require_once($serviceFile);
             }
         }
 
         /* 自动加载public */
-        $serviceFile = __DIR__.'/api/show/P/'.$class.'.php';
+        $serviceFile = __DIR__.'/app/P/'.$class.'.php';
         if(is_file($serviceFile)){
             return require_once($serviceFile);
         }
 
         /* 自动加载lib */
-        $serviceFile = __DIR__.'/api/show/L/'.$class.'.php';
+        $serviceFile = __DIR__.'/app/L/'.$class.'.php';
         if(is_file($serviceFile)){
             return require_once($serviceFile);
         }
 
-
-        /* 自动加载service */
-            /* debug_backtrace()  用这个php自带函数获取api*/
-        /*
-        if(substr($space,-7)=='Service'){  //截取最后7个字符判断是否Service
-            $trace = debug_backtrace();
-            print_r($trace);die;
-            $serviceFile = __DIR__.'/api/'.$trace[3]['args'][1]['api'].'/S/'.$class.'.php';
-            print_r($serviceFile);die;
-            if(is_file($serviceFile)){
-                return require_once($serviceFile);
-            }
-        }
-         */
     }
 }
 $init = new Kidphp();

@@ -1,2 +1,0 @@
-class AppPublic extends Public {
-}
