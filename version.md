@@ -44,6 +44,12 @@
  15. 用户登录系统 (集成选择化?)
  16. 添加自动化部署脚本(进行中)
  17. 开通csdn,新浪微博等技术博客发布文章,将流量引流到vimkid上
+ 18. php脚本自动化一健创建基础项目,基础数据库，基础核心, 基础demo,只有一个kidphp.sh文件
+        kidphp.sh
+            mkdir /var/kidphp/
+            cd /var/kidphp/
+            git clone gitub.com/jameskid/kidphp/
+            sh install.sh
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题
