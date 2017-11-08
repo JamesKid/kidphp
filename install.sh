@@ -7,10 +7,16 @@ echo -e "\e[35m  2. Make page_cache moutiple country directory.  \e[m"
 echo -e "\e[36m  3. Add log directory.    \e[m"
 echo -e "\e[32m  4. Clean page_cache.     \e[m"
 echo -e "\e[34m  5. Automation deployment.   \e[m"
+echo -e "\e[33m  q. Quit.    \e[m"
 echo " "
 echo "======================================================"
 
 read -p " ^_^ Please make your selection:" num
+# 退出
+function quit(){
+    echo ''
+}
+
 # 1. 添加多国语言缓存目录
 function install(){
     echo 'install complete'
@@ -48,6 +54,7 @@ function automationDeployment(){
 }
 
 case $num in
+    [q]) (quit);;
     [1]) (install);;
     [2]) (addMultiCountryDirectory);;
     [3]) (addLogDicrectory);;
