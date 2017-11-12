@@ -62,6 +62,28 @@ class AjaxService extends PublicCore {
         }
     }
 
+    /* 获取二级目录 
+     * @parentId 父级目录
+     */
+
+    public function getSubCategory($parentId){
+        $mysql = $this->mysqlRead;
+        $sql = "
+            select 
+                name,
+                parent_name,
+                name_".$GLOBALS['LANGUAGE']['nowLanguage']." AS showName 
+            from 
+                vimkid_category
+            where 
+                parent_id = ".$parentId." and 
+                enable = 1
+            ";
+        $result = $mysql->execute($sql);
+        $result = $result->fetchAll();
+        return $result;
+    }
+
     /* 最热文章 */
     public function getHotList(){
         $mysql = new system\core\db\Mysql();

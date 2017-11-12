@@ -7,7 +7,20 @@ class IndexController extends AppPublic{
         $params['newList'] = $ajaxService->getNewList($categoryName);
         $params['news'] = $ajaxService->getNews();
         $params['tags'] = $ajaxService->getTags();
+        $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['useLanguage'] = $this->getUseLanguage(); // 过滤当前默认语言
         Render::renderTpl('static/index.html',$params);
+    }
+
+    /* 获取使用的语言 */
+    public function getUseLanguage(){
+        $useLanguage = $GLOBALS['LANGUAGE']['nowLanguage'];
+        if($useLanguage == 'en'){
+            $useLanguage = '';
+        }else{
+            $useLanguage = '/'.$useLanguage;
+        }
+        return $useLanguage;
     }
 
     /* 设置默认语言cookie */

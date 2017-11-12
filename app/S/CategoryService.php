@@ -19,7 +19,7 @@ class CategoryService {
         return $result[0]['number'];
     }
 
-    /* 获取二级目录内容条数 */
+    /* 获取二级目录内容 */
     public function getSubCategoryList($category,$offset,$size){
         $mysql = new system\core\db\Mysql();
         $sql = "
