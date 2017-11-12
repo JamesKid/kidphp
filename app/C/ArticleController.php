@@ -10,18 +10,20 @@ class ArticleController extends AppPublic {
     protected $articleService;
     public function __construct(){
         $this->articleService = new ArticleService();
+        $this->ajaxService = new AjaxService();
     }
     public function detail(){
         $articleId = $this->getStr($_GET['articleId']);
-        //$this->articleService->addReading($articleId);
         $params['tags'] = $this->articleService->getTags();
+        $params['left'] = $this->ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['useLanguage'] = $this->getUseLanguage(); // 过滤当前默认语言
 
         $result = $this->getMemcache($articleId);
         if(isset($result)){
-            $params=$result;
+            $params['data']=$result;
             $Parsedown = new system\plugin\outer\parsedown\Parsedown();
-            $params['html'] =  $Parsedown->text($params['content']); 
-            if($params['type'] == 2 ){ // 宣染music模板
+            $params['html'] =  $Parsedown->text($params['data']['content']); 
+            if($params['data']['type'] == 2 ){ // 宣染music模板
                 Render::renderTpl('static/music_detail.html',$params);
             }else{
                 Render::renderTpl('static/detail.html',$params);

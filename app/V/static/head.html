@@ -36,15 +36,17 @@
 					More use, more learn,more powerful.
 				</a>
 			</div>
-      <?php include('language.html')?>	
+            <?php include('language.html')?>	
 			<div class="category">
-          <div style="text-align:center" class="languageColor">
-              <?php foreach ($GLOBALS['LANGUAGE']['mainCategory'] as $v):?>
-                  <?php $value = $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
-                  <div class="eachCategory">
-                    --| <a title="<?php echo $value;?>"  href="<?php echo $v['link'];?>"><?php echo $value;?></a > |--
-                  </div>
-              <?php endforeach;?>
-          </div>
+                <div style="text-align:center" class="languageColor">
+                    <?php foreach ($GLOBALS['LANGUAGE']['mainCategory'] as $v):?>
+                        <?php $value = $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+                        <div class="eachCategory">
+                            --| <a title="<?php echo $value;?>"  href=
+                                "<?php echo $v['link'][$GLOBALS['LANGUAGE']['nowLanguage']];?>">
+                                <?php echo $value;?></a > |--
+                        </div>
+                    <?php endforeach;?>
+                </div>
 			</div>
 		</div>

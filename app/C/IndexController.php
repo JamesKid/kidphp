@@ -12,17 +12,6 @@ class IndexController extends AppPublic{
         Render::renderTpl('static/index.html',$params);
     }
 
-    /* 获取使用的语言 */
-    public function getUseLanguage(){
-        $useLanguage = $GLOBALS['LANGUAGE']['nowLanguage'];
-        if($useLanguage == 'en'){
-            $useLanguage = '';
-        }else{
-            $useLanguage = '/'.$useLanguage;
-        }
-        return $useLanguage;
-    }
-
     /* 设置默认语言cookie */
     public function setLanguage(){
         $checkFrom = $this->checkFrom(); // 检查来源是否合法
