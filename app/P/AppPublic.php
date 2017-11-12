@@ -44,4 +44,15 @@ class AppPublic{
         $string = str_replace('}','',$string);  
         return $string;  
     }  
+
+    /* 获取使用的语言 */
+    public function getUseLanguage(){
+        $useLanguage = $GLOBALS['LANGUAGE']['nowLanguage'];
+        if($useLanguage == 'en'){
+            $useLanguage = '';
+        }else{
+            $useLanguage = '/'.$useLanguage;
+        }
+        return $useLanguage;
+    }
 }

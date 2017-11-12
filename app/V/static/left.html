@@ -1,15 +1,15 @@
 <div id="contentLeft">
     <div id="leftin">
         <ul>
-					  <?php foreach ($GLOBALS['LANGUAGE']['vimCategory'] as $v):?>
+			<?php foreach ($params['left'] as $v):?>
             <li>
-                    <a href="<?php echo $v['link'];?>">
+                <a href=<?php echo $params['useLanguage']."/".$v['parent_name']."/".$v['name'];?>>
                     <span class='innerHref'>
-                        <?php echo $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+                        <?php echo $v['showName'];?>
                     </span>
                 </a>
             </li>
-					  <?php endforeach;?>
+			<?php endforeach;?>
         </ul>
     </div>
 </div>

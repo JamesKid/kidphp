@@ -48,6 +48,8 @@ class ListController extends AppPublic{
         $offset = ($page-1)*$this->pagesize;
         $ajaxService = new AjaxService();
         $params['tags'] = $ajaxService->getTags();
+        $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
         $category = isset($_GET['category'])? $_GET['category']: '';
         if($category!=''){
             $categoryService = new CategoryService();
