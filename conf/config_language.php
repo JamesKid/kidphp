@@ -7,28 +7,40 @@ $GLOBALS['LANGUAGE'] = array(
     ),
     'mainCategory'=>array(   // 主目录
         'index'=>array(
-            'link'=> '/',
+            'link'=> array(
+                'en'=>'/',
+                'zh'=>'/zh/',
+            ),
             'languageList'=>array(
                 'en'=>'Home',
                 'zh'=>'首页',
             ),
         ),
         'others'=>array(
-            'link'=> '/others',
+            'link'=> array(
+                'en'=>'/others',
+                'zh'=>'/zh/others',
+            ),
             'languageList'=>array(
                 'en'=>'Others',
                 'zh'=>'其他',
             ),
         ),
         'about'=>array(
-            'link'=> '/about.html',
+            'link'=> array(
+                'en'=>'/about.html',
+                'zh'=>'/zh/about.html',
+            ),
             'languageList'=>array(
                 'en'=>'About Us',
                 'zh'=>'关于我们',
             ),
         ),
         'downloads'=>array(
-            'link'=> '/wait/index',
+            'link'=> array(
+                'en'=>'/wait/index',
+                'zh'=>'/wait/index',
+            ),
             'languageList'=>array(
                 'en'=>'Downloads',
                 'zh'=>'下载',

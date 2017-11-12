@@ -1,7 +1,7 @@
 <?php include('headdetail.html')?>    
 <div id="content">
     <?php 
-    if($params['categoryname'] == 'vim' || $params['categoryname'] == 'news'){
+    if($params['data']['categoryname'] == 'vim' || $params['data']['categoryname'] == 'news'){
       include('left.html');
     }else{
       include('other_category.html');
@@ -15,7 +15,7 @@
                     <span class="color2">&gt;</span>
                     <span class="color3">&gt;</span>
                     <span class="color4">&gt;</span>
-                        <span class="listTitle"><?php echo $params['title'];?></span>  
+                        <span class="listTitle"><?php echo $params['data']['title'];?></span>  
                     <span class="color4">&lt;</span>
                     <span class="color3">&lt;</span>
                     <span class="color2">&lt;</span>
@@ -26,19 +26,19 @@
             <div class="topInfo">
                 <?php echo $GLOBALS['LANGUAGE']['status']['createTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                  <?php echo $params['createtimeymd'];?>
+                  <?php echo $params['data']['createtimeymd'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['updateTime'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                  <?php echo $params['updatetimeymd'];?>
+                  <?php echo $params['data']['updatetimeymd'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['visit'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span id="visited" class="topInfoDetail">
-                  <?php echo $params['visit'];?>
+                  <?php echo $params['data']['visit'];?>
                 </span>
                 <?php echo $GLOBALS['LANGUAGE']['status']['tags'][$GLOBALS['LANGUAGE']['nowLanguage']];?>:&nbsp 
                 <span class="topInfoDetail">
-                  <?php echo $params['seokeywords'];?>
+                  <?php echo $params['data']['seokeywords'];?>
                 </span>
             </div>
 
@@ -46,7 +46,7 @@
                 <?php echo $params['html'];?>
             </div>
             <!-- 隐藏域 articleId -->
-            <input id="articleId" type="hidden" value="<?php echo $params['article_id'];?>">
+            <input id="articleId" type="hidden" value="<?php echo $params['data']['article_id'];?>">
             <?php if($GLOBALS['LANGUAGE']['nowLanguage'] == 'zh'){include('share.html');}?>    
         </div>
     </div>
