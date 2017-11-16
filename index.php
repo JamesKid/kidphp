@@ -43,7 +43,7 @@ class Kidphp
         /* 检查路由,不存在返回404 */
         $check = new Check;
         $result = $check->checkRoute($classPath,$uri);
-        if($result == false){
+        if(!$result){ // 如果result 为false
             header('Location: http://'.$_SERVER['HTTP_HOST'].'/404page.html');
             exit;
         }

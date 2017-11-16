@@ -22,7 +22,7 @@ class Visit extends PublicCore{
             die;
         }
         $url = $_SERVER['REQUEST_URI'];
-        if($statusSign==false){
+        if(!$statusSign){
             $status=404;
         }else {
             $status=200;

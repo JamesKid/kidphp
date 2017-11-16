@@ -55,7 +55,7 @@ class EchartsController {
             $class = $uri['class'];
             $function = $uri['function'];
             $url = $_SERVER['HTTP_REFERER'];
-            if($statusSign==false){
+            if(!$statusSign){
                 $status=404;
             }else {
                 $status=200;
