@@ -22,17 +22,13 @@ rewrite ^/vim/([a-z]+)$  /list/subcategory?category=$1 last;
 rewrite ^/(en|zh)/(vim|others)/([a-z]+)/$ /$1/$2/$3  permanent;
 rewrite ^/(en|zh)/(vim|others)/([a-z]+)$  /$1/list/subcategory?category=$3 last;
 
-# 目录新闻
-rewrite ^/news/$ /news  permanent;
-rewrite ^/news$  /list/category?category=news last;
+# 其他内容
+# rewrite ^/math/$ /math  permanent;
+# rewrite ^/math$  /list/othercategory?category=math last;
 
 # 其他内容
-rewrite ^/math/$ /math  permanent;
-rewrite ^/math$  /list/othercategory?category=math last;
-
-# 其他内容
-rewrite ^/math/$ /math  permanent;
-rewrite ^/math$  /list/othercategory?category=math last;
+# rewrite ^/math/$ /math  permanent;
+# rewrite ^/math$  /list/othercategory?category=math last;
 
 if (!-e $request_filename){
     rewrite ^/(.*)$ /$1 last;

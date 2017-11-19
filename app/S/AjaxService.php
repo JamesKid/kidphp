@@ -131,7 +131,7 @@ class AjaxService extends PublicCore {
     }
 
     /* 最新vim文章 */
-    public function getNewList(){
+    public function getNewList($offset = 0,$size = 1){
         $mysql = $this->mysqlRead;
         $sql = "
             select 
@@ -184,7 +184,7 @@ class AjaxService extends PublicCore {
     }
 
     /* 站点新闻 */
-    public function getNews(){
+    public function getNews($offset = 0,$size = 1){
         $mysql = $this->mysqlRead;
         $sql = "
             select 
@@ -202,7 +202,7 @@ class AjaxService extends PublicCore {
                 a.article_id = b.article_id and 
                 a.article_id = c.article_id and 
                 categoryname='news' 
-            limit 0,1";
+            limit ".$offset.",".$limit;
         $result = $mysql->execute($sql);
         $result = $result->fetchAll();
         return $result[0];
