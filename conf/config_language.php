@@ -39,7 +39,7 @@ $GLOBALS['LANGUAGE'] = array(
         'downloads'=>array(
             'link'=> array(
                 'en'=>'/wait/index',
-                'zh'=>'/wait/index',
+                'zh'=>'/zh/wait/index',
             ),
             'languageList'=>array(
                 'en'=>'Downloads',

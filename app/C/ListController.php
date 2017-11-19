@@ -17,6 +17,8 @@ class ListController extends AppPublic{
             $params['list']=$categoryService->getCategoryList($category,$offset,$this->pagesize);
             $params['category']=$category;
             $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
+            $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+            $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
             Render::renderTpl('static/list.html',$params);
         }else{
 
@@ -71,6 +73,22 @@ class ListController extends AppPublic{
         $total = $ajaxService->getNumber(); // 获取总条数
         $params['list']=$ajaxService->getNew($offset,$this->pagesize);
         $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
+        $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
+        Render::renderTpl('static/list.html',$params);
+    }
+
+    /* 获取站点新闻 */
+    public function getNews(){
+        $ajaxService = new AjaxService();
+        $page = isset($_GET['page'])? $_GET['page']: 1;
+        $offset = ($page-1)*$this->pagesize;
+        $params['tags'] = $ajaxService->getTags();
+        $total = $ajaxService->getNumber(); // 获取总条数
+        $params['list']=$ajaxService->getNews($offset,$this->pagesize);
+        $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
+        $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
         Render::renderTpl('static/list.html',$params);
     }
 }

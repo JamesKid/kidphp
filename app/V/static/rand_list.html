@@ -1,37 +1,37 @@
 <div class="indexTitle">
-	<div class="titleName">
-		<span class="color1">&gt;</span>
-		<span class="color2">&gt;</span>
-		<span class="color3">&gt;</span>
-		<span class="color4">&gt;</span>
+    <div class="titleName">
+        <span class="color1">&gt;</span>
+        <span class="color2">&gt;</span>
+        <span class="color3">&gt;</span>
+        <span class="color4">&gt;</span>
     <span class="listTitle">
       <?php echo $GLOBALS['LANGUAGE']['titles']['randomArticles'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
     </span>  
-		<span class="color4">&lt;</span>
-		<span class="color3">&lt;</span>
-		<span class="color2">&lt;</span>
-		<span class="color1">&lt;</span>
-	</div>
-	<div class="more">
-		more
-	</div>
+        <span class="color4">&lt;</span>
+        <span class="color3">&lt;</span>
+        <span class="color2">&lt;</span>
+        <span class="color1">&lt;</span>
+    </div>
+    <div class="more">
+        more
+    </div>
 </div> 
 <div class="listContent" id="randList">
-	<ul>
-		<?php foreach ($params['randList'] as $v):?>
-			<li>
-				<a title="<?php echo $v['seodescription'];?>" href="<?php echo '/'.$v['article_id'];?>">
-					<div class="listSpan">
-						<span class="design-name" ><?php echo $v['title'];?></span>
-						<span class="designer-name">
-							<?php echo $v['username'];?>
-							<?php echo $v['createtimeymd'];?>
-						</span>
-					</div>
-					<div class="tipsLine">
-					</div>
-				</a>
-			</li>
-		<?php endforeach;?>
-	</ul>
+    <ul>
+        <?php foreach ($params['randList'] as $v):?>
+            <li>
+				<a title="<?php echo $v['seodescription'];?>" href="<?php echo $params['useLanguage'].'/'.$v['article_id'];?>">
+                    <div class="listSpan">
+                        <span class="design-name" ><?php echo $v['title'];?></span>
+                        <span class="designer-name">
+                            <?php echo $v['username'];?>
+                            <?php echo $v['createtimeymd'];?>
+                        </span>
+                    </div>
+                    <div class="tipsLine">
+                    </div>
+                </a>
+            </li>
+        <?php endforeach;?>
+    </ul>
 </div>

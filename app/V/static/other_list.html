@@ -1,25 +1,25 @@
 <div class="indexTitle">
-	<div class="titleName">
-		<span class="color1">&gt;</span>
-		<span class="color2">&gt;</span>
-		<span class="color3">&gt;</span>
-		<span class="color4">&gt;</span>
+    <div class="titleName">
+        <span class="color1">&gt;</span>
+        <span class="color2">&gt;</span>
+        <span class="color3">&gt;</span>
+        <span class="color4">&gt;</span>
     <span class="listTitle">
       <?php echo $GLOBALS['LANGUAGE']['titles']['articles'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
     </span>  
-		<span class="color4">&lt;</span>
-		<span class="color3">&lt;</span>
-		<span class="color2">&lt;</span>
-		<span class="color1">&lt;</span>
-	</div>
-	<div class="more">
+        <span class="color4">&lt;</span>
+        <span class="color3">&lt;</span>
+        <span class="color2">&lt;</span>
+        <span class="color1">&lt;</span>
+    </div>
+    <div class="more">
         <a href="list/getnew">
-		    more
+            more
         </a>
-	</div>
+    </div>
 </div> 
 <div class="listContent" id="newList">
-	<ul>
+    <ul>
         <?php foreach ($params['newList'] as $v):?>
             <li>
             <a title="<?php echo $v['seodescription'];?>" href="<?php echo '/'.$v['article_id'];?>">
@@ -33,5 +33,5 @@
                 </a>
             </li>
         <?php endforeach;?>
-	</ul>
+    </ul>
 </div>
