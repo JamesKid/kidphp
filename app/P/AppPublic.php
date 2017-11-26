@@ -55,4 +55,14 @@ class AppPublic{
         }
         return $useLanguage;
     }
+
+    /* 获取使用的目录的名称 */
+    public function getCategoryNameMap($left){
+        $result = array();
+        foreach($left as $k => $v ){
+            $result[$v['name']] = $v['showName'];
+        }
+        return $result;
+    }
+
 }

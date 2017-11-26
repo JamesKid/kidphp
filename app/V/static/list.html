@@ -1,41 +1,41 @@
-<?php include('head.html')?>	
+<?php include('head.html')?>    
 <div id="content">
-	<?php include('left.html')?>	
-	<div id="contentRight">
-		<div id="rightin">
-			<div class="indexTitle">
-				<span class="color1">></span>
-				<span class="color2">></span>
-				<span class="color3">></span>
-				<span class="color4">></span>
+    <?php include('left.html')?>    
+    <div id="contentRight">
+        <div id="rightin">
+            <div class="indexTitle">
+                <span class="color1">></span>
+                <span class="color2">></span>
+                <span class="color3">></span>
+                <span class="color4">></span>
                 <span class="listTitle">
-                    <?php echo $GLOBALS['LANGUAGE']['titles']['articles'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+                    <?php echo $params['category'];?>
                 </span>  
-				<span class="color4"><</span>
-				<span class="color3"><</span>
-				<span class="color2"><</span>
-				<span class="color1"><</span>
-			</div> 
-			<div class="listContent" id="list">
-				<ul>
-					<?php foreach ($params['list'] as $v):?>
-						<li>
-						<a title="<?php echo $v['seodescription'];?>" href="<?php echo $params['useLanguage'].'/'.$v['article_id'];?>">
-								<span class="listSpan">
-									<span class="design-name" ><?php echo $v['title'];?></span>
-									<span class="designer-name">
-										<?php echo $v['username'];?>
-										<?php echo $v['createtimeymd'];?>
-									</span>
-								</span>
-							</a>
-						</li>
-					<?php endforeach;?>
-				</ul>
-				<?php include('page.html')?>	
-			</div>
-            <?php include('tag.html')?>	
-		</div>
-	</div>
+                <span class="color4"><</span>
+                <span class="color3"><</span>
+                <span class="color2"><</span>
+                <span class="color1"><</span>
+            </div> 
+            <div class="listContent" id="list">
+                <ul>
+                    <?php foreach ($params['list'] as $v):?>
+                        <li>
+                            <a title="<?php echo $v['seodescription'];?>" href="<?php echo $params['useLanguage'].'/'.$v['article_id'];?>">
+                                <span class="listSpan">
+                                    <span class="design-name" ><?php echo $v['title'];?></span>
+                                    <span class="designer-name">
+                                        <?php echo $v['username'];?>
+                                        <?php echo $v['createtimeymd'];?>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
+                <?php include('page.html')?>    
+            </div>
+            <?php include('tag.html')?>    
+        </div>
+    </div>
 </div>
-<?php include('foot.html')?>	
+<?php include('foot.html')?>    
