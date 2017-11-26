@@ -52,18 +52,21 @@ class ListController extends AppPublic{
         $params['tags'] = $ajaxService->getTags();
         $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
         $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
+        $params['categoryMap']=$this->getCategoryNameMap($params['left']);
         $category = isset($_GET['category'])? $_GET['category']: '';
-        if($category!=''){
+        if($category!=''&& isset($params['categoryMap'][$category])){
             $categoryService = new CategoryService();
             $total = $categoryService->getSubListNumber($category); // 获取总条数
             $params['list']=$categoryService->getSubCategoryList($category,$offset,$this->pagesize);
-            $params['category']=$category;
+            $params['category'] = $params['categoryMap'][$category];
             $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
             Render::renderTpl('static/list.html',$params);
         }else{
-
+            header("location: /404page.html"); 
         }
+
     }
+
     /* 获取最新内容 */
     public function getNew(){
         $ajaxService = new AjaxService();
@@ -74,6 +77,7 @@ class ListController extends AppPublic{
         $params['list']=$ajaxService->getNew($offset,$this->pagesize);
         $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
         $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['category'] = 'Articles';
         $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
         Render::renderTpl('static/list.html',$params);
     }
@@ -89,6 +93,7 @@ class ListController extends AppPublic{
         $params['page'] = new system\plugin\outer\Page\Page($total,$this->pagesize);
         $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
         $params['useLanguage'] = $this->getUseLanguage(); // 获取使用的语言
+        $params['category'] = 'News';
         Render::renderTpl('static/list.html',$params);
     }
 }

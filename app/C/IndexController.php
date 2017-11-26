@@ -5,7 +5,8 @@ class IndexController extends AppPublic{
         $categoryName = 'vim';
         $params['randList'] = $ajaxService->getRandList();
         $params['newList'] = $ajaxService->getNewList($categoryName);
-        $params['news'] = $ajaxService->getNews();
+        $newsList = $ajaxService->getNews();
+        $params['news'] = $newsList[0];
         $params['tags'] = $ajaxService->getTags();
         $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
         $params['useLanguage'] = $this->getUseLanguage(); // 过滤当前默认语言
