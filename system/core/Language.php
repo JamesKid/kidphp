@@ -34,9 +34,6 @@ class Language extends PublicCore{
                 }
             }
         }
-        $_SERVER['LANGUAGE'] = $GLOBALS['LANGUAGE']['nowLanguage'];
-        print_r($_SERVER);die;
-
 
     }
 
