@@ -18,9 +18,6 @@ class Visit extends PublicCore{
         $statusSign = $check->checkRoute($classPath,$uri);
         $class = $uri['class'];
         $function = $uri['function'];
-        if(isset($_SERVER['HTTP_REFERER']) && $class=='Ajax'){
-            die;
-        }
         $url = $_SERVER['REQUEST_URI'];
         if(!$statusSign){
             $status=404;
