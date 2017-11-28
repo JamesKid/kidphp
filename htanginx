@@ -5,6 +5,10 @@ rewrite ^/index.html /index/index last;
 rewrite ^/(en|zh)/about.html /$1/about/index last;
 rewrite ^/(en|zh)/index.html /index/index last;
 
+# 联系我们
+rewrite ^/lianxiwomen$ /lianxiwomen/ permanent;
+rewrite ^/lianxiwomen/$ /zh/about/index last;
+
 # 文章节点重写
 rewrite ^/([0-9]+)$ /$1.html  permanent;
 rewrite ^/([0-9]+)/$ /$1.html  permanent;
@@ -21,6 +25,16 @@ rewrite ^/vim/([a-z]+)$  /list/subcategory?category=$1 last;
 
 rewrite ^/(en|zh)/(vim|others)/([a-z]+)/$ /$1/$2/$3  permanent;
 rewrite ^/(en|zh)/(vim|others)/([a-z]+)$  /$1/list/subcategory?category=$3 last;
+
+# vim 目录伪静态
+rewrite ^/vimconfig$  /list/subcategory?category=vimconfig last;
+rewrite ^/vimlearntips$  /list/subcategory?category=vimlearntips last;
+rewrite ^/vimmanual$  /list/subcategory?category=vimmanual last;
+rewrite ^/vimplugin$  /list/subcategory?category=vimplugin last;
+rewrite ^/vimbasicusage$  /list/subcategory?category=vimbasicusage last;
+rewrite ^/vimuse$  /list/subcategory?category=vimbasicusage last;
+rewrite ^/vimlearn$  /list/subcategory?category=vimlearntips last;
+
 
 if (!-e $request_filename){
     rewrite ^/(.*)$ /$1 last;
