@@ -8,6 +8,7 @@ class Language extends PublicCore{
         $this->initLanguage();
     }
     public function initLanguage($request = ''){
+        $_SERVER['REQUEST_URI_OLD'] = $_SERVER['REQUEST_URI'];
         $request = isset($_SERVER['PATH_INFO'])? $_SERVER['PATH_INFO']:'';   
         if($request != ''){
             $path  = explode('/',$request);
@@ -17,7 +18,6 @@ class Language extends PublicCore{
             $languageList = $GLOBALS['LANGUAGE']['languageList'];
             if(in_array($language,$languageList)){
                 $GLOBALS['LANGUAGE']['nowLanguage'] = $language; // 定义语言为当前的语言
-                $_SERVER['REQUEST_URI_OLD'] = $_SERVER['REQUEST_URI'];
                 $length = count($path);
                 if( $length == 2 ){
                     $_SERVER['PATH_TRANSLATED'] = str_replace($language,'',$_SERVER['PATH_TRANSLATED']);
