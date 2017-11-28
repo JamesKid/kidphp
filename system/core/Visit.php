@@ -19,6 +19,8 @@ class Visit extends PublicCore{
         $class = $uri['class'];
         $function = $uri['function'];
         $url = $_SERVER['REQUEST_URI'];
+        $urlOld = $_SERVER['REQUEST_URI_OLD'];  // 添加原有请求url
+        $language = $GLOBALS['LANGUAGE']['nowLanguage']; // 添加访问语言
         if(!$statusSign){
             $status=404;
         }else {
@@ -73,6 +75,8 @@ class Visit extends PublicCore{
             visit_system,
             visit_browserlang,
             visit_url,
+            visit_url_old,
+            visit_language,
             visit_api,
             visit_class,
             visit_function,
@@ -100,6 +104,8 @@ class Visit extends PublicCore{
             '$system',
             '$browserlang',
             '$url',
+            '$urlOld',
+            '$language',
             '$api',
             '$class',
             '$function',
