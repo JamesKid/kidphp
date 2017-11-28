@@ -17,6 +17,7 @@ class Language extends PublicCore{
             $languageList = $GLOBALS['LANGUAGE']['languageList'];
             if(in_array($language,$languageList)){
                 $GLOBALS['LANGUAGE']['nowLanguage'] = $language; // 定义语言为当前的语言
+                $_SERVER['REQUEST_URI_OLD'] = $_SERVER['REQUEST_URI'];
                 $length = count($path);
                 if( $length == 2 ){
                     $_SERVER['PATH_TRANSLATED'] = str_replace($language,'',$_SERVER['PATH_TRANSLATED']);
@@ -33,6 +34,9 @@ class Language extends PublicCore{
                 }
             }
         }
+        $_SERVER['LANGUAGE'] = $GLOBALS['LANGUAGE']['nowLanguage'];
+        print_r($_SERVER);die;
+
 
     }
 
