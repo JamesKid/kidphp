@@ -5,6 +5,16 @@ $GLOBALS['LANGUAGE'] = array(
         'zh',
         'en',
     ),
+    'mainSeo' => array(
+        'en'=>array(
+            'keyword'=>'vimkid,vim,vim learn tips,vim script,vim plugin,vim technology',
+            'description'=>'Sharing of vim learn tips, vim config, vim script, vim plugin, and other technology like Linux, shell, zsh, tmux, git, php, python, go, mysqland so on.',
+        ),
+        'zh'=>array(
+            'keyword'=>'vimkid,vim,vim教程,vimscript,vim脚本,vim插件,vim技术',
+            'description'=>'分享一些vim使用技术,vim插件,vim脚本，及其他it技术如linux,shell,zsh,tmux,git,php,python,go,mysql等。',
+        ),
+    ),
     'mainCategory'=>array(   // 主目录
         'index'=>array(
             'link'=> array(
