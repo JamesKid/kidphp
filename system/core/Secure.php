@@ -45,7 +45,6 @@ class Secure extends PublicCore{
         $url = str_replace('_', '', $url);
         // 如果除了/ ? & = . 还有其他特殊字符，则重新跳转
         if(!$this->onlyLettersOrDigits($url) && $url!=''){
-            // 将black.txt至为777 权限
             $ipInfo = $this->getIpInfo(); // 从父类PublicCore中获取ip信息
             $ip = $ipInfo->GetIpIn(); // 获取ip
             $address = $this->getAddress($ip); // 获取地址
@@ -57,7 +56,7 @@ class Secure extends PublicCore{
                 .$address['ip_country'].'.'.$address['ip_province'].'.'.$address['ip_province'].'   '
                 .$requestUri.'  '
                 ."\n";
-            file_put_contents('/var/log/vimkid/black.txt',$content,FILE_APPEND); // 保存
+            file_put_contents('/var/log/www/'.$GLOBALS['CONFIG']['PROJECT_NAME'].'/black.txt',$content,FILE_APPEND); // 保存
             header('Location: http://'.$_SERVER['HTTP_HOST'].'/tips.html');
             exit;
         }

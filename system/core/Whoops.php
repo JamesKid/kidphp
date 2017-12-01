@@ -6,21 +6,20 @@
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Handler\JsonResponseHandler;
 class Whoops extends PublicCore{
-    /** 初始化路由
-     */
-    public function __construct(){
-        $this->initWhoops();
+
+    public function __construct($env){
+        $this->initWhoops($env);
     }
 
-    /* url地址安全检测 */
-    public function initWhoops(){
-        try {
-            $whoops = new \Whoops\Run();
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
-            $whoops->register();
-        } catch (Exception $e) {
-            file_put_contents('/tmp/hello.txt','abc');
-            //echo $e->getMessage();
+    public function initWhoops($env){
+        try{
+            if($env == 'test'){
+                $whoops = new \Whoops\Run();
+                $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+                $whoops->register();
+            }
+        }catch(Exception $e){
+            //error_log(date('Y-m-d H:i:s')."\n",3,'/var/log/www/vimkid/'.date('Y-m-d').'.log');
         }
     }
 }
