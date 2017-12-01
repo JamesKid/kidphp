@@ -1,5 +1,6 @@
 <?php
 $GLOBALS['CONFIG'] = array(
+    'PROJECT_NAME'=>'vimkid',        // 项目名
     'KEY'=>'leichxpeHEHN',        // 加密字符串
     'DOMAIN'=>'www.vimkid.com',        // 项目域名
     'PAGECACHE_STATUS'=>'open',        // 是否打开文件缓存 open 打开,close关闭

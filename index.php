@@ -29,9 +29,7 @@ class Kidphp
         spl_autoload_register(array($this,'__autoload')); // 自动加载
         $this->configEnv($env); // 配置环境
         require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php'); //引用vendor配置
-        if($env == 'test'){
-            $Whoops = new Whoops();  // 实例Whoops查错框架
-        }
+        new Whoops($env);  // 实例Whoops查错框架
         new Secure;  // 实例化安全框架
         new Language;  // 实例化多国语言框架
         $Route = new Route;    // 实例化路由框架
@@ -70,7 +68,6 @@ class Kidphp
     {
         $Env = new Env($env); // 实例化环境配置
     }
-
     /* 回调函数方法 */
     private function callFunction($classRoute,$uri)
     {
@@ -79,7 +76,6 @@ class Kidphp
             array()
         );
     }
-
     /* 自动加载方法 */
     private function __autoload($class)
     {
@@ -101,20 +97,17 @@ class Kidphp
                 return require_once($serviceFile);
             }
         }
-
         /* 自动加载public */
         $serviceFile = __DIR__.'/app/P/'.$class.'.php';
         if(is_file($serviceFile)){
             return require_once($serviceFile);
         }
-
         /* 自动加载lib */
         $serviceFile = __DIR__.'/app/L/'.$class.'.php';
         if(is_file($serviceFile)){
             return require_once($serviceFile);
         }
-
     }
 }
-$init = new Kidphp();
+new Kidphp();
 

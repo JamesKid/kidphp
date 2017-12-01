@@ -32,9 +32,13 @@ function addMultiCountryDirectory(){
 }
 # 3. Make log file (建立日志文件夹,项目所有配置)
 function addLogDicrectory(){
-    mkdir -p /var/log/vimkid
-    touch /var/log/vimkid/black.txt
-    chmod -R 777 /var/log/vimkid/black.txt
+    mkdir -p /var/log/www/${PWD##*/}  #  ${PWD##*/}  为当前目录
+    chmod -R 777 /var/log/www/${PWD##*/}
+    cd /var/log/www/${PWD##*/}
+    if [ ! -f "black.txt" ]; then
+        touch /var/log/www/${PWD##*/}/black.txt
+        chmod -R 777 /var/log/www/${PWD##*/}/black.txt
+    fi
     echo "Make log directory ok. ^_^" 
 }
 # 4. Clean page_cache (清除page_cache)
