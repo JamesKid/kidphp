@@ -145,7 +145,6 @@ class AjaxService extends PublicCore {
                 vimkid_article_info_".$GLOBALS['LANGUAGE']['nowLanguage']." AS b 
             where 
                 a.article_id = b.article_id 
-                and categoryid=1 
                 and a.status=1 
                 and a.article_id 
             order by 
