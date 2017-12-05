@@ -34,6 +34,7 @@ class Language extends PublicCore{
                 }
             }
         }
+        $_SERVER['REQUEST_URI_ZH'] = '/zh'.$_SERVER['REQUEST_URI']; //  中文链接
 
     }
 
