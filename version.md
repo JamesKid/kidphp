@@ -26,16 +26,16 @@
     2017.11.06 21:19: del 删除api设计，因为好做项目分离，减轻项目负载,便于项目管理
 
 ### 待加功能
-  1. 阅读量，发布时间，更新时间
+  1. 阅读量，发布时间，更新时间  (Mission complete)
   2. mysql主从，mysql mongodb数据同步
   3. git钩子自动推送代码
   4. 标签设计
-  5. 中英版设计 (complete)
-  6. composer 机制引入 (已完成)
-  7. 单元测试  (已完成)
+  5. 中英版设计 (Mission complete! )
+  6. composer 机制引入 (Mission complete! )
+  7. 单元测试  (Mission complete! )
   8. 统计chart图
   9. 站点安全检测脚本机制
- 10. 站点状态监控 (已完成)
+ 10. 站点健康状态监控 (Mission complete! )
  11. 文章灵活快速上传或管理
  12. 站点脚本化部署和管理
  13. 点赞系统
@@ -49,25 +49,25 @@
             mkdir /var/kidphp/
             cd /var/kidphp/
             git clone gitub.com/jameskid/kidphp/
-            sh install.sh
+            sh install.sh        ( Mission complete ! 2017.11.10 )
  19. 添加一个配置中心项目,config,统一走配置中心
  20. 添加置顶文章功能
  21. 自动扫描article更新文章脚本
- 22. 日志系统
+ 22. 日志系统    (Mission complete ! 2017.11.25)
  23. 双机热备,双机热切换
  24. 显示站点每秒并发,每分钟并发,每小时并发,日并发
- 25. 建立一个vim爱好者社区
+ 25. 建立一个vim爱好者社区,贡献文章的志愿者社区
  26. 数据库自动备份，自动部署方案，每次有新的语句提交,自动化部署上线前前要提前执行好
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题
-    2. 中英版seo友好路由设计
+    2. 中英版seo友好路由设计 (Mission complete! 2017.12.3)
     3. 上一篇下一篇
     4. 相似文章
     5. 随机文章(文章多了可以做)
     6. 修改英文版样式，使之更好看些
-    7. htanginx 智能目录读取
-    8. 重构目录(已完成)
+    7. htanginx 智能目录读取 (Mission complete! 2017.12.1)
+    8. 重构目录   (Mission complete! 2017.11.20)
     9. 将围棋程序象棋程序拆分出来，弄成一个开源框架
    10. 将frl用本框架进行重构
    11. 将mysql调用改成单例模式

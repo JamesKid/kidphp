@@ -310,26 +310,32 @@
                 line-height:28px;
             }
 
-
 		/* 脚部样式 */
 		.foot {
-        float:left;
-        width:100%;
+            float:left;
+            width:100%;
 		}	
 
 		/* 公共类样式　*/
 		.language {
-        float:left;
-        width:97%;
-        padding-top:15px;
-        padding-right:3%;
-        padding-bottom:15px;
-        font-size:0.8em;
+            float:left;
+            width:96%;
+            padding-top:15px;
+            padding-right:4%;
+            padding-bottom:15px;
+            font-size:0.9em;
 		}
 		.languageType {
-        float:right;
-        padding-right:3%;
+            float:right;
+            padding-right:9px;
+            padding-left:9px;
+            padding-top:3px;
+            padding-bottom:3px;
+            border-radius:4px;
 		}
+		.languageSelected {
+            background-color:#040;
+        }
 
         /* share */
         .bdsharebuttonbox {
