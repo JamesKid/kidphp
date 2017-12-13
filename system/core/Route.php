@@ -16,9 +16,6 @@ class Route extends PublicCore{
             $request = str_replace('http://','',$request);
             $request = str_replace($_SERVER['HTTP_HOST'],'',$request);
         }
-        //$position = strpos($request,'?');//获取问号位置
-        //if($position)
-        //    $request = substr($request,0,$position); //删除问号后内容
         // 过滤地址,过滤第一个斜杠  
         $url = trim(str_replace($root,'', $request),'/');   
         $uri = $this->getControllerFunction($url);

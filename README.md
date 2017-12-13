@@ -106,6 +106,10 @@
                         |具体实现|      ---------- 功能实现
                         ----------
 
+#### 常用包(Useful package) http://packagist.org
+    overtrue/wechat          # 微信sdk
+    lokielse/omnipay-alipay  # 支付宝sdk
+    phpoffice/phpword        # office库,A pure PHP library for reading and writing word
 
 
 

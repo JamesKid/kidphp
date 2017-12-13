@@ -23,7 +23,8 @@
     "require": {
         "kidphp/kidphp_rand": "^v1.0.1",
         "kidphp/kidphp_file": "^v1.0.0",
-        "filp/whoops": "2.*"
+        "filp/whoops": "2.*",
+        "monolog/monolog": "^1.23"
     },
     "require-dev": {
         "phpunit/phpunit": "4.5.*"

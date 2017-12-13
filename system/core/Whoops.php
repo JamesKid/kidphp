@@ -19,7 +19,7 @@ class Whoops extends PublicCore{
                 $whoops->register();
             }
         }catch(Exception $e){
-            //error_log(date('Y-m-d H:i:s')."\n",3,'/var/log/www/vimkid/'.date('Y-m-d').'.log');
+
         }
     }
 }
