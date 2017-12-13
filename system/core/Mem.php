@@ -12,7 +12,6 @@ class Mem extends PublicCore{
         $memPort = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
         $this->initMem($memIp,$memPort); // 初始化缓存
     }
-
     /* 初始化缓存 */
     public function initMem($memIp,$memPort){
         $mem = new Memcache;
@@ -34,5 +33,4 @@ class Mem extends PublicCore{
         $result = $this->mem->delete($key);
         return $result;
     }
-
 }

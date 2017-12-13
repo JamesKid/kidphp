@@ -23,12 +23,8 @@ class Visit extends PublicCore{
         $language = $GLOBALS['LANGUAGE']['nowLanguage']; // 添加访问语言
         if(!$statusSign){
             $status=404;
-        }else {
-            $status=200;
         }
         $type=1; //0正常访问，１非法访问
-
-        //$mysql = new system\core\db\Mysql('WRITE');  // 访问写节点下的权限
         $mysql = $this->getMysqlRead();  // 访问写节点下的权限
         $ipInfo = $this->getIpInfo();
         $ip = $ipInfo->GetIpIn();

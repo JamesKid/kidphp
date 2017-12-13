@@ -23,29 +23,27 @@ class Env {
                 //不具备安全性,如上线请将根目录下env.txt文件第一行test改为online</div>'; // 提示当前在测试环境
             ini_set('display_errors',1);           // 显示错误信息
             ini_set('display_startup_errors',1);   // 打开调试
-            ini_set("allow_url_fopen","Off");     //关闭fopen
+            //ini_set("allow_url_fopen","Off");     //关闭fopen ,关闭会影响composer
             ini_set("allow_url_include","Off");   // 关闭include
             error_reporting(E_ALL);                // 报告所有错误
             ini_set("log_errors","On");   // 打开日志记录
             ini_set("log_errors_max_len","1024");   // 设置每个日志项的最大长度   
-            ini_set("error_log","/var/log/www/vimkid/".date("Y-m-d")."-error.log");  // 设置日志路径
         }else if($env == 'online'){
             ini_set('display_errors',0);           // 不显示错误信息
             ini_set('display_startup_errors',0);   // 关闭调试
             error_reporting(E_ALL);                    // 错误报告级别
             ini_set('disable_functions',system);   // 关闭system函数,有风险
             ini_set('expose_php','Off');
-            ini_set("allow_url_fopen","Off");     //关闭fopen
+            //ini_set("allow_url_fopen","Off");     //关闭fopen, 关闭会影响copmoser
             ini_set("allow_url_include","Off");   // 关闭include
             ini_set("allow_url_include","Off");   // 关闭include
             ini_set("log_errors","On");   // 打开日志记录
             ini_set("log_errors_max_len","1024");   // 设置每个日志项的最大长度   
-            ini_set("error_log","/var/log/www/vimkid/".date("Y-m-d")."-error.log"); // 设置日志路径
         }else{
             echo '<div style="background-color:#f00;color:#fff">当前未配置环境,请在根目录下添加env.txt文件第一行添加test或online,test 为测试环境，online为线上环境</div>'; // 提示当前在测试环境
             exit;
         }
-
+        ini_set("error_log","/var/log/www/vimkid/".date("Y-m-d")."-error.log"); // 设置日志路径
     }
     /* error_reporting
      * 1 E_ERROR 致命的运行错误。错误无法恢复，暂停执行脚本。

@@ -1,11 +1,8 @@
 <?php
-
 /**
  * 框架钩子类
  */
-
 namespace framework\base;
-
 class Hook {
     /**
      * 钩子列表
