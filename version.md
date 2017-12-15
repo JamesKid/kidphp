@@ -64,6 +64,7 @@
  29. 接口文档生成包 
  30. 添加monolog !!!! ( Mision complete! )
  31. 添加接口文档生成工具
+ 32. README.md嵌入实时图表,代码覆盖率,build等tag,参考https://codeclimate.com
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题
