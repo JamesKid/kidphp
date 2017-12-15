@@ -111,6 +111,9 @@
     overtrue/wechat          # 微信sdk
     lokielse/omnipay-alipay  # 支付宝sdk
     phpoffice/phpword        # office库,A pure PHP library for reading and writing word
+    pmill/php-scheduler      # php计划任务
+    pmill/php-chat           # 小型php多人,多聊天室聊天工具
+
 
 
 
