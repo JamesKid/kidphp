@@ -118,7 +118,7 @@
     pmill/php-scheduler      # php计划任务
     pmill/php-chat           # 小型php多人,多聊天室聊天工具
     codeclimate/php-test-reporter  # php代码覆盖率工具, code climate
-    intervention/image       # 图片压缩,图片转换,图片打水印,good!
+    intervention/image       # 图片压缩,图片转换,图片打水印,good! doc http://image.intervention.io/use/uploads
 
 
 
