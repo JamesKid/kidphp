@@ -65,6 +65,19 @@
  30. 添加monolog !!!! ( Mision complete! )
  31. 添加接口文档生成工具
  32. README.md嵌入实时图表,代码覆盖率,build等tag,参考https://codeclimate.com
+ 33. 内存使用监控,运行时间监控,cpu占用监控框架 (学会使用unset,或其他方法释放内存)
+         $start = memory_get_usage();  
+         $a = array_fill(0, 10000, 1);  
+         $mid = memory_get_usage(); //10k elements array;  
+         echo 'argv:', ($mid - $start )/10000,'byte' , '<br>';  
+         // 格式化输出内存占用
+            <?php
+            function convert($size){
+                $unit=array('b','kb','mb','gb','tb','pb');
+                return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+            }
+            echo convert(memory_get_usage(true));
+            ?> 
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题
