@@ -78,6 +78,7 @@
             }
             echo convert(memory_get_usage(true));
             ?> 
+34. PHPRAP?  是否有必要引入?
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题
