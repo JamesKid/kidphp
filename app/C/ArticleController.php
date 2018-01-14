@@ -18,7 +18,7 @@ class ArticleController extends AppPublic {
         $params['left'] = $this->ajaxService->getSubCategory(1); // 1 vim  2 others
         $params['useLanguage'] = $this->getUseLanguage(); // 过滤当前默认语言
 
-        $result = $this->getMemcache($articleId);
+        $result = $this->getMemcached($articleId);
         if(isset($result)){
             $params['data']=$result;
             $Parsedown = new system\plugin\outer\parsedown\Parsedown();
@@ -34,20 +34,19 @@ class ArticleController extends AppPublic {
         }
     }
 
-    /* 获取memcache */
-    public function getMemcache($articleId){
-        // 如果memcache 没打开
-        if($GLOBALS['CONFIG']['MEMCACHE_STATUS'] == 'close'){ 
+    /* 获取memcached */
+    public function getMemcached($articleId){
+        // 如果memcached 没打开
+        if($GLOBALS['CONFIG']['MEMCACHED_STATUS'] == 'close'){ 
             $result = $this->articleService->getArticleById($articleId);
             return $result;
         }
-
-        $mem = new Mem; // 实列化缓存
+        $memcached = new Mem; // 实列化缓存
         $key = $_SERVER['HTTP_HOST'].'/'.$articleId;
-        $result = $mem->get($key);
+        $result = $memcached->get($key);
         if(empty($result)){ // 如果缓存为空，则调取数据
             $result = $this->articleService->getArticleById($articleId);
-            $mem->set($key,$result,0,60*60*24*2); // 缓存2天
+            $memcached->set($key,$result,60*60*24*2); // 缓存2天
         }
         return $result;
     }
