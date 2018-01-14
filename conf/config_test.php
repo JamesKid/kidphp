@@ -5,7 +5,7 @@ $GLOBALS['CONFIG'] = array(
     'KEY'=>'leichxpeHEHN',        // 加密字符串
     'DOMAIN'=>'www.vimkid.com',        // 项目域名
     'PAGECACHE_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
-    'MEMCACHE_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
+    'MEMCACHED_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
     'DB'=>array(
         'READ'=>array(
             'DB_NAME'=>'vimkid',
@@ -50,7 +50,7 @@ $GLOBALS['CONFIG'] = array(
         ),    // 从库ip
         'DB_TABLE_HEAD'=>'vimkid', //数据库表前缀
     ),
-    'MEMCACHE'=>array(
+    'MEMCACHED'=>array(
         'MASTER'=>array(
             '0'=>array(
                 'IP'=>'127.0.0.1',
