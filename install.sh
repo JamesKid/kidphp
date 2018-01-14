@@ -24,8 +24,8 @@ function install(){
 }
 # 2. 添加多国语言缓存目录
 function addMultiCountryDirectory(){
-    mkdir system/page_cache/en
-    mkdir system/page_cache/zh
+    mkdir -p system/page_cache/en
+    mkdir -p system/page_cache/zh
     chmod -R 777 system/page_cache/en
     chmod -R 777 system/page_cache/zh
     echo "Make directory ok. ^_^" 
