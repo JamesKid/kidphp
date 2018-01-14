@@ -6,31 +6,31 @@ class Mem extends PublicCore{
     /** 
      * 初始化方法
      */
-    public $mem;
+    public $memcached;
     public function __construct(){
-        $memIp = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['IP'];       // 主memcache库 ip
-        $memPort = $GLOBALS['CONFIG']['MEMCACHE']['MASTER'][0]['PORT'];       // 主memcache库 ip
-        $this->initMem($memIp,$memPort); // 初始化缓存
+        $memcachedIp = $GLOBALS['CONFIG']['MEMCACHED']['MASTER'][0]['IP'];       // 主memcache库 ip
+        $memcachedPort = $GLOBALS['CONFIG']['MEMCACHED']['MASTER'][0]['PORT'];       // 主memcache库 ip
+        $this->initMem($memcachedIp,$memcachedPort); // 初始化缓存
     }
     /* 初始化缓存 */
-    public function initMem($memIp,$memPort){
-        $mem = new Memcache;
-        $mem->connect($memIp, $memPort);
-        $this->mem = $mem; 
+    public function initMem($memcachedIp,$memcachedPort){
+        $memcached = new Memcached;
+        $memcached->addServer($memcachedIp, $memcachedPort);
+        $this->memcached = $memcached; 
     }
     /* 设置key */
-    public function set($key,$text,$other,$time){
-        $result = $this->mem->set($key, $text, $other, $time);
+    public function set($key,$text,$time){
+        $result = $this->memcached->set($key, $text,$time);
         return $result;
     }
     /* 获取key */
     public function get($key){
-        $result = $this->mem->get($key);
+        $result = $this->memcached->get($key);
         return $result;
     }
     /* 删除key */
     public function delete($key){
-        $result = $this->mem->delete($key);
+        $result = $this->memcached->delete($key);
         return $result;
     }
 }
