@@ -26,7 +26,7 @@ class Kidphp
         new Config($env);
         new Env($env);
         new Whoops($env);  // 实例Whoops查错框架
-        new Monolog($env);;  // 实例化monolog日志记录系统
+        //new Monolog($env);;  // 实例化monolog日志记录系统
         new Secure;  // 实例化安全框架
         new Language;  // 实例化多国语言框架
         $Route = new Route;    // 实例化路由框架
