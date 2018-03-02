@@ -99,7 +99,7 @@ class weiqi{
     // 获取使用帮助文档
     public function getDoc(){
         $doc = " 
-This is help for weiqi project: \n 
+This is help for weiqi project: ".PHP_EOL."
 参数: 
 h    :打开帮助
         php weiqi.php h   
@@ -292,7 +292,8 @@ read :读取保存的棋局状态  如：
         $i = 1;  // 初始化纵坐标值
         // 输出横坐标
         print_r('   A B C D E F G H I J K L M N O P Q R S ');
-        echo "\n";
+        //echo "\n";
+        echo PHP_EOL; //  打印换行
         foreach($board as $k => $v){
             // 输出纵坐标
             if(strlen($i)==1){
@@ -330,7 +331,8 @@ read :读取保存的棋局状态  如：
                     echo '■ '; // 输出当前所下白棋
                 }
             }
-            echo "\n";
+            //echo "\n";
+            echo PHP_EOL;
             $i++;
         }
         // 输出横坐标
@@ -627,10 +629,10 @@ read :读取保存的棋局状态  如：
         //print_r($playPool);
         if(array_key_exists($y, $playPool)){
             if(!array_key_exists($x, $playPool[$y])){
-                echo 'WARN: 落点不合法,该点已经有子'."\n";exit;
+                echo 'WARN: 落点不合法,该点已经有子'.PHP_EOL;exit;
             }
         }else {
-            echo 'WARN: 落点不合法'."\n";exit;
+            echo 'WARN: 落点不合法'.PHP_EOL;exit;
         }
 
     }

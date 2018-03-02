@@ -79,6 +79,13 @@
             echo convert(memory_get_usage(true));
             ?> 
 34. PHPRAP?  是否有必要引入?
+35. 添加优秀文章推荐栏目,摘录网上不错的vim文章
+36. IOC依赖注入
+37. 用swoole取代php-fpm
+38. php管道
+39. php消息队列
+40. php HTML5 LocalStorage (本地存储)
+41. 用韩大神的PHP-X 写点扩展?
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题
