@@ -86,8 +86,9 @@
 39. php消息队列
 40. php HTML5 LocalStorage (本地存储)
 41. 用韩大神的PHP-X 写点扩展?
-42. 研究哈zookeeper
-43. 底部添加最新手册路径link,官网link
+42. 添加读书分享(好书分享)，如javascript启示录读书分享
+43. 研究哈zookeeper
+44. 底部添加最新手册路径link,官网link
     http://vimcdoc.sourceforge.net/doc/
     http://vimcdoc.sourceforge.net/doc/index.html  (快捷键)
     http://www.vim.org/
