@@ -89,6 +89,7 @@
 42. 研究哈zookeeper
 43. 底部添加最新手册路径link,官网link
     http://vimcdoc.sourceforge.net/doc/
+    http://vimcdoc.sourceforge.net/doc/index.html  (快捷键)
     http://www.vim.org/
 
 ### 零散事务
