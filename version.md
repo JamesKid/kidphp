@@ -86,6 +86,12 @@
 39. php消息队列
 40. php HTML5 LocalStorage (本地存储)
 41. 用韩大神的PHP-X 写点扩展?
+42. 添加读书分享(好书分享)，如javascript启示录读书分享
+43. 研究哈zookeeper
+44. 底部添加最新手册路径link,官网link
+    http://vimcdoc.sourceforge.net/doc/
+    http://vimcdoc.sourceforge.net/doc/index.html  (快捷键)
+    http://www.vim.org/
 
 ### 零散事务
     1. 修改时间字段为timestamp或bigint,而不是用int,避免2038年问题

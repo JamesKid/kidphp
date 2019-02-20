@@ -129,4 +129,27 @@ $GLOBALS['LANGUAGE'] = array(
             'zh'=>'新浪微博'
         )
     ),
+    // 友情链接
+    'links' =>array(
+        0 => array(
+            'name'=>array(
+                'en'=>'Vim',
+                'zh'=>'vim官网',
+            ),
+            'link'=>array(
+                'en'=>'https://www.vim.org',
+                'zh'=>'https://www.vim.org',
+            ),
+        ),
+        1 => array(
+            'name'=>array(
+                'en'=>'Vim Manual',
+                'zh'=>'vim手册',
+            ),
+            'link'=>array(
+                'en'=>'http://vimdoc.sourceforge.net/htmldoc/',
+                'zh'=>'http://vimcdoc.sourceforge.net/doc/',
+            ),
+        ),
+    ),
 );

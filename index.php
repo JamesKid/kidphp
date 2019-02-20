@@ -19,9 +19,11 @@ class Kidphp
     {
         $env = file_get_contents('env.txt',1); // 获取env文件第一行
         $env = trim($env); // 获取当前环境 test: 测试环境 online: 线上环境
+        /*
         if($env == 'test'){ // 如果为test环境，则打开xhprof
             xhprof_enable();
         }
+         */
         spl_autoload_register(array($this,'__autoload')); // 自动加载
         new Config($env);
         new Env($env);
