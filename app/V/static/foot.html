@@ -1,9 +1,14 @@
         <div class="foot">
+            <div >
+                友情链接: 
+                <?php foreach ($GLOBALS['LANGUAGE']['links'] as $v):?>
+                <?php endforeach;?>
+            </div>
             <div style="text-align:center" class="languageColor">
-            <?php foreach ($GLOBALS['LANGUAGE']['mainCategory'] as $v):?>
-                <?php $value = $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
-                --| <a title="<?php echo $value;?>"  href="<?php echo $v['link'][$GLOBALS['LANGUAGE']['nowLanguage']];?>"><?php echo $value;?></a > |--
-            <?php endforeach;?>
+                <?php foreach ($GLOBALS['LANGUAGE']['mainCategory'] as $v):?>
+                    <?php $value = $v['languageList'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+                    --| <a title="<?php echo $value;?>"  href="<?php echo $v['link'][$GLOBALS['LANGUAGE']['nowLanguage']];?>"><?php echo $value;?></a > |--
+                <?php endforeach;?>
             </div>
             <div class="copyRight">
                 Copyright 2016@vimkid Email:1779156598@qq.com  新浪微博: vimkid qq:1779156598
