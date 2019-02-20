@@ -7,6 +7,41 @@ class JiekouController {
         $ip = $this->getIpFunction();
         echo $ip;
     }
+    public function getParams()
+    {
+        
+        $ret = array();
+        $params = $_POST;
+        if (!empty($params)) {
+            foreach ($params as $key => $value) {
+                $ret[$key] = $value;
+            }
+            ksort($ret); //方便进行签名设置
+        }
+        //$ret = $this->getret(); //获取所有传参
+        if (isset($ret['appId'])) unset($ret['appId']);
+        if (isset($ret['signature'])) unset($ret['signature']);
+
+        if (!empty($ret)) {
+            $srcStr = '';
+            foreach ($ret as $key => $value) {
+                $srcStr .= $key . "=" . $value . "&";
+            }
+            $srcStr .= '62940de5b73411e898d190b11c2371a5';
+            $signStr = md5($srcStr);
+            if ($_POST['signature'] != $signStr) {
+                $result = array(
+                    'result'=>true,
+                );
+                echo json_encode($result,true);
+            }
+        } else {
+            $result = array(
+                'result'=>false,
+            );
+            echo json_encode($result,true);
+        }
+    }
 
     /** 
      * 获取英语每日一句
