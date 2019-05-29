@@ -34,8 +34,9 @@ class AjaxController {
 
 
     /* 保存访客 */
+    /*
     public function vimkid(){
-        /* 控制不能直接访问ajax接口 */
+        // 控制不能直接访问ajax接口
         $classPath='';
         $status=200;
         $api='';
@@ -43,7 +44,7 @@ class AjaxController {
         $function='';
         $url='';
         if(isset($_SERVER['HTTP_REFERER'])){
-            /*  正常访问 */
+            //  正常访问 
             $route = new Route;
             $uri = $route->initRoute($_SERVER['HTTP_REFERER']);  //获取uri
             $classPath = 'api/'.$uri['api'].'/C/'.ucfirst($uri['class']).'Controller.php';
@@ -61,7 +62,7 @@ class AjaxController {
             $type=1; //0正常访问，１非法访问
 
         }else {
-            /*  记录非法访问 */
+            //  记录非法访问
             echo "I want you ~~~~ ,baby!";
             $type=0;
         }
@@ -149,5 +150,6 @@ class AjaxController {
         ";
         $result = $mysql->execute($sql);
     }
+     */
 }
 ?>

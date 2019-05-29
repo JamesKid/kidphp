@@ -37,10 +37,10 @@ class Visit extends PublicCore{
         $source='';
         $device='';
         $countryid='';
-        $browser = $ipInfo->GetBrowser();
-        $country=$address['ip_country'];
-        $province=$address['ip_province'];
-        $city=$address['ip_city'];
+        $browser = addslashes($ipInfo->GetBrowser());
+        $country=addslashes($address['ip_country']);
+        $province=addslashes($address['ip_province']);
+        $city=addslashes($address['ip_city']);
         $countryEnglish = '';
         $provinceEnglish = '';
         $cityEnglish = '';
@@ -48,10 +48,10 @@ class Visit extends PublicCore{
         $createtimeymd = date('Y-m-d H:i:s');
         $username='';
         $userid='';
-        $system = $ipInfo->GetOs();
-        $browserlang = $ipInfo->GetLang();
-        $ismobile = $ipInfo->isMobile();
-        $agent = $_SERVER['HTTP_USER_AGENT'];
+        $system = addslashes($ipInfo->GetOs());
+        $browserlang = addslashes($ipInfo->GetLang());
+        $ismobile = addslashes($ipInfo->isMobile());
+        $agent = addslashes($_SERVER['HTTP_USER_AGENT']);
 
         $sql = "insert into vimkid_visitin ( 
             visit_ip,
