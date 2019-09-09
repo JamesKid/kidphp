@@ -23,19 +23,30 @@
          </div>
          <script> 
              (function() { 
+                 var elements = []; // 用来保存每个小方块食物
+                 // 食物就是一个对象，有宽有高，有颜色，有坐标，先定义 构造函数，然后创建对象
+                function Food(x,y,width, height, color) { 
+                    // 横纵坐标
+                    this.x = x || 0;
+                    this.y = y || 0; 
+                    // 宽和高
+                    this.width = width || 20;
+                    this.height = height || 20;
+                    // 背景颜色
+                    this.color = color || "green";
+                }
+                // 为原型添加初始化的方法（作用：在页面上显示这个食物)
+                // 因为食物要在地图上显示，所以，需要地图的这个参数 (map -- 就是页面上的.class=map 
+                Food.prototype.init = function(map) { 
+                    var div = documents.createElement("div");
+                    // 把div加到maomap.appendChild(div);
+                    // 设置 div的样式
+                    // 把div 加入到数组 elements中
+                    elements.push(div);
 
+                };
+             ());
          </script>
      </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <div class="map">
-    </div>
-</body>
 </html>
 
