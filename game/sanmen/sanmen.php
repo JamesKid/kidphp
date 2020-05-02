@@ -13,7 +13,7 @@ for($i = 0; $i < $number; $i++) {
     $prizes[$prize] = '奖品';
     // 抽奖
     $get = rand(0,2);
-    // 排除另一个为零的将品
+    // 排除一个错误答案(另一个为零的将品)
     foreach ($prizes as $key => $value) {
         if( $key != $get && $value === 0 ){
             // 排除一个正确选项
@@ -26,12 +26,9 @@ for($i = 0; $i < $number; $i++) {
     // 弹出最终选择结果 
     $result = array_pop($prizes);
     // 判断是否中奖，中奖将中奖次数加一 
-    // print_r($result);
     if($result === '奖品') { 
         $changeGet = $changeGet + 1;
     }
 }
-echo '抽中奖数为:' . $changeGet;
-echo '中将率为:' . $changeGet/$number;
-
-
+echo '抽中奖数为:' . $changeGet . "\n";
+echo '中奖率为:' . $changeGet/$number;
