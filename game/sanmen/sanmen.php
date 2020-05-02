@@ -16,7 +16,7 @@ for($i = 0; $i < $number; $i++) {
     // 排除一个错误答案(另一个为零的将品)
     foreach ($prizes as $key => $value) {
         if( $key != $get && $value === 0 ){
-            // 排除一个正确选项
+            // 排除一个错误选项
             unset($prizes[$key]);
             break;
         }
