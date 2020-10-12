@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="renderer" content="webkit"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta http-equiv="Cache-Control" content="no-siteapp"/>
+        <title>直播</title>
+        <link href="http://cdn.bootcss.com/plyr/3.3.9/plyr.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="player" style="width:640px;height:360px">
+            <video title="直播测试"
+                   poster="http://192.168.1.230:8004/static/img/index_p3.jpg"
+                   controls crossorigin></video>
+        </div>
+        <script src="http://cdn.bootcss.com/hls.js/0.9.1/hls.light.min.js"></script>
+        <script src="http://cdn.bootcss.com/plyr/3.3.9/plyr.min.js"></script>
+        <script>
+            window.onload = function () {
+                var hlsUrl = 'http://176.122.151.104:1935/rtmplive/?pass=zz3829322.m3u8';
+                var video = document.querySelector('video');
+                if (Hls.isSupported()) {
+                    var hls = new Hls({autoStartLoad: false});
+                    hls.loadSource(hlsUrl);
+                    hls.attachMedia(video);
+                } else {
+                    var nativeHLS = video.canPlayType('application/vnd.apple.mpegurl');
+                    video.src = nativeHLS ? hlsUrl : fallbackUrl;
+                }
+
+                video.addEventListener('play', function () {
+                    hls.startLoad();
+                }, {once: true});
+
+                new Plyr(video);
+            };
+        </script>
+    </body>
+</html>
