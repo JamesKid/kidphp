@@ -46,14 +46,14 @@ $GLOBALS['LANGUAGE'] = array(
                 'zh'=>'关于我们',
             ),
         ),
-        'downloads'=>array(
+        'chatGPT'=>array(
             'link'=> array(
-                'en'=>'/wait/index',
-                'zh'=>'/zh/wait/index',
+                'en'=>'/chatGPT/index',
+                'zh'=>'/zh/chatGPT/index',
             ),
             'languageList'=>array(
-                'en'=>'Downloads',
-                'zh'=>'下载',
+                'en'=>'chatGPT',
+                'zh'=>'chatGPT',
             ),
         ),
     ),

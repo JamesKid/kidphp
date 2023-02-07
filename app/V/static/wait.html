@@ -10,7 +10,7 @@
                     <span class="color3">&gt;</span>
                     <span class="color4">&gt;</span>
                     <span class="listTitle">
-                        <?php echo $GLOBALS['LANGUAGE']['titles']['tips'][$GLOBALS['LANGUAGE']['nowLanguage']];?>
+                        chatGPT
                     </span>  
                     <span class="color4">&lt;</span>
                     <span class="color3">&lt;</span>
@@ -20,7 +20,15 @@
             </div> 
             <div class="listContent">
                 <div class="content">
-                    <p>Developing,please wait...</p>
+                    <div class="chatGPT_input_out">
+                        <input id="search" placeholder="您好主人，我是达闻西003,请输入您想问的吧." class="chatGPT_input"/>
+                        <div class="chatGPT_button">生成</div>
+                        <div class="chatGPT_button_loading" style="display:none">生成中...</div>
+                    </div>
+                    <div class="content">
+				        <?php echo $params['search'] . $params['content'];?>
+                        <div class="content_result" id="divID">闻西: 请输入您想问的问题...</div>
+                    </div>
                     <p class='noindent' style="text-align:right;color:#F00">----| vimkid |----</p>
                 </div>
 
@@ -29,4 +37,5 @@
         </div>
     </div>
 </div>
+<?php include('chatGPT_js.html')?>    
 <?php include('foot.html')?>    

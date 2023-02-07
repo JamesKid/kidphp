@@ -6,6 +6,7 @@ $GLOBALS['CONFIG'] = array(
     'DOMAIN'=>'www.vimkid.com',        // 项目域名
     'PAGECACHE_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
     'MEMCACHED_STATUS'=>'close',        // 是否打开文件缓存 open 打开,close关闭
+    'OPEN_AI_KEY'=>'wewewewewewe',
     'DB'=>array(
         'READ'=>array(
             'DB_NAME'=>'vimkid',

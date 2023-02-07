@@ -251,5 +251,9 @@ class AjaxService extends PublicCore {
         $result = $result->fetchAll();
         return $result[0]['number'];
     }
+    public function getChatGPT() { 
+
+
+    } 
 }
 ?>

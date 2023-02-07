@@ -18,7 +18,7 @@ class Visit extends PublicCore{
         $statusSign = $check->checkRoute($classPath,$uri);
         $class = $uri['class'];
         $function = $uri['function'];
-        $url = $_SERVER['REQUEST_URI'];
+        $url = urldecode($_SERVER['REQUEST_URI']);
         $urlOld = $_SERVER['REQUEST_URI_OLD'];  // 添加原有请求url
         $language = $GLOBALS['LANGUAGE']['nowLanguage']; // 添加访问语言
         if(!$statusSign){
@@ -46,6 +46,7 @@ class Visit extends PublicCore{
         $cityEnglish = '';
         $createtime = time();
         $createtimeymd = date('Y-m-d H:i:s');
+        $createdAt = date('Y-m-d H:i:s');
         $username='';
         $userid='';
         $system = addslashes($ipInfo->GetOs());
@@ -81,7 +82,8 @@ class Visit extends PublicCore{
             visit_country_english,
             visit_province_english,
             visit_city_english,
-            visit_agent
+            visit_agent,
+            visit_created_at
         ) values (
             '$ip',
             '$ipv6',
@@ -110,7 +112,8 @@ class Visit extends PublicCore{
             '$countryEnglish',
             '$provinceEnglish',
             '$cityEnglish',
-            '$agent'
+            '$agent',
+            '$createdAt'
         )
         ";
         $result = $mysql->execute($sql);

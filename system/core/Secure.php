@@ -43,6 +43,7 @@ class Secure extends PublicCore{
         $url = str_replace('%', '', $url);
         $url = str_replace('-', '', $url);
         $url = str_replace('_', '', $url);
+        $url = str_replace(',', '', $url);
         // 如果除了/ ? & = . 还有其他特殊字符，则重新跳转
         if(!$this->onlyLettersOrDigits($url) && $url!=''){
             $ipInfo = $this->getIpInfo(); // 从父类PublicCore中获取ip信息

@@ -1,0 +1,33 @@
+<div>tewewrwer</div>
+<img src="http://img.tiku.cn/tikuimg/q_500004/a/09/01/41/bc8c79aeed07.jpg">
+<script>
+
+//var  url = 'https://profile.csdnimg.cn/A/E/5/3_qq_36196059'
+//var  url = 'https://avatars1.githubusercontent.com/u/16359713?s=64&v=4'
+var  url = 'http://img.tiku.cn/tikuimg/q_500004/a/09/01/41/bc8c79aeed07.jpg'
+getBase64(url).then(base64 =>{
+      console.log(base64)
+});
+
+ function getBase64(img){
+	function getBase64Image(img,width,height) {
+		var canvas = document.createElement("canvas");
+		canvas.width = width ? width : img.width;
+		canvas.height = height ? height : img.height;
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+		var dataURL = canvas.toDataURL();
+		return dataURL;
+	}
+	var image = new Image();
+	image.crossOrigin = '';
+	image.src = img;
+	return new Promise((resolve,reject)=>{
+		image.onload =function (){
+			resolve(getBase64Image(image));//将base64传给done上传处理
+		}
+	});
+};
+
+
+</script>
