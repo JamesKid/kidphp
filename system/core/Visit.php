@@ -18,7 +18,8 @@ class Visit extends PublicCore{
         $statusSign = $check->checkRoute($classPath,$uri);
         $class = $uri['class'];
         $function = $uri['function'];
-        $url = urldecode($_SERVER['REQUEST_URI']);
+        $url = str_replace('\'','\\\'',urldecode($_SERVER['REQUEST_URI']));
+        $url = str_replace('\"','\\\'',$url);
         $urlOld = $_SERVER['REQUEST_URI_OLD'];  // 添加原有请求url
         $language = $GLOBALS['LANGUAGE']['nowLanguage']; // 添加访问语言
         if(!$statusSign){

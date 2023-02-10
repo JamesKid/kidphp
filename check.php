@@ -1,6 +1,11 @@
 <?php
 // 健康检查
-echo 'v-ok';
+$rand = mt_rand(0,1);
+if($rand) { 
+    echo "I'm watching you Baby!";
+}else { 
+    echo "Don't be evil!";
+}
 /* 
  * # tips (命令行下性能检测)
  *     ab -kc 500 -n 5000 www.xxx.com/check.php  # 检测服务器基础响应能力

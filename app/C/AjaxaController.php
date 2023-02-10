@@ -4,7 +4,7 @@ class AjaxaController extends AppPublic{
         //header('Content-Type:application/json; charset=utf-8');
         $checkFrom = $this->checkFrom(); // 检查来源是否合法
         if(!$checkFrom){
-            header("location: /404page.html"); 
+           header("location: /404page.html"); 
         }
     }
 
@@ -21,6 +21,8 @@ class AjaxaController extends AppPublic{
      */
     public function getChatGPT(){
         ini_set('display_errors','On');
+        ini_set('max_execution_time', '0');
+        set_time_limit(30);
         error_reporting(E_ALL);
         $ajaxService = new AjaxService();
         $params['tags'] = $ajaxService->getTags();
@@ -37,7 +39,7 @@ class AjaxaController extends AppPublic{
                 'model' => 'text-davinci-003',
                 'prompt' => $search,
                 'temperature' => 0.9,
-                'max_tokens' => 1500,
+                'max_tokens' => 1000,
                 'frequency_penalty' => 0,
                 'presence_penalty' => 0.6,
             ]);

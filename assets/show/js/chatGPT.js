@@ -21,7 +21,7 @@ $(document).ready(function(){
                 success:function(result){
                     // show = JSON.parse(result).choices[0].text;
                     if(result.hasOwnProperty('error')== true) { 
-                        $("#divID").html('chatGPT 闻西崩了，不是我问题，是闻西问题，请重试...');
+                        $("#divID").html('chatGPT 闻西崩了，不是vimkid问题，是闻西问题，请重试...');
                         $('.chatGPT_button_loading').hide();
                         $('.chatGPT_button').show();
                     }
@@ -32,6 +32,12 @@ $(document).ready(function(){
                     $("#divID").html(search + show);
                     $('.chatGPT_button_loading').hide();
                     $('.chatGPT_button').show();
+                },
+                error:function (error) {
+                    $("#divID").html('chatGPT 闻西崩了，不是vimkid问题，请稍后再试试...');
+                    $('.chatGPT_button_loading').hide();
+                    $('.chatGPT_button').show();
+
                 }
             });
         }
