@@ -1,4 +1,7 @@
 <?php
+
+use app\S\Url;
+
 class OpenAiService
 {
     private  $engine = "davinci";

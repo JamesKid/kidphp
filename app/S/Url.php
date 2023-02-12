@@ -1,5 +1,5 @@
 <?php
-
+namespace app\S;
 class Url
 {
     public const ORIGIN = 'https://api.openai.com';

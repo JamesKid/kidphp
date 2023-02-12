@@ -1,10 +1,10 @@
 <?php
 class AjaxaController extends AppPublic{
     public function __construct(){
-        //header('Content-Type:application/json; charset=utf-8');
+        header('Content-Type:application/json; charset=utf-8');
         $checkFrom = $this->checkFrom(); // 检查来源是否合法
         if(!$checkFrom){
-           header("location: /404page.html"); 
+          header("location: /404page.html"); 
         }
     }
 
@@ -46,4 +46,33 @@ class AjaxaController extends AppPublic{
         }
         echo trim($complete);
     }
+    public function getChatGPTImage(){
+        ini_set('display_errors','On');
+        ini_set('max_execution_time', '0');
+        set_time_limit(30);
+        error_reporting(E_ALL);
+        $ajaxService = new AjaxService();
+        $params['tags'] = $ajaxService->getTags();
+        $params['left'] = $ajaxService->getSubCategory(1); // 1 vim  2 others
+        $params['useLanguage'] = $this->getUseLanguage(); // 过滤当前默认语言
+        $open_ai_key = $GLOBALS['CONFIG']['OPEN_AI_KEY'];
+        $open_ai = new OpenAiService($open_ai_key);
+        $search = $_GET['search'] ?? '';
+        $params['search'] = $search;
+        $params['content'] = '';
+        $complete = '';
+        if(!empty($search)) { 
+            $complete = $open_ai->image([
+                "prompt" => "女孩开始享受美妙的咖啡味道，立刻精神抖擞，表情活泼灵动",
+                "n" => 1,
+                "size" => "256x256",
+                "response_format" => "url",
+            ]);
+        }
+        echo trim($complete);
+    }
 }
+
+
+
+
