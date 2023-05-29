@@ -57,6 +57,21 @@
         cursor: pointer;
         padding-top:2px;
     }
+    .chatGPT_title { 
+        width:100%;
+        float:left;
+        font-size:1.2em;
+        margin-top:10px;
+        margin-bottom:10px;
+        text-align:center;
+    }
+    .chatGPT_image { 
+        float:left;
+        width:99%;
+        margin-right:1%;
+        margin-top:20px;
+    }
+
 
     .chatGPT_button_loading { 
         float: left;

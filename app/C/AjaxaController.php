@@ -2,10 +2,10 @@
 class AjaxaController extends AppPublic{
     public function __construct(){
         header('Content-Type:application/json; charset=utf-8');
-        $checkFrom = $this->checkFrom(); // 检查来源是否合法
-        if(!$checkFrom){
-          header("location: /404page.html"); 
-        }
+        //$checkFrom = $this->checkFrom(); // 检查来源是否合法
+        //if(!$checkFrom){
+        //  header("location: /404page.html"); 
+        //}
     }
 
     /* 获取文章访问量*/
@@ -34,6 +34,25 @@ class AjaxaController extends AppPublic{
         $params['search'] = $search;
         $params['content'] = '';
         $complete = '';
+        if(strpos($search, '智障') !== false || 
+            strpos($search, '傻逼') !== false || 
+            strpos($search, '傻B') !== false || 
+            strpos($search, '去你妈的') !== false ||
+            strpos($search, '你妈B') !== false ||
+            strpos($search, '你妈逼') !== false ||
+            strpos($search, '操你妈') !== false ||
+            strpos($search, '操你妈B') !== false ||
+            strpos($search, '逗逼') !== false 
+        )  { 
+            $complete = [
+                "choices"=> [
+                    0=> ['text'=>", I'm not, I'm just improving, please be polite."]
+                ]
+            ];
+
+            echo json_encode($complete,true);
+            die;
+        }
         if(!empty($search)) { 
             $complete = $open_ai->completion([
                 'model' => 'text-davinci-003',
@@ -63,13 +82,34 @@ class AjaxaController extends AppPublic{
         $complete = '';
         if(!empty($search)) { 
             $complete = $open_ai->image([
-                "prompt" => "女孩开始享受美妙的咖啡味道，立刻精神抖擞，表情活泼灵动",
+                "prompt" => $search,
                 "n" => 1,
-                "size" => "256x256",
+                "size" => "512x512",
                 "response_format" => "url",
             ]);
         }
         echo trim($complete);
+    }
+
+    public function edit(){
+        $search = $_GET['search'] ?? '';
+        $do = $_GET['do'] ?? '';
+        $open_ai_key = $GLOBALS['CONFIG']['OPEN_AI_KEY'];
+        $open_ai = new OpenAiService($open_ai_key);
+		$result = $open_ai->createEdit([
+		   "model" => "text-davinci-edit-001",
+  		   //"input" => "What day of the wek is it?",
+		   "input" => $search,
+		   "instruction" => $do ?? "Fix the spelling mistakes",
+	   ]);
+		echo $result;
+    }
+
+    public function getNews(){
+        $ajaxService = new AjaxService();
+        $result = $ajaxService->getNewList();
+        print_r($result);
+        echo json_encode($result,true);
     }
 }
 

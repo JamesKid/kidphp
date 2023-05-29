@@ -21,16 +21,17 @@
             <div class="listContent">
                 <div class="content">
                     <div class="chatGPT_title">
-                        达闻西003通用文字AI
+                        Openai图片生成AI
                     </div>
                     <div class="chatGPT_input_out">
-                        <input id="search" placeholder="您好主人，我是达闻西003,请输入您想问的吧." class="chatGPT_input"/>
+                        <input id="search" placeholder="您好主人，请描述您想生成的图片." class="chatGPT_input"/>
                         <div class="chatGPT_button">生成</div>
                         <div class="chatGPT_button_loading" style="display:none">生成中...</div>
                     </div>
                     <div class="content">
 				        <?php echo $params['search'] . $params['content'];?>
-                        <div class="content_result" id="divID">闻西: 请输入您想问的问题...</div>
+                        <div class="content_result" id="divID">闻西: 我可以生成图片，请描述您想生成的图片...</div>
+                        <img class="chatGPT_image" id="imageUrl" style="display:none" src=""/>
                     </div>
                     <p class='noindent' style="text-align:right;color:#F00">----| vimkid |----</p>
                 </div>
@@ -40,5 +41,5 @@
         </div>
     </div>
 </div>
-<?php include('chatGPT_js.html')?>    
+<?php include('chatGPT_image_js.html')?>    
 <?php include('foot.html')?>    

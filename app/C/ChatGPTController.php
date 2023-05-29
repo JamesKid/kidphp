@@ -17,5 +17,16 @@ class ChatGPTController extends AppPublic{
         $params['content'] = '';
         Render::renderTpl('static/wait.html',$params);
     }
+    /** chatGPT
+     */
+    public function image(){
+        $ajaxService = new AjaxService();
+        $params['tags'] = $ajaxService->getTags();
+        $params['useLanguage'] = $this->getUseLanguage(); // 过滤当前默认语言
+        $search = $_GET['search'];
+        $params['search'] = $search;
+        $params['content'] = '';
+        Render::renderTpl('static/chatGPT_image.html',$params);
+    }
 }
 ?>
